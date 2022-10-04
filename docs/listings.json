@@ -1,5 +1,41 @@
 [
   {
+    "listing": "/pages/cs221.html",
+    "items": [
+      "/notes/cs221/1.html"
+    ]
+  },
+  {
+    "listing": "/pages/intlpol268.html",
+    "items": [
+      "/notes/intlpol268/1.html",
+      "/notes/intlpol268/2.html",
+      "/notes/intlpol268/3.html"
+    ]
+  },
+  {
+    "listing": "/pages/cs109.html",
+    "items": [
+      "/notes/cs109/11-probabilistic-models.html",
+      "/notes/cs109/12-inference-part-1.html",
+      "/notes/cs109/13-inference-part-2.html",
+      "/notes/cs109/14-modeling.html",
+      "/notes/cs109/15-general-inference.html",
+      "/notes/cs109/16-beta.html",
+      "/notes/cs109/17-adding-random-variables.html",
+      "/notes/cs109/18-central-limit-theorem.html",
+      "/notes/cs109/19-bootstrapping.html",
+      "/notes/cs109/20-algortihmic-analysis.html",
+      "/notes/cs109/24-logistic-regression.html",
+      "/notes/cs109/25-ethics.html",
+      "/notes/cs109/26-deep-learning.html",
+      "/notes/cs109/course-review.html",
+      "/notes/cs109/21-maximum-likelihood-estimation.html",
+      "/notes/cs109/23-naïve-bayes.html",
+      "/notes/cs109/22-maximum-a-posteriori.html"
+    ]
+  },
+  {
     "listing": "/pages/cs330.html",
     "items": [
       "/notes/cs330/4.html",

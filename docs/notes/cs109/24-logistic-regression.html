@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Knowledge – logistic-regression</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Knowledge</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../notes.html">Stanford Notes</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lecture-24-logistic-regression" id="toc-lecture-24-logistic-regression" class="nav-link active" data-scroll-target="#lecture-24-logistic-regression">Lecture 24: Logistic Regression</a>
+  <ul class="collapse">
+  <li><a href="#background-and-notation" id="toc-background-and-notation" class="nav-link" data-scroll-target="#background-and-notation">0. Background and notation</a></li>
+  <li><a href="#big-picture" id="toc-big-picture" class="nav-link" data-scroll-target="#big-picture">1. Big picture</a></li>
+  <li><a href="#training-the-weights" id="toc-training-the-weights" class="nav-link" data-scroll-target="#training-the-weights">2. Training the weights</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="lecture-24-logistic-regression" class="level1">
+<h1>Lecture 24: Logistic Regression</h1>
+<p>We now look at another powerful classification algorithm called logistic regression.</p>
+<ul>
+<li>“Heart and soul” of neural networks</li>
+<li>Optimization:
+<ul>
+<li>We need to understand optimization because Log reg., uses it quite heavily!</li>
+</ul></li>
+</ul>
+<blockquote class="blockquote">
+<p>The idea behind supervised learning is, training data in form <span class="math inline">\((\mathbf{x}, y) \ldots\)</span> we want to learn function <span class="math inline">\(\hat{y}=g(\mathbf{x})\)</span> that maps <span class="math inline">\(\mathbf{x}\)</span> to <span class="math inline">\(y\)</span>. This is the same thing as <span class="math inline">\(g(\mathbf{x})=\operatorname{argmax} \hat{P}(Y=y \mid \mathbf{X})\)</span>. IN Naive Bayes’ we literally worked directly with this probability and manipulated it using Bayes’. Here we take a different approach. We recognize that this is just one big function that maps <span class="math inline">\(\mathbf{X} \rightarrow y\)</span>. We are going to try to “approximate” this function!</p>
+</blockquote>
+<section id="background-and-notation" class="level2">
+<h2 class="anchored" data-anchor-id="background-and-notation">0. Background and notation</h2>
+<p>Before we get started, we need to introduce a couple new things and notation: <img src="attachments/Pasted%20image%2020220311162609.png" class="img-fluid"></p>
+<ol type="1">
+<li>The <strong>sigmoid function</strong> is a squashing function which squashes input <span class="math inline">\(z\)</span> to be a number between 0 and 1 (needed for probabilities!). It looks like: <img src="attachments/Pasted%20image%2020220311162710.png" class="img-fluid"></li>
+<li>Second, we will be doing lots of matrix-vector multiplications here because of <strong>weighted sum</strong>s. So it is important to understand the inner/dot product between parameters and inputs: <span class="math display">\[\begin{array}{rlr}
+\theta^{T} \mathbf{x} &amp; =\sum_{i=1}^{n} \theta_{i} x_{i} \quad \begin{array}{c}
+\text { Weighted sum } \\
+\text { (aka dot product) }
+\end{array} \\
+&amp; =\theta_{1} x_{1}+\theta_{2} x_{2}+\cdots+\theta_{n} x_{n}
+\end{array}\]</span></li>
+<li>And finally, we put these two together in the third point. The reason is what we will be doing is (2.) computing the weighted sum and then (1.) squashing it to a probability. Directly, we define this as <span class="math inline">\(\sigma\left(\theta^{T} \mathbf{x}\right)=\frac{1}{1+e^{-\theta^{T} \mathbf{x}}}\)</span>.</li>
+</ol>
+<p>Also, some <strong>calculus background</strong>:</p>
+<ul>
+<li>Recall that for composition of functions, <span class="math inline">\(f(x)=f(z(x))\)</span>, we use chain rule: <span class="math display">\[
+\frac{\partial f(x)}{\partial x}=\frac{\partial f(z)}{\partial z} \cdot \frac{\partial z}{\partial x}.
+\]</span></li>
+</ul>
+</section>
+<section id="big-picture" class="level2">
+<h2 class="anchored" data-anchor-id="big-picture">1. Big picture</h2>
+<ul>
+<li>NB made a naive assumption. That leaves room for improvement!</li>
+<li>Cut to the chase! Avoid probabilities. Just approximate the function <span class="math inline">\(P(Y \mid X)\)</span>! In other words: <span class="math display">\[P(Y=1 \mid \mathbf{X}=\mathbf{x})=\sigma\left(\sum_{i} \theta_{i} x_{i}\right)\]</span>.</li>
+<li>You can think of this as a rule-based machine guided by some weighted: you stick in an input, it gets weighted by the parameters (sliders), summed up and squashed.</li>
+</ul>
+<p><img src="attachments/Pasted%20image%2020220311163437.png" class="img-fluid"></p>
+<ul>
+<li>In other words, we are just using a direct engineering approach: no probability theory (yet)! In actuality, this is just a neural network with no hidden layers!</li>
+<li>But of course, our outputs depend on those weights. So we are going to use prob. and calculus to estimate them!</li>
+<li>Small note: we add an extra input that is always “turned on (i.e.&nbsp;in binary, the feature is always a 1)” to make it work a little better. This is called a “bias” term.</li>
+</ul>
+<p>Math: this equation is how we “<strong>predict</strong>” on a new test sample <span class="math inline">\(\mathbf{x}\)</span>: <span class="math display">\[P(Y=1 \mid \mathbf{X}=\mathbf{x})=\sigma\left(\sum_{i} \theta_{i} x_{i}\right).\]</span></p>
+<p>that is literally it! Nothing else to it. Except of course, we need to determine what exactly these <span class="math inline">\(\theta_i\)</span>’s (parameters/weights) are. We have a method for this: parameter estimation! MLE!</p>
+<p><img src="attachments/Pasted%20image%2020220311164552.png" class="img-fluid"></p>
+<p>So once we have these <span class="math inline">\(\theta_i\)</span>’s determined from training, we basically have this rule-based machine that we can use to make predictions with ease!</p>
+<p>Of course though, the hard part is determined these <span class="math inline">\(\theta_i\)</span>’s. We do this via training which is what we get into next.</p>
+<p><img src="attachments/Pasted%20image%2020220311165354.png" class="img-fluid"></p>
+<ul>
+<li>Key note: <span class="math inline">\(P(Y=1 \mid \mathbf{X}=\mathbf{x})=\sigma\left(\sum_{i} \theta_{i} x_{i}\right)\)</span>, is, as stated, a probability for <span class="math inline">\(y=1\)</span> so to get <span class="math inline">\(P(Y=0 \mid \mathbf{X})\)</span> we just employ the law of total probability and subtract from this.</li>
+</ul>
+<p>We have discussed the forward pass now lets do the backwards pass!</p>
+<ul>
+<li>Note: a cool thing about Sigmoid is that it basically turns the “energy” (weighted sum) coming into the probability into a thing that functions like a probability. <img src="attachments/Pasted%20image%2020220311165709.png" class="img-fluid"> See how the inflection point is at <span class="math inline">\(y=0.5\)</span>? So any positive energy will be predicted positively and vise versa.</li>
+</ul>
+</section>
+<section id="training-the-weights" class="level2">
+<h2 class="anchored" data-anchor-id="training-the-weights">2. Training the weights</h2>
+<ul>
+<li>Our performance in predicting new samples will be based on the values of the weight parameters. So that is where the real intelligence comes from: estimating the weight values! How do we do this? Let’s find out!</li>
+<li>We are going to use MLE: we need to find the parameters that make our data look most likely!</li>
+<li>But of course, we don’t have a direct distribution we are using as a model. So what are the parameters we are estimating? Well, we don’t need a defined distribution. We just want to estimate those weights–those are the these parameters.</li>
+<li>Recall that MLE is taking derivatives.</li>
+</ul>
+<p><img src="attachments/Pasted%20image%2020220311181513.png" class="img-fluid"></p>
+<p>We use gradient ascent and update our gradient using the last line in this formula. We have multiple weights so we actually calculate the gradient for all of these weights and update them for each one on each iteration. Thus, we have a <em>for</em> loop for each iteration (double for-loop).</p>
+<ul>
+<li>Cool (i.e.&nbsp;how we derived the LL function above): in binary classification, we essentially just have a Bernoulli! But that isn’t differentiable so we model it in a continious fashion: <img src="attachments/Pasted%20image%2020220311182537.png" class="img-fluid">.</li>
+</ul>
+<p>So we just plug in <span class="math inline">\(P(Y=1 \mid \mathbf{X}=\mathbf{x})=\sigma\left(\sum_{i} \theta_{i} x_{i}\right)\)</span> for <span class="math inline">\(p\)</span> in the Bernoulli continious equation.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

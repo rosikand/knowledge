@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Knowledge – modeling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Knowledge</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../notes.html">Stanford Notes</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lecture-14---modeling" id="toc-lecture-14---modeling" class="nav-link active" data-scroll-target="#lecture-14---modeling">Lecture 14 - Modeling</a>
+  <ul class="collapse">
+  <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling">Modeling</a></li>
+  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence">Independence</a>
+  <ul class="collapse">
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation">Correlation</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="lecture-14---modeling" class="level1">
+<h1>Lecture 14 - Modeling</h1>
+<ul>
+<li>Inference is when you ask conditional probability questions about a joint distriubtion.</li>
+<li>We also learned how to update our beliefs about a random variable given some result from another random variable (see eye test lecture example).
+<ul>
+<li>Posterior belief.</li>
+</ul></li>
+<li>Remember that you cannot have a probability/posterior of a random variable itself: <span class="math inline">\(P(X)\)</span> makes no sense (this is object/function). Instead, you need it to be an event: when your RV takes on a value. So if you want to update a discrete random variable distribution conditioned on another random variable taking on a particular value (i.e.&nbsp;the student got the answer correct), you need to update <strong>every event possible for that random variable</strong>. In other words, you need to apply Bayes’ to all of <span class="math inline">\(P(X=x_1)...P(X=x_n)\)</span>. These posterior beliefs make up your posterior distribution.</li>
+<li><strong>Normalize</strong>: sum up all the possible beliefs (sum up <span class="math inline">\(P(X=x_1)...P(X=x_n)\)</span>) to get the normalization constant for the denominator of the Bayes’ theorem formula:
+<ul>
+<li>This is necessary when you are updating your belief about <em>all</em> possible events for the random variable. <span class="math display">\[\begin{aligned} P(A=a \mid Y=0) &amp;=\frac{P(Y=0 \mid A=a) P(A=a)}{P(Y=0)} \\ &amp;=\frac{P(Y=0 \mid A=a) P(A=a)}{\sum_{a} P(Y=0, A=a)} \\ &amp;=\frac{P(Y=0 \mid A=a) P(A=a)}{\sum_{a} P(Y=0 \mid A=a) P(A=a)} \end{aligned}\]</span></li>
+<li>Called normalize because makes all posterior beliefs correctly sum to 1.</li>
+</ul></li>
+</ul>
+<p>New topics: 1. Probabilistic modeling 2. Correlation 3. Independence with random variables</p>
+<hr>
+<section id="modeling" class="level2">
+<h2 class="anchored" data-anchor-id="modeling">Modeling</h2>
+<ul>
+<li>Inference is when you ask conditional probability questions about a joint distriubtion.</li>
+<li>In WebMD, we might want to know what <span class="math inline">\(P(X=1 | U=1)\)</span> is where <span class="math inline">\(X=1\)</span> means you have a virus and <span class="math inline">\(U=1\)</span> means you are an undergraduate student (or could be a symptom etc.). Asking these questions is inference.</li>
+<li>Ideally, we can be given a joint distribution and answer any question we like. But as we know, we cannot do that cuz the size of the distribution increases rapidly and becomes an <span class="math inline">\(np\)</span>-hard problem (computationally intractable). So we need better “models” for the joint.</li>
+<li>One way to do this is via a graph: <img src="attachments/Pasted%20image%2020220316194730.png" class="img-fluid" alt="|300"></li>
+<li>Using the nodes and edges, you can start to calculate conditional probability questions.</li>
+<li>These are called “<strong>Bayesian networks</strong>”.</li>
+<li>The artform of making a BN is describing the hypothetical joint distribution using causality. You might have a node such as “undergrad bernoulli” and another “tired ernoulli”. We know being an undergrad <em>causes</em> you to be tired. This is how we’d form our model.</li>
+<li>Once we have the directed graph, we can answer inference (conditional probability questions). If you think about it, it makes to condition a random variable event on its parents (e.g.&nbsp;prob. tired conditioned on being an undergrad). <span class="math display">\[
+\prod P\left(x_{i} \mid \text { Values of parents of } X_{i}\right).
+\]</span></li>
+<li>So to estimate the full joint, we need to:
+<ol type="1">
+<li>Construct directed graph where each node is a random variable and each edge represents causality (conditioning).</li>
+<li>Then, to approximate the joint, instead of filling in a table of all possible combinations, we’d just need to calculate the values for each node (but this is easier because each node/RV is conditioned on its parents!).</li>
+</ol></li>
+<li>Notes:
+<ul>
+<li>One constraint is that the graphs must be acyclic meaning you cannot have a directed edge pointing in both ways. This makes sense because you cannot have a conditional going in both directions (only one thing can cause another thing). This is an assumption we make to make the math fit into the probabilistic framework. Helpful slides:</li>
+</ul></li>
+</ul>
+<p><img src="attachments/Pasted%20image%2020220316200058.png" class="img-fluid"> <img src="attachments/Pasted%20image%2020220316203253.png" class="img-fluid"></p>
+</section>
+<section id="independence" class="level2">
+<h2 class="anchored" data-anchor-id="independence">Independence</h2>
+<p><img src="attachments/Pasted%20image%2020220316203430.png" class="img-fluid"></p>
+<ul>
+<li>For RV’s to be independent, all possible events between the two must be independent.</li>
+</ul>
+<p>How do we measure independence? Covariance!</p>
+<blockquote class="blockquote">
+<p><strong>Covariance</strong>: how do we measure how related (how much the vary together) two random variables are? We do it with a metric called covariance: <span class="math display">\[
+\begin{aligned}
+\operatorname{Cov}(X, Y) &amp;=E[X Y-E[X] Y-X E[Y]+E[Y] E[X]] \\
+&amp;=E[X Y]-E[X] E[Y]-E[X] E[Y]+E[X] E[Y] \\
+&amp;=E[X Y]-E[X] E[Y]
+\end{aligned}
+\]</span></p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="attachments/Pasted%20image%2020220316205139.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">|500</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then <span class="math inline">\(\operatorname{Cov}(X, Y)=0\)</span>. But <span class="math inline">\(\operatorname{Cov}(X, Y)=0\)</span> doesn’t necessarily imply independence.</p></li>
+<li><p>Positive covariance (positive linearly correlated) <img src="attachments/Pasted%20image%2020220316205318.png" class="img-fluid" alt="|500"></p></li>
+<li><p>Zero covariance</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="attachments/Pasted%20image%2020220316205335.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">|500</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li>Negative covariance</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="attachments/Pasted%20image%2020220316205359.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">|500</figcaption><p></p>
+</figure>
+</div>
+<section id="correlation" class="level3">
+<h3 class="anchored" data-anchor-id="correlation">Correlation</h3>
+<p>You might be thinking… hmm covariance doesn’t really have a “unit” per say. What does “covariance” even mean besides being just a metric? So people came up with correlation:</p>
+<p>Measures “linearity”</p>
+<p>Covariance is a quantitative measurement of the relationship between two variables. Correlation between 2 RVs, <span class="math inline">\(\rho(X, Y)\)</span> is covariance of the two variables normalized by the variance of each variable. This normalization cancels units out and normalizes the measure so that it is always in the range <span class="math inline">\([0,1]\)</span> : <span class="math display">\[
+\rho(X, Y)=\frac{\operatorname{Cov}(X, Y)}{\sqrt{\operatorname{Var}(X) \operatorname{Var}(Y)}}
+\]</span> Correlation measure linearity between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. <span class="math display">\[
+\begin{array}{ll}
+\rho(X, Y)=1 &amp; Y=a X+b \text { where } a=\sigma_{y} / \sigma_{x} \\
+\rho(X, Y)=-1 &amp; Y=a X+b \text { where } a=-\sigma_{y} / \sigma_{x} \\
+\rho(X, Y)=0 &amp; \text { absence of linear relationship }
+\end{array}
+\]</span> If <span class="math inline">\(\rho(X, Y)=0\)</span> we say that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are “uncorrelated.” If two varaibles are independent, then their correlation will be 0 . However, it doesn’t go the other way. A correlation of 0 does not imply independence.</p>
+<p>Given historical data, we can use correlation and covariance to figure out how to construct our Bayesian networks!</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

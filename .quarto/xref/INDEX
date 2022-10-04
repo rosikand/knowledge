@@ -25,5 +25,82 @@
   },
   "notes.qmd": {
     "notes.html": "e3f4348f"
+  },
+  "notes/cs221/1.md": {
+    "1.html": "e77f86ac"
+  },
+  "notes/intlpol268/1.md": {
+    "1.html": "e6c65cd2"
+  },
+  "notes/intlpol268/3.md": {
+    "3.html": "5a4c1ac9"
+  },
+  "pages/cs221.qmd": {
+    "cs221.html": "bda327fa"
+  },
+  "pages/intlpol268.qmd": {
+    "intlpol268.html": "86bb52b8"
+  },
+  "notes/cs330/document.md": {
+    "document.html": "54ccddbd",
+    "document.tex": "f640ba92",
+    "document.docx": "de81e3d1"
+  },
+  "notes/cs109/12-inference-part-1.md": {
+    "12-inference-part-1.html": "256ad3c7"
+  },
+  "notes/cs109/18-central-limit-theorem.md": {
+    "18-central-limit-theorem.html": "c8cfd96a"
+  },
+  "notes/cs109/23-naïve-bayes.md": {
+    "23-naïve-bayes.html": "835f8ed9"
+  },
+  "notes/cs109/21-maximum-likelihood-estimation.md": {
+    "21-maximum-likelihood-estimation.html": "5b8083e1"
+  },
+  "notes/cs109/15-general-inference.md": {
+    "15-general-inference.html": "bab3879e"
+  },
+  "notes/cs109/19-bootstrapping.md": {
+    "19-bootstrapping.html": "1ab4f132"
+  },
+  "notes/cs109/16-beta.md": {
+    "16-beta.html": "96803b81"
+  },
+  "notes/cs109/course-review.md": {
+    "course-review.html": "699ef6f2"
+  },
+  "notes/cs109/24-logistic-regression.md": {
+    "24-logistic-regression.html": "ecddfd29"
+  },
+  "notes/cs109/26-deep-learning.md": {
+    "26-deep-learning.html": "0efd305d"
+  },
+  "notes/cs109/22-maximum-a-posteriori.md": {
+    "22-maximum-a-posteriori.html": "4789543e"
+  },
+  "notes/cs109/25-ethics.md": {
+    "25-ethics.html": "f07f5a17"
+  },
+  "notes/cs109/20-algortihmic-analysis.md": {
+    "20-algortihmic-analysis.html": "b05ed7ce"
+  },
+  "notes/cs109/11-probabilistic-models.md": {
+    "11-probabilistic-models.html": "f037ce51"
+  },
+  "notes/cs109/17-adding-random-variables.md": {
+    "17-adding-random-variables.html": "2eab1a81"
+  },
+  "notes/cs109/13-inference-part-2.md": {
+    "13-inference-part-2.html": "299b2cea"
+  },
+  "notes/cs109/14-modeling.md": {
+    "14-modeling.html": "4973fcca"
+  },
+  "notes/intlpol268/2.md": {
+    "2.html": "983e14af"
+  },
+  "pages/cs109.qmd": {
+    "cs109.html": "c9505dbd"
   }
 }

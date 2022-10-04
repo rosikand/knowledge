@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Knowledge – quarto-inputd6629231</title>
+<title>Knowledge – quarto-input44bece14</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -130,7 +130,19 @@ ul.task-list li input[type="checkbox"] {
 <li>Implementing these methods (MT, TL) in PyTorch</li>
 <li>Glimpse of building new algorithms</li>
 </ul>
-<p>low-level descriptions: - MT, TL - Meta learning algos - Advanced meta learning topics - Unsupervised pre-training - FS learning - Domain adaption - Lifelong learning - Open problems</p>
+<p>low-level descriptions:</p>
+<ul>
+<li>MT, TL</li>
+<li>Meta learning algos</li>
+<li>Advanced meta learning topics</li>
+<li>Unsupervised pre-training
+<ul>
+<li>FS learning</li>
+</ul></li>
+<li>Domain adaption</li>
+<li>Lifelong learning</li>
+<li>Open problems</li>
+</ul>
 <p>Focus on DL, with case studies in things like NLP. - No RL! (see CS 224R)</p>
 </section>
 <section id="logistics" class="level2">
@@ -145,7 +157,19 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <section id="homeworks" class="level3">
 <h3 class="anchored" data-anchor-id="homeworks">Homeworks</h3>
-<p>50% of grade. - 0: multi-task basics - 1: multi-task data processing and BB-ML - 2: gradient-based ML - 3: fine-tuning pre-trained language models - 4 (optional): Bayesian ML and meta overfitting - Replace 15% of hw/project - Not coding, all math - 6 late days</p>
+<p>50% of grade.</p>
+<ul>
+<li>0: multi-task basics</li>
+<li>1: multi-task data processing and BB-ML</li>
+<li>2: gradient-based ML</li>
+<li>3: fine-tuning pre-trained language models</li>
+<li>4 (optional): Bayesian ML and meta overfitting
+<ul>
+<li>Replace 15% of hw/project</li>
+<li>Not coding, all math</li>
+</ul></li>
+<li>6 late days</li>
+</ul>
 </section>
 <section id="project" class="level3">
 <h3 class="anchored" data-anchor-id="project">Project</h3>
@@ -171,7 +195,26 @@ ul.task-list li input[type="checkbox"] {
 <li>This is harder for RL than NLP because NLP has the entire wikipedia to use but robotic common sense representations are not as straightforward (maybe we need a common robot embedding?)</li>
 </ul></li>
 </ul>
-<p><strong>Evolution</strong>: - Early in CV: hand-design features, train SVM on-top - Modern CV: end-to-end training, no hand-engineering - Allows us to handle unstructured inputs without understanding it - Now why meta-learning? Three reasons… - <strong>Don’t have large dataset</strong> at the outset to pre-train on or use in end-to-end SL manner (med imaging, robotics, etc.) - Even more so: <strong>long-tail data</strong> samples (e.g., self-driving won’t catch all edge cases) - MEL techniques can help with this (kinda… not the main focus tho) - <strong>Quickly learn something new</strong> (few-shot learning) - Lots of open problems</p>
+<p><strong>Evolution</strong>:</p>
+<ul>
+<li>Early in CV: hand-design features, train SVM on-top</li>
+<li>Modern CV: end-to-end training, no hand-engineering
+<ul>
+<li>Allows us to handle unstructured inputs without understanding it</li>
+</ul></li>
+<li>Now why meta-learning? Three reasons…
+<ul>
+<li><strong>Don’t have large dataset</strong> at the outset to pre-train on or use in end-to-end SL manner (med imaging, robotics, etc.)
+<ul>
+<li>Even more so: <strong>long-tail data</strong> samples (e.g., self-driving won’t catch all edge cases)
+<ul>
+<li>MEL techniques can help with this (kinda… not the main focus tho)</li>
+</ul></li>
+</ul></li>
+<li><strong>Quickly learn something new</strong> (few-shot learning)</li>
+</ul></li>
+<li>Lots of open problems</li>
+</ul>
 </section>
 <section id="multi-task-intro" class="level2">
 <h2 class="anchored" data-anchor-id="multi-task-intro">Multi-task intro</h2>
@@ -195,7 +238,6 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">\[
 \mathcal{D}=\bigcup \mathcal{D}_i \quad \mathcal{L}=\sum \mathcal{L}_i
 \]</span></p>
-<p>project idea: gradient based meta learning for morphologically diverse cell segmentation.</p>
 <p>Next up: a technical dive into the <strong>multi-task</strong> learning framework.</p>
 <p align="center">
 <img alt="picture 1" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/c49969eb11cb825d222502ce7dba1133f0ab193896de5d7a97599632a20c990c.png" width="300">

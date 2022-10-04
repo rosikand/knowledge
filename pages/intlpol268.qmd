@@ -1,0 +1,11 @@
+---
+title: "INTLPOL 268 Notes"
+listing:
+  type: table
+  table-striped: false
+  contents: "../notes/intlpol268/*.md"
+  categories: true
+  fields: [date, title, reading-time]
+---
+
+<br>

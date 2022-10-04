@@ -7,3 +7,9 @@ title: "Stanford Notes"
 ### Autumn 2022 
 
 - [CS 330: Deep Multi-Task and Meta Learning](pages/cs330.qmd)
+- [CS 221: Artificial Intelligence: Principles and Techniques](pages/cs221.qmd)
+- [INTLPOL 268: Hack Lab](pages/intlpol268.qmd)
+<!-- 
+### Winter 2022 
+
+- [CS 109: Introduction to Probability for Computer Scientists](pages/cs109.qmd) -->

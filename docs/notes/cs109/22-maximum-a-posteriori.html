@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Knowledge – maximum-a-posteriori</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Knowledge</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../notes.html">Stanford Notes</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lecture-22-maximum-a-posteriori" id="toc-lecture-22-maximum-a-posteriori" class="nav-link active" data-scroll-target="#lecture-22-maximum-a-posteriori">🛶 Lecture 22: Maximum A Posteriori</a>
+  <ul class="collapse">
+  <li><a href="#problems-with-mle" id="toc-problems-with-mle" class="nav-link" data-scroll-target="#problems-with-mle">Problems with MLE</a></li>
+  <li><a href="#intro-to-map" id="toc-intro-to-map" class="nav-link" data-scroll-target="#intro-to-map">Intro to MAP</a></li>
+  <li><a href="#deriving-the-map" id="toc-deriving-the-map" class="nav-link" data-scroll-target="#deriving-the-map">Deriving the MAP</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="lecture-22-maximum-a-posteriori" class="level1">
+<h1>🛶 Lecture 22: Maximum A Posteriori</h1>
+<ul>
+<li>Our goal in ML is to estimate the parameters of a distribution.</li>
+<li>We learned of a nice technique called MLE last lecture. But it can get quite limited in certain scenarios. So we introduce another one here called (Maximum A Posteriori) to add to our repertoire.</li>
+</ul>
+<section id="problems-with-mle" class="level2">
+<h2 class="anchored" data-anchor-id="problems-with-mle">Problems with MLE</h2>
+<ul>
+<li>Take a uniform distribution… it will just learn the min and max vals as the parameters. But that is nonsense: every point’s probabilities aren’t uniform! The problem? MLE <strong>overfits</strong>. It doesn’t generalize well to new data.</li>
+</ul>
+</section>
+<section id="intro-to-map" class="level2">
+<h2 class="anchored" data-anchor-id="intro-to-map">Intro to MAP</h2>
+<ul>
+<li>The philosophy is that we do want to incorporate prior information that we know about the world into our estimations.</li>
+</ul>
+<p>Difference (see <code>1:02</code>): - <strong>MLE</strong>: choose the parameters (<span class="math inline">\(\theta\)</span>) that makes your data look most likely: <span class="math inline">\(L(\theta)=\prod_{i=1}^{n} f\left(X_{i} \mid \theta\right).\)</span> <span class="math display">\[\begin{aligned} \hat{\theta}_{M L E} &amp;=\underset{\theta}{\operatorname{argmax}} f\left(X^{(1)}=x^{(1)}, \ldots, X^{(n)}=x^{(n)} \mid \theta\right) \\ &amp;=\underset{\theta}{\operatorname{argmax}}\left(\sum_{i} \log f\left(X^{(i)}=x^{(i)} \mid \theta\right)\right) \end{aligned}.\]</span> - <strong>MAP</strong>: choose the most likely parameters, <span class="math inline">\(\theta\)</span>, given the data <span class="math inline">\(X_{1}, X_{2}, \ldots, X_{n}\)</span>. <span class="math display">\[\hat{\theta}_{M A P}=\underset{\theta}{\operatorname{argmax}} f\left(\theta \mid x^{(1)}, \ldots, x^{(n)}\right).\]</span></p>
+</section>
+<section id="deriving-the-map" class="level2">
+<h2 class="anchored" data-anchor-id="deriving-the-map">Deriving the MAP</h2>
+<p>So… we know how to do <span class="math inline">\(\underset{\theta}{\operatorname{argmax}} f(X \mid \theta)\)</span> (MLE) but now we want the opposite: <span class="math inline">\(\underset{\theta}{\operatorname{argmax}} f(\theta \mid X)\)</span>. This should scream Bayes! Because it doesn’t make much sense to calculate the most likely parameters, <span class="math inline">\(\theta\)</span>, given the data. But the inverse is easy so we use Bayes’:</p>
+<p><span class="math display">\[\hat{\theta}_{M A P}=\underset{\theta}{\operatorname{argmax}} \frac{f\left(x^{(1)}, x^{(2)}, \ldots, x^{(n)} \mid \theta\right) g(\theta)}{h\left(x^{(1)}, x^{(2)}, \ldots x^{(n)}\right)}. \]</span></p>
+<p>Notice that we have the MLE part as our likelihood (quite a fitting name!) and also that a whole new <em>prior</em> is included. How do we get that? That is for you to choose and incorporate into your model! You see how this is more powerful now? We can input another prior! We are going to choose a <span class="math inline">\(\theta\)</span> that is informed by our prior belief.</p>
+<p><img src="attachments/Pasted%20image%2020220310000233.png" class="img-fluid"></p>
+<p>Ah… look how nice that is… we literally end up with the same equation except now we can incorporate our prior beliefs as well! Yippee! It’s quite conveniant.</p>
+<ul>
+<li><strong>Note</strong>: the prior is a “prior belief in the parameter <span class="math inline">\(\theta\)</span>”. So this is a probability of the parameter (not just the parameter itself). So let us say you have a Bernoulli you want to estimate the parameter <span class="math inline">\(p\)</span> for. Your prior should be your prior belief in <span class="math inline">\(p\)</span> which itself is a probability. So we have a probability of a probability. And therefore, we choose to represent our prior using the Beta distribution.
+<ul>
+<li><strong>Definition (Laplace prior)</strong>: When using a beta as a prior, we can use our expert domain knowledge to determine the parameters of that beta prior. But sometimes we don’t have expert domain knowledge so a common one to start out with as a base is to say you observed 1 success, 1 failure: so the prior is <span class="math inline">\(beta(2,2)\)</span>. Doing this prevents any posterior probability from being 0 or 1 (useful for programming so you don’t fuck up computation!). Recall Hamilton Federalist paper example: if there was one singular word in the document that Hamilton never wrote before…. BAM! probability for Hamilton writing that document drops all the way to 0! So use Laplace prior for cases like this (like in your project!).
+<ul>
+<li>Note: we <em>do NOT</em> train the prior’s parameters. These are chosen by us (that is the whole point on “updating your prior beliefs”… these are beliefs you already hold).</li>
+</ul></li>
+</ul></li>
+</ul>
+<blockquote class="blockquote">
+<p>Note: see <code>23:00</code> - <code>27:00</code> and make notes on that part where he talks about which priors to use for what posteriors (i.e we are actually estimating the posterior’s parameters).</p>
+</blockquote>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

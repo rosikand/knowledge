@@ -1,0 +1,11 @@
+---
+title: "CS 221 Notes"
+listing:
+  type: table
+  table-striped: false
+  contents: "../notes/cs221/*.md"
+  categories: true
+  fields: [date, title, reading-time]
+---
+
+<br>

@@ -1,0 +1,13 @@
+---
+title: "CS 109 Notes"
+listing:
+  type: table
+  table-striped: false
+  contents: "../notes/cs109/*.md"
+  categories: true
+  fields: [date, title, reading-time]
+---
+
+<br>
+
+Note: credit for most figures and lots of paragraphs goes to CS 109. 
