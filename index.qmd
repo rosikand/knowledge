@@ -1,8 +1,7 @@
 ---
-title: "Rohan's Notes"
+title: "Knowledge"
 ---
 
 
-### Autumn 2022 
+Welcome! 
 
-- [CS 330: Deep Multi-Task and Meta Learning](pages/cs330.qmd)

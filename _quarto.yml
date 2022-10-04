@@ -3,11 +3,13 @@ project:
   output-dir: docs
 
 website:
-  title: "quarto-notes"
+  title: "Knowledge"
   navbar:
     left:
       - href: index.qmd
         text: Home
+      - href: notes.qmd
+        text: Stanford Notes
 
 format:
   html:
