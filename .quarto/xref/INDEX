@@ -1,0 +1,26 @@
+{
+  "index.qmd": {
+    "index.html": "16357787"
+  },
+  "about.qmd": {
+    "about.html": "6cb1ebc0"
+  },
+  "pages/cs330.qmd": {
+    "cs330.html": "276ee94c"
+  },
+  "notes/cs330/1.md": {
+    "1.html": "8c80a3ca",
+    "1.tex": "da66407c",
+    "1.docx": "b2590578"
+  },
+  "notes/cs330/3.md": {
+    "3.html": "7336ae7b",
+    "3.tex": "2a6ad0d1",
+    "3.docx": "35268d1a"
+  },
+  "notes/cs330/4.md": {
+    "4.html": "96dbb88f",
+    "4.tex": "546ee7ab",
+    "4.docx": "2f190009"
+  }
+}
