@@ -10,6 +10,8 @@ website:
         text: Home
       - href: notes.qmd
         text: Stanford Notes
+      - href: machine-learning.qmd
+        text: Machine Learning
 
 format:
   html:

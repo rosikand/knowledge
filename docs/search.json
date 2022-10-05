@@ -7,11 +7,25 @@
     "text": "Autumn 2022\n\nCS 330: Deep Multi-Task and Meta Learning\nCS 221: Artificial Intelligence: Principles and Techniques\nINTLPOL 268: Hack Lab"
   },
   {
+    "objectID": "machine-learning.html",
+    "href": "machine-learning.html",
+    "title": "Machine Learning Notes",
+    "section": "",
+    "text": "Lists\n\nPapers"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Knowledge",
     "section": "",
     "text": "Welcome!"
+  },
+  {
+    "objectID": "notes/papers/protein-diffusion.html",
+    "href": "notes/papers/protein-diffusion.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "Paper that applies denoising diffusion models for protein structure generation.\nSo I guess they aren’t quite “predicting” the protein structure… just merely generating it."
   },
   {
     "objectID": "notes/cs109/12-inference-part-1.html",
@@ -180,6 +194,13 @@
     "title": "Knowledge",
     "section": "",
     "text": "🍎 Transfer learning: Solve target task 𝒯 after solving source task(s) b 𝒯a by transferring knowledge learned from 𝒯a.\n\n\n\n\nMT: solve multiple tasks (\\(\\mathscr{T}_1, \\cdots, \\mathscr{T}_T\\)) at once: \\(\\min _\\theta \\sum_{i=1}^T \\mathscr{L}_i\\left(\\theta, \\mathscr{D}_i\\right)\\).\nTL: Solve target task 𝒯 after solving source task(s) b 𝒯a by transferring knowledge learned from 𝒯a.\n\nAssumption: cannot access data 𝒟 during transfer. (data is separate).\n\nGood to use TL over MT when\n\nMore data in source task than target task\nDon’t care about solving tasks at the same time\nPre-trained weights for source task are available (e.g., pre-training on imagenet)\n\nIn TL, we don’t need to solve tasks at the same time… just adaption.\nIn this sense: transfer learning is a valid solution to multi-task learning (but not vice versa).\n\nWe can do multiple tasks in TL but MT doesn’t transfer represenations over.\n\n\n\n\n\nMost common way to do TL: pre-training the weights for init purposes. Then use traditional gradient steps to update the parameters.\n\n\n\nIdea is that you can pre-learn just general image features for example and then use this features when training on a new task. This applies for example, even when you pre-train using ImageNet for a medical image task.\n\nQuestion: criterion for when TL will work/helpful?\n\nDifficult, open question, some general common wisdom though (i.e., two medical tasks that are related… not hard rule though).\n\nWhere to get pre-trained params?\n\nImageNet\nLarge language corpora\n\nMathematical perspective: we have non-convex function we need to optimize. By pre-training, we can start in a better “basin” in the loss landscape.\n\n\n\nAbove, we specified the general framework for pre-training/fine-tuning. But there exists many variants to this framework. The general idea is that we want to preserve a good balance of the old data while learning from the new data. In this sense, we can choose, for example, how many layers to freeze when training. Here are some common params:\n\nMotivation: typically you need to adjust the last layer for your task. This means we need to randomly init the last layer. However, during backprop, these random weights will “hit” the earlier layer weights and embed unwanted randomness into it. And for that reason, it might make sense to freeze the earlier layer weights so that we don’t override the valuable general features that we learned earlier.\n\n\n\n\nQuestion: what is the difference between the above paradigm and self-supervised pre-training (e.g., using things like DINO and things like image puzzle occlusion)?\nQuestion: do you need labels to pre-train for a target task that is supervised?\n\n\n\n\n(Note: by common wisdom, we mean the things generally people do when TL’ing: e.g., freeze all layers but last, need diverse source dataset, etc.)\nHere are some recent results:\n\nFrom the paper: “Unsupervised pre-training objectives may not require diverse data for pre-training.”\n\nResult was that you don’t actually need a diverse data set for pre-training (breaks common wisdom).\n\nYoonho’s (TA) recent experiment\n\nWe know that fine-tuning works well for only last layer. But why? last layer is really just like any other layer.\nMaybe for low-level distribution shifts, it might actually be better to only train a first layer and freeze the rest.\nResult: Fine-tuning the first or middle layers can work better than the last layers.\nPaper was released just last week! (Lee, Chen, Tajwar, Kumar, Yao, Liang, Finn. Surgical Fine-Tuning Improves Adaptation to Distribution Shifts. Openreview 09/28/22.).\n\n\nOk… wow lots of design choices then. Despite this, Chelsea recommends:\n\nTrain last layer then fine-tune entire network\n\n\n\n\n\nAnd the idea is that we don’t mess up the earlier learned features by init the last layer to be within scope of the previous ones first before actually fine-tuning.\n\n\nMajor problem: Fine-tuning doesn’t work well with very small target task datasets. This is where meta-learning can help.\n\n\n\n\n\nWe will cover: - Problem formulation - General recipe of meta-learning algorithms\nTwo views: mechanistic and probabilisitc.\n\n\n\nBayesian networks review: many random variables as nodes in a direct graph. \\(P(y | x)\\) (distribution) means \\(y\\) is dependent on \\(x\\) (not vise versa).\nLet’s now draw the graphical model for classic single-task learning.\n\n\n\n\n\nNow multi-task learning:\n\n\n\n\n…"
+  },
+  {
+    "objectID": "pages/papers.html",
+    "href": "pages/papers.html",
+    "title": "Papers",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\nOct 4, 2022\n\n\nProtein Structure and Sequence Generation with Equivariant Denoising Diffusion Probabilistic Models\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "pages/cs221.html",

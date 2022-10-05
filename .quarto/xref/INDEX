@@ -102,5 +102,14 @@
   },
   "pages/cs109.qmd": {
     "cs109.html": "c9505dbd"
+  },
+  "machine-learning.qmd": {
+    "machine-learning.html": "8593026a"
+  },
+  "pages/papers.qmd": {
+    "papers.html": "5297bdd8"
+  },
+  "notes/papers/protein-diffusion.md": {
+    "protein-diffusion.html": "6edd45d4"
   }
 }

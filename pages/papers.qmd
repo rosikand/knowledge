@@ -1,0 +1,11 @@
+---
+title: "Papers"
+listing:
+  type: table
+  table-striped: true
+  contents: "../notes/papers/*.md"
+  categories: true
+  fields: [date, title, reading-time]
+---
+
+<br>
