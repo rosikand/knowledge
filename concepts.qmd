@@ -1,0 +1,12 @@
+---
+title: "Concepts"
+toc: true
+---
+
+> List of snippets for all types of things.  
+
+### Lists 
+
+
+- [Basic Math](pages/basic-math.qmd)
+- [Biology](pages/biology.qmd)

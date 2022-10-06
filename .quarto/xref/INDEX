@@ -111,5 +111,23 @@
   },
   "notes/papers/protein-diffusion.md": {
     "protein-diffusion.html": "6edd45d4"
+  },
+  "concepts.qmd": {
+    "concepts.html": "ea596ec3"
+  },
+  "notes/basic-math/3.md": {
+    "3.html": "46bf9cd7"
+  },
+  "pages/basic-math.qmd": {
+    "basic-math.html": "729affc9"
+  },
+  "notes/basic-math/second-derivative-test.md": {
+    "second-derivative-test.html": "dd9a130e"
+  },
+  "pages/biology.qmd": {
+    "biology.html": "d6992ebd"
+  },
+  "notes/biology/qpi.md": {
+    "qpi.html": "1bcaad10"
   }
 }

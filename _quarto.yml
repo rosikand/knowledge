@@ -12,6 +12,8 @@ website:
         text: Stanford Notes
       - href: machine-learning.qmd
         text: Machine Learning
+      - href: concepts.qmd
+        text: Concepts
 
 format:
   html:

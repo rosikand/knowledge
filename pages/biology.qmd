@@ -1,0 +1,12 @@
+---
+title: "Biology"
+listing:
+  type: table
+  table-striped: true
+  contents: "../notes/biology/*.md"
+  categories: true
+  fields: [date, title, reading-time]
+---
+
+
+> All things biology related. Mostly computational applications. 

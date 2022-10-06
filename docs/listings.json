@@ -12,11 +12,23 @@
     ]
   },
   {
+    "listing": "/pages/basic-math.html",
+    "items": [
+      "/notes/basic-math/second-derivative-test.html"
+    ]
+  },
+  {
     "listing": "/pages/intlpol268.html",
     "items": [
       "/notes/intlpol268/1.html",
       "/notes/intlpol268/2.html",
       "/notes/intlpol268/3.html"
+    ]
+  },
+  {
+    "listing": "/pages/biology.html",
+    "items": [
+      "/notes/biology/qpi.html"
     ]
   },
   {
