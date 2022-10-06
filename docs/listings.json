@@ -56,9 +56,10 @@
   {
     "listing": "/pages/cs330.html",
     "items": [
-      "/notes/cs330/4.html",
       "/notes/cs330/1.html",
-      "/notes/cs330/3.html"
+      "/notes/cs330/2.html",
+      "/notes/cs330/3.html",
+      "/notes/cs330/4.html"
     ]
   }
 ]

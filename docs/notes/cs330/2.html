@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Knowledge – quarto-inputea0d92fb</title>
+<title>Knowledge – quarto-input0754a8b4</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,16 +107,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-1-lecture-1---course-introduction" id="toc-week-1-lecture-1---course-introduction" class="nav-link active" data-scroll-target="#week-1-lecture-1---course-introduction">Week 1, Lecture 1 - Course Introduction</a>
+  <li><a href="#week-1-lecture-2---multi-task-learning" id="toc-week-1-lecture-2---multi-task-learning" class="nav-link active" data-scroll-target="#week-1-lecture-2---multi-task-learning">Week 1, Lecture 2 - Multi-task learning</a>
   <ul class="collapse">
-  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
-  <li><a href="#logistics" id="toc-logistics" class="nav-link" data-scroll-target="#logistics">1. Logistics</a>
+  <li><a href="#multi-task-setup" id="toc-multi-task-setup" class="nav-link" data-scroll-target="#multi-task-setup">Multi-task setup</a>
   <ul class="collapse">
-  <li><a href="#homeworks" id="toc-homeworks" class="nav-link" data-scroll-target="#homeworks">Homeworks</a></li>
-  <li><a href="#project" id="toc-project" class="nav-link" data-scroll-target="#project">Project</a></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model</a></li>
+  <li><a href="#loss" id="toc-loss" class="nav-link" data-scroll-target="#loss">Loss</a></li>
+  <li><a href="#optimization" id="toc-optimization" class="nav-link" data-scroll-target="#optimization">Optimization</a></li>
   </ul></li>
-  <li><a href="#why-study-multi-task-learning-and-meta-learning" id="toc-why-study-multi-task-learning-and-meta-learning" class="nav-link" data-scroll-target="#why-study-multi-task-learning-and-meta-learning">2. Why study multi-task learning and meta-learning?</a></li>
-  <li><a href="#multi-task-intro" id="toc-multi-task-intro" class="nav-link" data-scroll-target="#multi-task-intro">Multi-task intro</a></li>
+  <li><a href="#pytorch-example" id="toc-pytorch-example" class="nav-link" data-scroll-target="#pytorch-example">PyTorch Example</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
+  <li><a href="#confusionsquesions" id="toc-confusionsquesions" class="nav-link" data-scroll-target="#confusionsquesions">Confusions/quesions</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -126,156 +128,82 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="week-1-lecture-1---course-introduction" class="level1">
-<h1>Week 1, Lecture 1 - Course Introduction</h1>
-<!--  
-::: {#exm-default}
-
-## Beta 
-
-Here $43$. 
-:::
-
- 
-:::{.callout-note appearance="simple"}
-Hello
-:::
-
- 
-::: {#def-default}
-# s
-wow.
-:::
-
-
- 
-:::{.callout-note collapse='true'}
-Even cooler bro. 
-:::
- 
- 
- 
-  -->
-<p>Note: MEL = meta-learning.</p>
-<section id="topics" class="level2">
-<h2 class="anchored" data-anchor-id="topics">Topics</h2>
-<ul>
-<li>Modern DL methods for learning across tasks</li>
-<li>Implementing these methods (MT, TL) in PyTorch</li>
-<li>Glimpse of building new algorithms</li>
-</ul>
-<p>low-level descriptions:</p>
-<ul>
-<li>MT, TL</li>
-<li>Meta learning algos</li>
-<li>Advanced meta learning topics</li>
-<li>Unsupervised pre-training
-<ul>
-<li>FS learning</li>
-</ul></li>
-<li>Domain adaption</li>
-<li>Lifelong learning</li>
-<li>Open problems</li>
-</ul>
-<p>Focus on DL, with case studies in things like NLP. - No RL! (see CS 224R)</p>
-</section>
-<section id="logistics" class="level2">
-<h2 class="anchored" data-anchor-id="logistics">1. Logistics</h2>
-<ul>
-<li>Lectures are live-streamed and recorded</li>
-<li>two guest lectures</li>
-<li>Prereqs:
-<ul>
-<li>Sufficient background in ML (229)</li>
-</ul></li>
-</ul>
-<section id="homeworks" class="level3">
-<h3 class="anchored" data-anchor-id="homeworks">Homeworks</h3>
-<p>50% of grade.</p>
-<ul>
-<li>0: multi-task basics</li>
-<li>1: multi-task data processing and BB-ML</li>
-<li>2: gradient-based ML</li>
-<li>3: fine-tuning pre-trained language models</li>
-<li>4 (optional): Bayesian ML and meta overfitting
-<ul>
-<li>Replace 15% of hw/project</li>
-<li>Not coding, all math</li>
-</ul></li>
-<li>6 late days</li>
-</ul>
-</section>
-<section id="project" class="level3">
-<h3 class="anchored" data-anchor-id="project">Project</h3>
-<ul>
-<li>Poster session, 50% of grade.</li>
-<li>Idea: …</li>
-</ul>
-<p>Now technical content…</p>
-</section>
-</section>
-<section id="why-study-multi-task-learning-and-meta-learning" class="level2">
-<h2 class="anchored" data-anchor-id="why-study-multi-task-learning-and-meta-learning">2. Why study multi-task learning and meta-learning?</h2>
-<ul>
-<li>How can we enable agents to learn a breadth of skills in the real world?
-<ul>
-<li>Because each time we have to train a supervised signal
-<ul>
-<li>So the goal is to learn representations across tasks</li>
-</ul></li>
-</ul></li>
-<li>Aside (common paradigm to learn representations): initialize well (not randomly) –&gt; fine-tune on new task.
-<ul>
-<li>This is harder for RL than NLP because NLP has the entire wikipedia to use but robotic common sense representations are not as straightforward (maybe we need a common robot embedding?)</li>
-</ul></li>
-</ul>
-<p><strong>Evolution</strong>:</p>
-<ul>
-<li>Early in CV: hand-design features, train SVM on-top</li>
-<li>Modern CV: end-to-end training, no hand-engineering
-<ul>
-<li>Allows us to handle unstructured inputs without understanding it</li>
-</ul></li>
-<li>Now why meta-learning? Three reasons…
-<ul>
-<li><strong>Don’t have large dataset</strong> at the outset to pre-train on or use in end-to-end SL manner (med imaging, robotics, etc.)
-<ul>
-<li>Even more so: <strong>long-tail data</strong> samples (e.g., self-driving won’t catch all edge cases)
-<ul>
-<li>MEL techniques can help with this (kinda… not the main focus tho)</li>
-</ul></li>
-</ul></li>
-<li><strong>Quickly learn something new</strong> (few-shot learning)</li>
-</ul></li>
-<li>Lots of open problems</li>
-</ul>
-</section>
-<section id="multi-task-intro" class="level2">
-<h2 class="anchored" data-anchor-id="multi-task-intro">Multi-task intro</h2>
-<ul>
-<li>What is a task?
-<ul>
-<li>Dataset + loss objective –&gt; model</li>
-<li>Objects as “tasks”</li>
-<li>Critical assumption: different tasks need to share some base structure (goal is to exploit shared structure)
-<ul>
-<li>But lots of tasks share structure (even as upstream as sharing the laws of physics!)</li>
-<li>Question: can we learn a shared embedding space for e.g., text + images in one?</li>
-</ul></li>
-</ul></li>
-<li>Does MT learning reduce to single-task SL learning?
-<ul>
-<li>Somewhat (tho not for every problem)</li>
-<li>Idea: sum loss and data:</li>
-</ul></li>
-</ul>
+<section id="week-1-lecture-2---multi-task-learning" class="level1">
+<h1>Week 1, Lecture 2 - Multi-task learning</h1>
+<p>In a traditional supervised ML paradigm, you have a labeled dataset, <span class="math inline">\(\mathscr{D}=\left\{(\mathbf{x}, \mathbf{y})_k\right\}\)</span>, where the goal is to minimize some loss function (<span class="math inline">\(\mathscr{L}\)</span>) given <span class="math inline">\(\mathscr{D}\)</span>, by finding relevant parameters, <span class="math inline">\(\theta\)</span> (i.e., the <strong>task</strong>):</p>
 <p><span class="math display">\[
-\mathcal{D}=\bigcup \mathcal{D}_i \quad \mathcal{L}=\sum \mathcal{L}_i
+\min _\theta \mathscr{L}(\theta, \mathscr{D}).
 \]</span></p>
-<p>Next up: a technical dive into the <strong>multi-task</strong> learning framework.</p>
-<p align="center">
-<img alt="picture 1" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/c49969eb11cb825d222502ce7dba1133f0ab193896de5d7a97599632a20c990c.png" width="300">
-</p>
+<section id="multi-task-setup" class="level2">
+<h2 class="anchored" data-anchor-id="multi-task-setup">Multi-task setup</h2>
+<p>The setup is the same as above, but instead of optimizing one objective, we want to optimize several (under the same model!) at once.</p>
+<p><span class="math display">\[
+\text { Solve multiple tasks } \mathscr{T}_1, \cdots, \mathscr{T}_T \text { at once. }
+\]</span></p>
+<p><strong>Example</strong> (<a href="https://pyimagesearch.com/2022/08/17/multi-task-learning-and-hydranets-with-pytorch/">credit</a>):</p>
+<p>instead of doing this (as usual):</p>
+<p><img width="500" alt="image" src="https://user-images.githubusercontent.com/57341225/190859034-1c1cd295-8acf-4b91-bd5f-b3eaa8e5e17c.png"></p>
+<p>we do this:</p>
+<p><img width="500" alt="image" src="https://user-images.githubusercontent.com/57341225/190859054-22682478-eefc-4bf4-a8c4-1ec3d6353c2a.png"></p>
+<p>Three components:</p>
+<ul>
+<li>Model</li>
+<li>Loss (objective)</li>
+<li>Optimization</li>
+</ul>
+<section id="model" class="level3">
+<h3 class="anchored" data-anchor-id="model">Model</h3>
+<p>We ask, should we share parameters across tasks? Or should the learnable parameters in the architecture be entirely separate for each task? The latter may look something like this (credit: CS 330 slides):</p>
+<p><img width="500" alt="image" src="https://user-images.githubusercontent.com/57341225/190859106-c52f4424-30eb-4c85-97ea-a29143eb9de8.png"></p>
+<p>and the former:</p>
+<p><img width="500" alt="image" src="https://user-images.githubusercontent.com/57341225/190859130-7ba5a586-65fd-4c2f-a042-44c403c74ba2.png"></p>
+</section>
+<section id="loss" class="level3">
+<h3 class="anchored" data-anchor-id="loss">Loss</h3>
+<p>To obtain the loss, we perform a simple summation over each of the individual task’s loss:</p>
+<p><span class="math display">\[
+\min _\theta \sum_{i=1}^T \mathscr{L}_i\left(\theta, \mathscr{D}_i\right)
+\]</span></p>
+<p>Of course, some tasks might be important than others so we can performed a weighted summation:</p>
+<p><span class="math display">\[
+\min _\theta \sum_{i=1}^T w_i \mathscr{L}_i\left(\theta, \mathscr{D}_i\right)
+\]</span></p>
+<p>Note that we can update the weights during training (as a learnable parameter) or manually determime the weights of each loss beforehand (a hyperparameter).</p>
+</section>
+<section id="optimization" class="level3">
+<h3 class="anchored" data-anchor-id="optimization">Optimization</h3>
+<p>Optimization is straightforward and is nearly the same as in the supervised setting. The CS 330 slides defines the following sequence:</p>
+<ol type="1">
+<li>Sample mini-batch of tasks <span class="math inline">\(\mathscr{B} \sim\left\{\mathscr{T}_i\right\}\)</span></li>
+<li>Sample mini-batch datapoints for each task <span class="math inline">\(\mathscr{D}_i^b \sim \mathscr{D}_i\)</span></li>
+<li>Compute loss on the mini-batch: <span class="math inline">\(\hat{\mathscr{L}}(\theta, \mathscr{B})=\sum_{\mathscr{T}_k \in \mathscr{B}} \mathscr{L}_k\left(\theta, \mathscr{D}_k^b\right)\)</span></li>
+<li>Backpropagate loss to compute gradient <span class="math inline">\(\nabla_\theta \hat{\mathscr{L}}\)</span></li>
+<li>Apply gradient with your favorite neural net optimizer</li>
+</ol>
+</section>
+</section>
+<section id="pytorch-example" class="level2">
+<h2 class="anchored" data-anchor-id="pytorch-example">PyTorch Example</h2>
+<p>Coming soon… see <a href="https://pyimagesearch.com/2022/08/17/multi-task-learning-and-hydranets-with-pytorch/">this blog post</a> for an example.</p>
+</section>
+<section id="applications" class="level2">
+<h2 class="anchored" data-anchor-id="applications">Applications</h2>
+<ul>
+<li>Tesla uses a multi-task “hydranet” model for its inference in self-driving cars. The vision-only system takes in a tuple of 8 images from the car’s cameras, passes the concatenated feature vector through a shared backbone encoder, and separates each task via a decoder head. For example, Tesla uses one network for things like depth estimation, lane segmentation, etc. See <a href="https://www.thinkautonomous.ai/blog/how-tesla-autopilot-works/">here</a>.</li>
+</ul>
+</section>
+<section id="confusionsquesions" class="level2">
+<h2 class="anchored" data-anchor-id="confusionsquesions">Confusions/quesions</h2>
+<ul>
+<li>Does the input feature vector need to be the same for each task? (I believe the answer is no)</li>
+</ul>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li><a href="https://cs330.stanford.edu/slides/cs330_multitask_transfer_2021.pdf">CS 330</a></li>
+<li><a href="https://pyimagesearch.com/2022/08/17/multi-task-learning-and-hydranets-with-pytorch/">Tutorial blog</a></li>
+</ul>
 
 
 </section>
