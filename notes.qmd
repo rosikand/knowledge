@@ -4,6 +4,8 @@ title: "Stanford Notes"
 
 > Notes for Stanford classes. 
 
+> Disclaimer: for purposes of efficiency, lots of content in these notes were directly taken from or adapted from the course content/documents (e.g., lecture slides). Specifically, most of the images and lots of text content is generally directly adapted from the course content.  
+
 ### Autumn 2022 
 
 - [CS 330: Deep Multi-Task and Meta Learning](pages/cs330.qmd)
