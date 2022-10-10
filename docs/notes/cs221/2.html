@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Knowledge – quarto-inputf14a8a4d</title>
+<title>Knowledge – quarto-input7df67818</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -170,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-1-lecture-2---machine-learning-introduction" id="toc-week-1-lecture-2---machine-learning-introduction" class="nav-link active" data-scroll-target="#week-1-lecture-2---machine-learning-introduction">Week 1, Lecture 2 - Machine Learning Introduction</a>
+  <li><a href="#week-1-lecture-2---machine-learning-i" id="toc-week-1-lecture-2---machine-learning-i" class="nav-link active" data-scroll-target="#week-1-lecture-2---machine-learning-i">Week 1, Lecture 2 - Machine Learning I</a>
   <ul class="collapse">
   <li><a href="#module-overview" id="toc-module-overview" class="nav-link" data-scroll-target="#module-overview">Module: Overview</a>
   <ul class="collapse">
@@ -189,6 +189,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#score-and-margin" id="toc-score-and-margin" class="nav-link" data-scroll-target="#score-and-margin">Score and margin</a></li>
   <li><a href="#introducing-hinge-loss" id="toc-introducing-hinge-loss" class="nav-link" data-scroll-target="#introducing-hinge-loss">Introducing hinge loss</a></li>
   </ul></li>
+  <li><a href="#module-stochastic-gradient-descent-offline" id="toc-module-stochastic-gradient-descent-offline" class="nav-link" data-scroll-target="#module-stochastic-gradient-descent-offline">Module: Stochastic Gradient Descent (Offline)</a>
+  <ul class="collapse">
+  <li><a href="#step-size" id="toc-step-size" class="nav-link" data-scroll-target="#step-size">Step size</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -198,8 +202,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="week-1-lecture-2---machine-learning-introduction" class="level1">
-<h1>Week 1, Lecture 2 - Machine Learning Introduction</h1>
+<section id="week-1-lecture-2---machine-learning-i" class="level1">
+<h1>Week 1, Lecture 2 - Machine Learning I</h1>
 <p><code>Date: 9/28/22</code></p>
 <section id="module-overview" class="level2">
 <h2 class="anchored" data-anchor-id="module-overview">Module: Overview</h2>
@@ -387,8 +391,15 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div id="def-default" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 4 </strong></span><strong>Gradient descent</strong>: - Initialize <span class="math inline">\(\mathbf{w}=[0, \ldots, 0]\)</span> - For <span class="math inline">\(t=1, \ldots, T\)</span> : epochs - <span class="math inline">\(\mathbf{w} \leftarrow \mathbf{w}-\underbrace{\eta}_{\text {step size }} \underbrace{\nabla_{\mathbf{w}} \operatorname{TrainLoss}(\mathbf{w})}_{\text {gradient }}\)</span>.</p>
+<div id="def-gd" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4 </strong></span><strong>Gradient descent</strong>:</p>
+<ul>
+<li>Initialize <span class="math inline">\(\mathbf{w}=[0, \ldots, 0]\)</span></li>
+<li>For <span class="math inline">\(t=1, \ldots, T\)</span> : epochs
+<ul>
+<li><span class="math inline">\(\mathbf{w} \leftarrow \mathbf{w}-\underbrace{\eta}_{\text {step size }} \underbrace{\nabla_{\mathbf{w}} \operatorname{TrainLoss}(\mathbf{w})}_{\text {gradient }}\)</span>.</li>
+</ul></li>
+</ul>
 </div>
 </div>
 </div>
@@ -506,7 +517,17 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <div id="def-default" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 5 </strong></span><strong>Score</strong>: - In regression, this is just the <strong>prediction</strong> (model output). - In classification, <strong>confidence</strong> in which we are predicting (+1): - The score on an example <span class="math inline">\((x, y)\)</span> is <span class="math inline">\(\mathbf{w} \cdot \phi(x)\)</span>, how confident we are in predicting <span class="math inline">\(+1\)</span>. - This essentially is the number before taking the sign in the prediction from the model.</p>
+<p><span class="theorem-title"><strong>Definition 5 </strong></span><strong>Score</strong>:</p>
+<ul>
+<li>In regression, this is just the <strong>prediction</strong> (model output).</li>
+<li>In classification, <strong>confidence</strong> in which we are predicting (+1):
+<ul>
+<li>The score on an example <span class="math inline">\((x, y)\)</span> is <span class="math inline">\(\mathbf{w} \cdot \phi(x)\)</span>, how confident we are in predicting <span class="math inline">\(+1\)</span>.
+<ul>
+<li>This essentially is the number before taking the sign in the prediction from the model.</li>
+</ul></li>
+</ul></li>
+</ul>
 </div>
 </div>
 </div>
@@ -576,7 +597,108 @@ Note
 </div>
 </div>
 </div>
-<p>Some intuitions: - Hinge loss is upper bound of zero-one (see this visually). So if we drive down hinge loss, we must also be driving down zero-one. - Logistic is another common loss to use here.</p>
+<p>Some intuitions:</p>
+<ul>
+<li>Hinge loss is upper bound of zero-one (see this visually). So if we drive down hinge loss, we must also be driving down zero-one.</li>
+<li>Logistic is another common loss to use here.</li>
+</ul>
+</section>
+</section>
+<section id="module-stochastic-gradient-descent-offline" class="level2">
+<h2 class="anchored" data-anchor-id="module-stochastic-gradient-descent-offline">Module: Stochastic Gradient Descent (Offline)</h2>
+<p><strong>Problem with gradient descent (it is too computationally expensive and slow!)</strong>:</p>
+<ul>
+<li>In regular gradient descent (see <a href="#def-gd">Definition&nbsp;4</a>), we update the weights after every epoch by summing all of the losses for each datum in the dataset. This is expensive since, for each iteration, just to update the weights, we must traverse the <em>entire</em> dataset. And for large problems, we should we updating the weights quite often.</li>
+<li>Also, “recall that the training loss is a sum over the training data. If we have one million training examples, then each gradient computation requires going through those one million examples, and this must happen before we can make any progress” (<a href="https://stanford-cs221.github.io/autumn2022/modules/module.html#include=machine-learning%2Fstochastic-gradient-descent.js&amp;slideId=gradient-descent-is-slow-prose&amp;level=0">CS 221 Slides</a>).</li>
+</ul>
+<p>Thus, we introduce:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-sgd" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 8 </strong></span><strong>(Stochastic Gradient descent)</strong>:</p>
+<ul>
+<li>Initialize <span class="math inline">\(\mathbf{w}=[0, \ldots, 0]\)</span></li>
+<li>For <span class="math inline">\(t=1, \ldots, T\)</span> : epochs
+<ul>
+<li>For <span class="math inline">\((x, y) \in \mathcal{D}_{\text {train }}\)</span>:
+<ul>
+<li><span class="math inline">\(\mathbf{w} \leftarrow \mathbf{w}-\eta \nabla_{\mathbf{w}} \operatorname{Loss}(x, y, \mathbf{w})\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<p>Differences and notes:</p>
+<ul>
+<li>We aren’t differentiating <span class="math inline">\(\operatorname{TrainLoss}(\mathbf{w})=\frac{1}{\left|\mathcal{D}_{\text {train }}\right|} \sum_{(x, y) \in \mathcal{D}_{\text {train }}} \operatorname{Loss}(x, y, \mathbf{w})\)</span>. Just <span class="math inline">\(\operatorname{Loss}(x, y, \mathbf{w})\)</span>.</li>
+<li>We update the weights on a per-sample, rather than per-epoch basis.</li>
+<li>Drawback: each update isn’t as good/general since we are only looking at one sample when updating. But more efficient this way.
+<ul>
+<li>Thus, can become unstable. Here is happy medium:</li>
+</ul></li>
+<li>Mini-batch SGD: per-batch basis instead of per-sample. i.e., take gradient averages over <span class="math inline">\(B\)</span> samples per weight update.</li>
+<li>Can add randomization regularization: randomize the order of the dataset for each epoch.</li>
+</ul>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>(<strong>Stochastic gradient descent in python</strong>):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> stochasticGradientDescent(f, gradientf, n, initialWeightVector):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> initialWeightVector()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    numUpdates <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">500</span>):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            value <span class="op">=</span> f(w, i)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            gradient <span class="op">=</span> gradientf(w, i)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            numUpdates <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            eta <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> math.sqrt(numUpdates)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            w <span class="op">=</span> w <span class="op">-</span> eta <span class="op">*</span> gradient</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f'epoch </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss">: w = </span><span class="sc">{</span>w<span class="sc">}</span><span class="ss">, F(w) = </span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">, gradientF = </span><span class="sc">{</span>gradient<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Credit: CS 221.</p>
+</div>
+</div>
+</div>
+<section id="step-size" class="level3">
+<h3 class="anchored" data-anchor-id="step-size">Step size</h3>
+<p><span class="math display">\[\mathbf{w} \leftarrow \mathbf{w}-\underbrace{\eta}_{\text {step size }} \nabla_{\mathbf{w}} \operatorname{Loss}(x, y, \mathbf{w})\]</span></p>
+<p>aka learning rate.</p>
+<p align="center">
+<img alt="picture 1" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/b6a2ad657da29261152e030782eca625a61e7aecd810f21472904e081f19b36b.png" width="300">
+</p>
+<ul>
+<li>How do we choose this in practice?</li>
+<li>Analogy: step sizes are like driving: larger step size might mean getting there faster but can also crash and burn.
+<ul>
+<li>On the other hand, smaller SS will increase stability but get us there much slower. Note that if <span class="math inline">\(\eta = 0\)</span>, then <span class="math inline">\(\mathbf{w}\)</span> is actually never updated.</li>
+</ul></li>
+<li><strong>Adaptive strategy</strong>:
+<ul>
+<li>set the initial step size to <span class="math inline">\(\mathbf{1}\)</span> and let the step size decrease as the inverse of the square root of the number of updates we’ve taken so far.</li>
+</ul></li>
+<li>Asides:
+<ul>
+<li>Adam and Adagrad are more advanced and tweak this based on your data.</li>
+<li>Theoretical results prove SGD convergence given that gradients are bounded with your data.</li>
+</ul></li>
+</ul>
 
 
 </section>

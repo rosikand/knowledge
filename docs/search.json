@@ -249,7 +249,7 @@
     "href": "pages/cs221.html",
     "title": "CS 221 Notes",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nWeek 1, Lecture 1 - Introduction\n\n\n5 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Machine Learning Introduction\n\n\n7 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nWeek 1, Lecture 1 - Introduction\n\n\n5 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Machine Learning I\n\n\n10 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Machine Learning II\n\n\n0 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Machine Learning III\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "pages/basic-math.html",
@@ -285,5 +285,19 @@
     "title": "CS 330 Notes",
     "section": "",
     "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nWeek 1, Lecture 1 - Course Introduction\n\n\n2 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Multi-task learning\n\n\n2 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Transfer Learning + Start of Meta-Learning\n\n\n4 min\n\n\n\n\n\n\nWeek 2, Lecture 2 - Black-box meta-learning & in-context learning\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "notes/cs221/4.html",
+    "href": "notes/cs221/4.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "Date: 10/5/22"
+  },
+  {
+    "objectID": "notes/cs221/3.html",
+    "href": "notes/cs221/3.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "Date: 10/3/22\n\n\n…"
   }
 ]
