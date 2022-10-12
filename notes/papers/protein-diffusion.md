@@ -7,3 +7,4 @@ date: 10/4/22
 
 - Paper that applies denoising diffusion models for protein structure *generation*. 
 - So I guess they aren't quite "predicting" the protein structure... just merely *generating* it. 
+
