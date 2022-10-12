@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Knowledge – quarto-inputd786dc68</title>
+<title>Knowledge – quarto-inputefd0eebf</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,6 +59,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -108,7 +109,11 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#week-2-lecture-1---machine-learning-ii" id="toc-week-2-lecture-1---machine-learning-ii" class="nav-link active" data-scroll-target="#week-2-lecture-1---machine-learning-ii">Week 2, Lecture 1 - Machine Learning II</a>
   <ul class="collapse">
-  <li><a href="#module-group-dro" id="toc-module-group-dro" class="nav-link" data-scroll-target="#module-group-dro">Module: Group DRO</a></li>
+  <li><a href="#module-group-dro" id="toc-module-group-dro" class="nav-link" data-scroll-target="#module-group-dro">Module: Group DRO</a>
+  <ul class="collapse">
+  <li><a href="#linear-regression-the-standard-way" id="toc-linear-regression-the-standard-way" class="nav-link" data-scroll-target="#linear-regression-the-standard-way">Linear regression the standard way</a></li>
+  <li><a href="#using-groups" id="toc-using-groups" class="nav-link" data-scroll-target="#using-groups">Using groups</a></li>
+  </ul></li>
   <li><a href="#module-non-linear-features-offline" id="toc-module-non-linear-features-offline" class="nav-link" data-scroll-target="#module-non-linear-features-offline">Module: Non-linear features (offline)</a></li>
   <li><a href="#module-feature-templates-offline" id="toc-module-feature-templates-offline" class="nav-link" data-scroll-target="#module-feature-templates-offline">Module: Feature templates (offline)</a></li>
   <li><a href="#module-neural-networks" id="toc-module-neural-networks" class="nav-link" data-scroll-target="#module-neural-networks">Module: Neural networks</a></li>
@@ -128,7 +133,129 @@ ul.task-list li input[type="checkbox"] {
 <p><code>Date: 10/3/22</code></p>
 <section id="module-group-dro" class="level2">
 <h2 class="anchored" data-anchor-id="module-group-dro">Module: Group DRO</h2>
-<p>…</p>
+<blockquote class="blockquote">
+<p>“How to ensure more equitable performance.”</p>
+</blockquote>
+<ul>
+<li><strong>Motivation</strong>:
+<ul>
+<li>Thus far, our goal has been to minimize training loss with the hope that our model will perform well on new examples.</li>
+<li>However, train loss is defined as the average of all individual losses on each sample.</li>
+<li>Equally weighting every sample loss can lead to problems with equity.</li>
+<li>For example, unrepresented groups in the training data will have less representation in the loss and therefore in the model.</li>
+<li>group distributional robust optimization (group DRO) can help mitigate some of these inequalities.</li>
+<li>tl;dr: averaging training losses can lead to inequalities across groups, group DRO can help mitigate this.</li>
+</ul></li>
+<li><strong>Example</strong>:
+<ul>
+<li>Gender Shades project by Joy Buolamwini and Timnit Gebru discovered that Microsoft, Face++, and IBM’s gender classification system performed worse on darker-skinned females, while lighter-skinned data samples got nearly 100% accuracy.
+<ul>
+<li>i.e., discrimination can arise from ML</li>
+</ul></li>
+<li>Has real life consequences: “Robert Julian-Borchak Williams was wrongly arrested due to a incorrect match with another Black man captured from a surveillance video, and this mistake was made by a facial recognition system”.</li>
+</ul></li>
+</ul>
+<p>How can we help mitigate this algorithmically?</p>
+<section id="linear-regression-the-standard-way" class="level3">
+<h3 class="anchored" data-anchor-id="linear-regression-the-standard-way">Linear regression the standard way</h3>
+<p>Take the following dataset, where each sample now as an addtional meta-datum: a group (e.g., some demographic).</p>
+<p align="center">
+<img alt="picture 1" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/203a10115a09ff5f74c0cdc06106bcd6d5d683946084e8bfa78f6cb4862644ec.png" width="75">
+</p>
+<p>Let’s setup the same model we used in last lecture’s linear regression module:</p>
+<p><span class="math display">\[
+f_{\mathbf{w}}(x)=\mathbf{w} \cdot \phi(x) \quad \mathbf{w}=[w] \quad \phi(x)=[x]
+\]</span></p>
+<blockquote class="blockquote">
+<p>Important note: we don’t use (i.e., the predictor <span class="math inline">\(f_{\mathbf{w}}\)</span>) does not use group information <span class="math inline">\(g\)</span> to make a prediction.</p>
+</blockquote>
+<p>And since this is linear regression, all models will be a line that passes through the origin, differing in the slope <span class="math inline">\(w\)</span>. Here is a plot of the training samples with the identity line:</p>
+<p align="center">
+<img alt="picture 3" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/f35e283529f869898fc49472936d28da35fd65511dd58be434ea94a901246faf.png" width="300">
+</p>
+<p>As we can see, certain values for <span class="math inline">\(w\)</span> will be more beneficial for the blue group than the orange group. There is a bit of tension.</p>
+<p>The classic way to solve a linear regression problem here is to minimize the train loss which is an <strong>average</strong> over all sample losses:</p>
+<p><span class="math display">\[
+min \operatorname{TrainLoss}(\mathbf{w})=\frac{1}{\left|\mathcal{D}_{\text {train }}\right|} \sum_{(x, y) \in \mathcal{D}_{\text {train }}} \operatorname{Loss}(x, y, \mathbf{w})
+\]</span></p>
+<p>with the above data points (and <span class="math inline">\(\operatorname{Loss}(x, y, \mathbf{w})=\left(f_{\mathbf{w}}(x)-y\right)^2\)</span>), we have:</p>
+<p><span class="math display">\[
+\operatorname{TrainLoss}(1)=\frac{1}{6}\left((1-4)^2+(2-8)^2+(5-5)^2+(6-6)^2+(7-7)^2+(8-8)^2\right)=7.5.
+\]</span></p>
+<p>doing some calculations, we see that <span class="math inline">\(\mathbf{w}=1.09\)</span> produces the minimum train loss:</p>
+<p align="center">
+<img alt="picture 5" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/8af2e036628b68f4d09559683fc2c6efeee466a62848b36b168d48ca5f7c3527.png" width="200">
+</p>
+</section>
+<section id="using-groups" class="level3">
+<h3 class="anchored" data-anchor-id="using-groups">Using groups</h3>
+<p>Ok… let’s change one thing up (loss!) a couple of times.</p>
+<blockquote class="blockquote">
+<p><strong>Let’s calculate the loss for each group separately</strong>.</p>
+</blockquote>
+<section id="per-group-loss" class="level4">
+<h4 class="anchored" data-anchor-id="per-group-loss">Per-group loss</h4>
+<p>From above, we define the train loss for some general group <span class="math inline">\(g\)</span> as</p>
+<p><span class="math display">\[
+\operatorname{TrainLoss}_g(\mathbf{w})=\frac{1}{\left|\mathcal{D}_{\text {train }}(g)\right|} \sum_{(x, y) \in \mathcal{D}_{\text {train }}(g)} \operatorname{Loss}(x, y, \mathbf{w}).
+\]</span></p>
+<p>plugging in for the above dataset:</p>
+<p><span class="math display">\[\operatorname{TrainLoss}_{\mathrm{A}}(1)=\frac{1}{2}\left((1-4)^2+(2-8)^2\right)=22.5\]</span></p>
+<p><span class="math display">\[\operatorname{TrainLoss}_{\mathrm{B}}(1)=\frac{1}{4}\left((5-5)^2+(6-6)^2+(7-7)^2+(8-8)^2\right)=0\]</span></p>
+<blockquote class="blockquote">
+<p><strong>Conclusion</strong>: huge performance drop-off from 0 to 22.5 loss for the underrepresented group (A). So, although the average loss is 7.5, we see the disparity for ourselves here. Many people won’t go this deep and assume their “7.5” loss is good enough.</p>
+</blockquote>
+<p>Also, check this out:</p>
+<p align="center">
+<img alt="picture 6" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/82657168bc8bda0c533b977607a98e1548df8361a95946696ee0ea9f508d3b15.png" width="300">
+</p>
+<p>see how the minimum for group A and group B mean picking different values for <span class="math inline">\(\mathbf{w}\)</span>. But of course, we can only pick one <span class="math inline">\(\mathbf{w}\)</span>. Tension, tension!</p>
+<p>Ok cool… but usually it is helpful to have just <em>one</em> value for the loss. I agree:</p>
+</section>
+<section id="maximum-group-loss" class="level4">
+<h4 class="anchored" data-anchor-id="maximum-group-loss">Maximum group loss</h4>
+<p>We can literally just perform per-group losses and just take the max of all of them (i.e., the worst case):</p>
+<p><span class="math display">\[
+\operatorname{TrainLoss}_{\max }(\mathbf{w})=\max _g \operatorname{TrainLoss}_g(\mathbf{w}).
+\]</span></p>
+<p align="center">
+<img alt="picture 7" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/68003fb50fdb35b72c8b4e494e9bad33f352b4736f5e8b8720b51da77f32408a.png" width="300">
+</p>
+<p>This function is the pointwise maximum of the per-group losses, which you can see on the plot as taking the upper envelope of the two per-group losses (cs 221).</p>
+<p>We call this group distributionally robust optimization.</p>
+</section>
+<section id="average-vs.-group-dro" class="level4">
+<h4 class="anchored" data-anchor-id="average-vs.-group-dro">Average vs.&nbsp;group DRO</h4>
+<p>Alright… here are the results:</p>
+<p align="center">
+<img alt="picture 8" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/c52ed0799b4138af07d7659332457f601131fc24b0e8d012a18c1e27d72aaabf.png" width="300">
+</p>
+<p>Here, a weight vector <span class="math inline">\(\mathbf{w}=1.09\)</span> minimizes the loss for the average (traditional) case. However, using group DRO, we get <span class="math inline">\(\mathbf{w}=1.58\)</span>. So using <span class="math inline">\(\mathbf{w}=1.58\)</span> might produce worse results but should be more equitable (see the learned purple line vs.&nbsp;the learning red line).</p>
+<blockquote class="blockquote">
+<p>“Intuitively, the average loss favors majority groups over minority groups, but the maximum group loss gives a stronger voice to the minority groups, and as we see here, their influence is felt to a greater extent.” - CS 221.</p>
+</blockquote>
+</section>
+<section id="note-on-gradient-descent" class="level4">
+<h4 class="anchored" data-anchor-id="note-on-gradient-descent">Note on gradient descent</h4>
+<p>From the 221 slides:</p>
+<ul>
+<li>In general, we can minimize the maximum group loss by gradient descent, as usual.</li>
+<li>We just have to be able to take the gradient of TrainLoss <span class="math inline">\(_{\max }\)</span> , which is a maximum over the per-group losses.</li>
+<li>The gradient of a max is simply the gradient of the term that achieves the max.</li>
+<li>So algorithmically, it’s very intuitive: you first compute whichever group (<span class="math inline">\(g^*\)</span>) has the highest loss, and then you just evaluate the gradient only on per-group loss of that group (<span class="math inline">\(g^*\)</span>).</li>
+</ul>
+<p>In math:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;\operatorname{TrainLoss}_{\max }(\mathbf{w})=\max _g \operatorname{TrainLoss}_g(\mathbf{w}) \\
+&amp;\nabla \operatorname{TrainLoss}_{\max }(\mathbf{w})=\nabla \operatorname{TrainLoss} g_{g^*}(\mathbf{w}) \\
+&amp;\text { where } g^*=\arg \max _g \operatorname{TrainLoss}_g(\mathbf{w})
+\end{aligned}.
+\]</span></p>
+<p>Note that SGD cannot be applied in vanilla form since its not an average, it is a max of an average<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>Some other notes to consider: - When we have multiple attributes (gender, race), intersectionality becomes difficult to incorporate. - For further reading, consider checking out the book <a href="https://fairmlbook.org/">Fairness and machine learning: Limitations and Opportunities</a>, and a <a href="https://arxiv.org/pdf/1911.08731.pdf">paper</a> that explores group DRO for neural networks.</p>
+</section>
+</section>
 </section>
 <section id="module-non-linear-features-offline" class="level2">
 <h2 class="anchored" data-anchor-id="module-non-linear-features-offline">Module: Non-linear features (offline)</h2>
@@ -149,7 +276,13 @@ ul.task-list li input[type="checkbox"] {
 </section>
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>I don’t think I comprehend <a href="https://stanford-cs221.github.io/autumn2022/modules/module.html#include=machine-learning%2Fgroup-dro.js&amp;slideId=training-via-gradient-descent-prose&amp;level=0">this</a> well enough.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
