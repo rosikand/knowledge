@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Knowledge – quarto-inputa451219c</title>
+<title>Knowledge – quarto-input04a97c11</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,6 +59,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -110,7 +111,14 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#module-generalization" id="toc-module-generalization" class="nav-link" data-scroll-target="#module-generalization">Module: Generalization</a></li>
   <li><a href="#module-best-practices" id="toc-module-best-practices" class="nav-link" data-scroll-target="#module-best-practices">Module: Best practices</a></li>
-  <li><a href="#module-k-means" id="toc-module-k-means" class="nav-link" data-scroll-target="#module-k-means">Module: K-means</a></li>
+  <li><a href="#module-k-means" id="toc-module-k-means" class="nav-link" data-scroll-target="#module-k-means">Module: K-means</a>
+  <ul class="collapse">
+  <li><a href="#clustering-the-task" id="toc-clustering-the-task" class="nav-link" data-scroll-target="#clustering-the-task">Clustering: the task</a></li>
+  <li><a href="#centroids" id="toc-centroids" class="nav-link" data-scroll-target="#centroids">Centroids</a></li>
+  <li><a href="#k-means-objective" id="toc-k-means-objective" class="nav-link" data-scroll-target="#k-means-objective"><span class="math inline">\(K\)</span>-means objective</a></li>
+  <li><a href="#algorithm-intuition" id="toc-algorithm-intuition" class="nav-link" data-scroll-target="#algorithm-intuition">Algorithm intuition</a></li>
+  <li><a href="#k-means-algorithm" id="toc-k-means-algorithm" class="nav-link" data-scroll-target="#k-means-algorithm"><span class="math inline">\(K\)</span>-means algorithm</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -131,12 +139,205 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="module-k-means" class="level2">
 <h2 class="anchored" data-anchor-id="module-k-means">Module: K-means</h2>
+<blockquote class="blockquote">
+<p>We will now go over a powerful unsupervised learning algorithm that divides the data into “clusters” based on similarity.</p>
+</blockquote>
+<p><strong>Idea</strong>:</p>
+<ul>
+<li>input: large amounts of raw text</li>
+<li>output: distinct clusters. e.g.,:
+<ul>
+<li>Cluster 1: Friday Monday Thursday…</li>
+<li>Cluster 2: June March July April…</li>
+<li>.</li>
+<li>.</li>
+<li>.</li>
+<li>Cluster n: water gas coal liquid acid</li>
+</ul></li>
+</ul>
+<p>As opposed to supervised learning, we don’t use labels in unsupervised learning (i.e., no supervision). The model learns the structure automatically. This is important since labels are difficult to obtain but it is often the case that unlabeled data is very easy to get an abundance of.</p>
+<p>Here is the general idea of <strong>clustering</strong>:</p>
+<p align="center">
+<img alt="picture 1" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/16dfce99b014f9db8e3ae51375da45ce463a2b4c4ccd256602c251fac08ba7a2.png" width="500">
+</p>
+<ul>
+<li>Take in a bunch of unlabeled feature vectors</li>
+<li>Assign each datum to a “cluster”</li>
+<li>We define two clusters (1, blue; 2, orange).</li>
+<li>Datum, when plotted in euclidean space, should be assigned to nearby clusters.</li>
+</ul>
+<p>Ok… let’s get a little more formal.</p>
+<section id="clustering-the-task" class="level3">
+<h3 class="anchored" data-anchor-id="clustering-the-task">Clustering: the task</h3>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-default" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 1 </strong></span><strong>(Clustering)</strong></p>
+<p><strong>Input</strong>: training points <span class="math display">\[
+\mathcal{D}_{\text {train }}=\left[x_1, \ldots, x_n\right]
+\]</span> <strong>Output</strong>: assignment of each point to a cluster <span class="math inline">\(\mathbf{z}=\left[z_1, \ldots, z_n\right]\)</span> where <span class="math inline">\(z_i \in\{1, \ldots, K\}\)</span></p>
+</div>
+</div>
+</div>
+<p><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<ul>
+<li>We call <span class="math inline">\(\mathbf{z}=\left[z_1, \ldots, z_n\right]\)</span> the <strong>assignment vector</strong>.</li>
+<li>Make sure to understand the above point: what we are outputting is a vector, of length <span class="math inline">\(n\)</span> where <span class="math inline">\(n\)</span> is the length of the dataset, where each <span class="math inline">\(i\)</span>th component maps the <span class="math inline">\(i\)</span>th data point to one of the <span class="math inline">\(z\)</span> clusters (i.e., <span class="math inline">\(z_i \in\{1, \ldots, K\}\)</span>).
+<ul>
+<li>That is, “For each <span class="math inline">\(i, z_i \in\{1, \ldots, K\}\)</span> specifies which of the <span class="math inline">\(K\)</span> clusters point <span class="math inline">\(i\)</span> is assigned to.” (221).</li>
+</ul></li>
+</ul>
+</section>
+<section id="centroids" class="level3">
+<h3 class="anchored" data-anchor-id="centroids">Centroids</h3>
+<p>Ok… what the hell is a cluster even? How do we define this mathematically. Well, a cluster is represented by a <strong>centroid</strong>.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-default" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 2 </strong></span><strong>(centroid)</strong></p>
+<p>Each cluster <span class="math inline">\(k=1, \ldots, K\)</span> is represented by a centroid <span class="math inline">\(\mu_k \in \mathbb{R}^d\)</span>.</p>
+<p><span class="math display">\[\boldsymbol{\mu}=\left[\mu_1, \ldots, \mu_K\right]\]</span></p>
+<p>each component in <span class="math inline">\(\boldsymbol{\mu}\)</span> is a coordinate<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> representing the “center” of that cluster.</p>
+</div>
+</div>
+</div>
+<p>Visual (unfilled squares are the plotted centroids):</p>
+<p align="center">
+<img alt="picture 2" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/34fbf725b7915cf150579211eeb1a1cac4b3c2b0befc1bf103e7191d7bdb1c46.png" width="250">
+</p>
+</section>
+<section id="k-means-objective" class="level3">
+<h3 class="anchored" data-anchor-id="k-means-objective"><span class="math inline">\(K\)</span>-means objective</h3>
+<p>Now that we understand clustering and centroids, the intuition is easy to see.</p>
+<blockquote class="blockquote">
+<p><strong>Intuition</strong>: want each point <span class="math inline">\(\phi\left(x_i\right)\)</span> to be close to its assigned centroid <span class="math inline">\(\mu_{z_i}\)</span>.</p>
+</blockquote>
+<p>from this, we can develop the <span class="math inline">\(K\)</span>-means objective (i.e., the loss).</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-default" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3 </strong></span>(<strong><span class="math inline">\(K\)</span>-means objective</strong>)</p>
+<p><span class="math display">\[\operatorname{Loss}_{k m e a n s}(\mathbb{z}, \mu)=\sum_{i=1}^n\left\|\phi\left(x_i\right)-\mu_{z_i}\right\|^2\]</span></p>
+<p><span class="math display">\[\min _{\mathrm{z}} \min _\mu \operatorname{Loss}_{\mathrm{kmeans}}(\mathrm{z}, \mu)\]</span></p>
+<p align="center">
+<img alt="picture 3" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/f954855f9fd6e8976741ef203b3a32602e53d93324ec9b8cb044792b96d5a379.png" width="200">
+</p>
+</div>
+</div>
+</div>
+<ul>
+<li>In words, we are saying that, given an assignment vector for each of the data points (i.e., model prediction) and a centroid vector, minimize the squared distance between each in an element-wise (indexed) fashion.</li>
+<li>Note that <span class="math inline">\(\phi\left(x_i\right)-\mu_{z_i}\)</span> is just measuring the distance between the input feature vector and the predicted centroid.</li>
+<li>We take this squared distance for each individual datum and then sum it up for the entire dataset to define the <span class="math inline">\(K\)</span>-means objective.</li>
+</ul>
+</section>
+<section id="algorithm-intuition" class="level3">
+<h3 class="anchored" data-anchor-id="algorithm-intuition">Algorithm intuition</h3>
+<p>Before we introduce the algorithm to solve this objective, let’s go over some intuition with a 1d example consisting of 4 data points.</p>
+<p>The idea is pictorially displayed as follows:</p>
+<p align="center">
+<img alt="picture 4" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/73a4d6d30fac33dac474a088bc96de7eb9566afaa9af9b9f0d65e53a7860a1b6.png" width="300">
+</p>
+<ul>
+<li>We start off by knowing nothing: no known assignments or centroids. Intuitively, we choose that we need <span class="math inline">\(2\)</span> clusters (I think we must choose the number of clusters beforehand).</li>
+<li>We randomly initialize the coordinates for the two centroids representing the two clusters.</li>
+<li>We run one iteration of an algorithm… repeat until convergence.</li>
+</ul>
+<p>(expand on this)</p>
+<p>Ok… so what is the juicy details behind this magical algorithm. Before we mathematically introduce it, here is the general idea:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We can think of the loss/objective as a reconstructive loss: as we iterate, we update our assignments and centroids at once. How do we update these? At each step, <strong>alternate between choosing the best assignments given the centroids, and choosing the best centroids given the assignments</strong>.</p>
+</div>
+</div>
+<p>Notice that only the centroids are moved (the feature vectors don’t move but the assignment vector <span class="math inline">\(\mathbf{z}\)</span> changes).</p>
+<p>Ok… onto the actual algorithm.</p>
+</section>
+<section id="k-means-algorithm" class="level3">
+<h3 class="anchored" data-anchor-id="k-means-algorithm"><span class="math inline">\(K\)</span>-means algorithm</h3>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-default" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4 </strong></span>(<strong><span class="math inline">\(K\)</span>-means algorithm</strong>)</p>
+<p>Our goal is to continiously update our assignments (<span class="math inline">\(\mathbf{z}\)</span>) and centroids (<span class="math inline">\(\boldsymbol{\mu}\)</span>).</p>
+<p align="center">
+<img alt="picture 5" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/30ebd5bea9ed713545baa3d5e40a4db374499eeb27ad441d4df56dbd8d6da0ec.png" width="400">
+</p>
+</div>
+</div>
+</div>
+<p>In words:</p>
+<ul>
+<li><strong>Start</strong> by initializing all the centroids randomly. Then, we iteratively alternate back and forth between steps 1 and 2, optimizing <span class="math inline">\(\mathbf{z}\)</span> given <span class="math inline">\(\mathbf{\mu}\)</span> and <span class="math inline">\(\mathbf{\mu}\)</span> given <span class="math inline">\(\mathbf{z}\)</span> <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</li>
+<li><strong>Step 1 (update <span class="math inline">\(\mathbf{z}\)</span>)</strong>: at this time, we care about assigning the best centroid to each data point. This is straightforward: just assign the one that is closest to it, squared distance-wise. We hold the centroids in place and don’t change them here.
+<ul>
+<li>That is, <strong>the best label for <span class="math inline">\(z_i\)</span> is the cluster <span class="math inline">\(k\)</span> that minimizes the distance to the centroid <span class="math inline">\(\mu_k\)</span>.</strong></li>
+<li>Formally, we are optimizing the <span class="math inline">\(K\)</span>-means objective with respect to the assignment vector <span class="math inline">\(\mathbf{z}\)</span>.</li>
+</ul></li>
+<li><strong>Step 2 (update <span class="math inline">\(\mathbf{\mu}\)</span>)</strong>: turns things around: let’s hold the assignments (<span class="math inline">\(\mathbf{z}\)</span>) in place and choose the best centroids given these assignments. We do this via the <span class="math inline">\(K\)</span>-means objective and optimize it with respect to the centroids <span class="math inline">\(\mathbf{\mu}\)</span>.
+<ul>
+<li>In English, <strong>we place the centroid <span class="math inline">\(\mu_k\)</span> at the average of all the points assigned to cluster <span class="math inline">\(k\)</span>.</strong></li>
+</ul></li>
+<li>of K-means fixes the centroids . Then we can optimize the K-means objective with respect to alone quite easily. It is easy to show that the best label for is the cluster that minimizes the distance to the centroid (which is fixed). Step 2 turns things around and fixes the assignments . We can again look at the K-means objective function and optimize it with respect to the centroids . The best is to place the centroid at the average of all the points assigned to cluster .</li>
+</ul>
+<ul>
+<li><strong>Note on minima</strong>: <span class="math inline">\(K\)</span>-means is guaranteed to converge to a local minimum, but is not guaranteed to find the global minimum. Run multiple times from different random initializations such that you don’t keep on getting stuck at a local minimum.</li>
+</ul>
 
 
 </section>
 </section>
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>lingering question: do we define how many clusters there are and where they lie explicity? Or is this learned automatically?<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>realize that this component must be of the same dimension and space of the input feature vectors. See the visual to understand why.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>do we do steps 1 and 2 for each iteration or alternate?<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

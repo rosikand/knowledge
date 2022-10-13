@@ -42,6 +42,13 @@
     "text": "Paper that applies denoising diffusion models for protein structure generation.\nSo I guess they aren’t quite “predicting” the protein structure… just merely generating it."
   },
   {
+    "objectID": "notes/papers/spelke-segmentation.html",
+    "href": "notes/papers/spelke-segmentation.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "link\n\nIntroduces fully-unsupervised method for segmenting objects in an image.\nMethod inspired by Spelke objects from cognitive science.\nFrom the NeuroAI lab at Stanford lead by Dr. Yamins."
+  },
+  {
     "objectID": "notes/cs109/12-inference-part-1.html",
     "href": "notes/cs109/12-inference-part-1.html",
     "title": "Knowledge",
@@ -168,6 +175,20 @@
     "text": "Date: 9/26/22\n\nCourse content delivered in modules and in lecture (which go over the content from modules in an interactive manner).\nSo during lecture, Percy and Dorsa will walk us through the lecture slides from the module page.\n\n\n\n\n\nHow can we go from code –> self-driving cars? We need a plan of attack. Here we introduce an AI paradigm consisting of three components:\n\nModeling\nInference\nLearning\n\n\n\n\n\n\nModeling: i.e., how we can go from a complex problem (e.g., lane shifting) to a nice, mathematical representation from which we can work with.\n\n\n\n\n\nHowever, modeling is inherently lossy: we lose information due to the complexities of the world. not all of the richness of the real world can be captured, and therefore there is an art of modeling: what does one keep versus ignore?\nInference: answer questions with respect to the model. Example given city model: what is the shortest path? Essentially a mathematical excersize where we use algorithms to solve the problem.\n\n\n\n\n\nLearning: simplified but real world is complex. Not feasible to write full model. But building a model is very hard to accurately represent the real world. So instead, we can show the computer data and the model is learned implicity through such data.\n\ni.e., we’ll write down a model architecture (model “family”), you find the edge values by learning.\n\n\n\n\n\n\nNote: you probably think of neural networks when we talk about modeling. But in actuality, it is much more broad; The idea of learning is not tied to a particular model family (e.g., neural networks). Rather, it is more of a philosophy of how to produce models.\nRest of course: use this paradigm to understand modeling strategies: from low-level to high-level.\nMachine learning: data –> model;\nState-based model: proceduraly: take next step into next state to “search” for a solution.\nVariable-based: assignment: assign bayesian edges in a graph (essentially a PGM).\n\n\n\n\n\n\n\n\n\n\n\nNext module.\n\nTopics in this course have long and complex history.\nTuring test: define intelligence as a machine that can fool a human.\nThree stories of the birth of AI.\nBirth of AI (1956): John Mcarthy organizes Dartmouth conference during the Summer.\n\nProposed challenge to build artificial intelligence with computers. Idea: “Every aspect of learning or any other feature of intelligence can be so precisely described that a machine can be made to simulate it.”\nProduced some good results like Samuel’s chess engine.\nAI summer: expected to be solved in like 10 years.\nBut of course: underwelmed… no AGI produced!\nProblems:\n\nNot enough compute\nDidn’t understand the complexity of the problem (no np-completeness yet!)\n\n\n1. Symbolic AI: Knowledge-based systems (1970s+):\n\nIdea is to encode explicit domain knowledge in the form of rules:\n\n\nif [premises] then [conclusion]\n\nCommercial success: medical prediction systems\n\nSolved limited compute problem\nBut world is too complex to model completely with this system.\n\n\n2. Neural AI: Neural models (1943, 1980’s):\n\nMcullugh and Pitts: made mathematical model of neurons. What can it learn?\n\nNote: these two were Psychologists well before the age of computing: no intention to build AGI.\n\nLots of advances until in 1969 Minsky proved that XOR was not solvable by linear NN’s. Killed NN’s for the timing being.\nHowever, field picked back up again with the rise of connectionism (explaining cognitive phenominoms using neural networks).\n\n1980: Fukushima’s neocognition CNN architecture.\n1986: Hinton’s backprop.\n1989: Lecun applies backprop learning to Fukushima’s CNN architecture.\n\nDidn’t really pick up speed until 2000s and 2010s when compute (GPUs) came into fruition and networks could be made “deep”er.\n\nAlexNet moment!\n\n\n3. Statistical modeling:\n\nBayesian networks, SVM’s, etc.\nProvide theory\nGoes back to Gauss (before AI)\n\n\nNext module…\n\n\n\n\n\nHigh-level principle: ensure AI is developed to benefit and not harm society.\nHowever, it is tough to operationalize these principles in the real world.\nTwo axes: intent vs. impact.\n\n\n\n\n\nLevels of abstraction so it can get quite complex to see what is right/wrong.\n\nDownstream impact.\n\nAccidents:\n\nGood intent, bad results\n\nComes from gap between model and real-world. We lossy it down to the model and then deploy lossy version in real-world. Lossed information can cause problems!\n“Misalignment between real-world objective and system’s objective.”\n\n\nOptimize wrong objective function\n\ne.g., facebook echo chamber: want good user feeedback but can cause political isolation.\n\nFairness: performance disparities between different groups.\nRobustness: spurious correlations\n\nExample: train classifier for collapsed lung. But all collapsed lung x-ray usually has some chest drain device so the model is really just learning to find the chest-drain rather than a pathological identifier.\n\nSecurity: adversaries (sticker on stop sign for autonomous driving).\n\nThink about the task setup: e.g., don’t make gender classification algorithm.\nFeedback loops: bad algorithm paradigms (as explained above), bad data make for a bad loop.\nData is of course controversial. Dataset biases, imbalanced classes, legal battles over copyright ownership. Labour problems for labeling data.\n\nSo what do we do? - Transparency: document uses, model, etc. - e.g., model cards - Choosing right problems\nSummary:"
   },
   {
+    "objectID": "notes/cs221/4.html",
+    "href": "notes/cs221/4.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "Footnotes\n\n\nlingering question: do we define how many clusters there are and where they lie explicity? Or is this learned automatically?↩︎\nrealize that this component must be of the same dimension and space of the input feature vectors. See the visual to understand why.↩︎\ndo we do steps 1 and 2 for each iteration or alternate?↩︎"
+  },
+  {
+    "objectID": "notes/cs221/3.html",
+    "href": "notes/cs221/3.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "Footnotes\n\n\nI don’t think I comprehend this well enough.↩︎"
+  },
+  {
     "objectID": "notes/cs221/2.html",
     "href": "notes/cs221/2.html",
     "title": "Knowledge",
@@ -242,14 +263,14 @@
     "href": "pages/papers.html",
     "title": "Papers",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\nOct 4, 2022\n\n\nProtein Structure and Sequence Generation with Equivariant Denoising Diffusion Probabilistic Models\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\nOct 4, 2022\n\n\nProtein Structure and Sequence Generation with Equivariant Denoising Diffusion Probabilistic Models\n\n\n0 min\n\n\n\n\nOct 11, 2022\n\n\nUnsupervised Segmentation in Real-World Images via Spelke Object Inference\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "pages/cs221.html",
     "href": "pages/cs221.html",
     "title": "CS 221 Notes",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nWeek 1, Lecture 1 - Introduction\n\n\n5 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Machine Learning I\n\n\n10 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Machine Learning II\n\n\n4 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Machine Learning III\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nWeek 1, Lecture 1 - Introduction\n\n\n5 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Machine Learning I\n\n\n10 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Machine Learning II\n\n\n4 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Machine Learning III\n\n\n5 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "pages/basic-math.html",
@@ -285,19 +306,5 @@
     "title": "CS 330 Notes",
     "section": "",
     "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nWeek 1, Lecture 1 - Course Introduction\n\n\n2 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Multi-task learning\n\n\n2 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Transfer Learning + Start of Meta-Learning\n\n\n4 min\n\n\n\n\n\n\nWeek 2, Lecture 2 - Black-box meta-learning & in-context learning\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "notes/cs221/4.html",
-    "href": "notes/cs221/4.html",
-    "title": "Knowledge",
-    "section": "",
-    "text": "Date: 10/5/22"
-  },
-  {
-    "objectID": "notes/cs221/3.html",
-    "href": "notes/cs221/3.html",
-    "title": "Knowledge",
-    "section": "",
-    "text": "Footnotes\n\n\nI don’t think I comprehend this well enough.↩︎"
   }
 ]
