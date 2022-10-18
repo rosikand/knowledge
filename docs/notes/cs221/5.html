@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Knowledge – quarto-input4e48dcd3</title>
+<title>Knowledge – quarto-inputd76e3f26</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -337,8 +337,7 @@ Note
 <li>We consider all possible actions <span class="math inline">\(a\)</span> (edges) from state <span class="math inline">\(s\)</span> (node), and recursively search each of the possibilities, updating the minimum-cost and path along the way.</li>
 <li>To get an idea of complexity, we define the following:
 <ul>
-<li><strong>branching factor</strong> <span class="math inline">\(b\)</span>: number of available actions at each state[^1]. [^1]: can’t this vary though depending on the depth that we are at?<br>
-</li>
+<li><strong>branching factor</strong> <span class="math inline">\(b\)</span>: number of available actions at each state<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
 <li><strong>maximum depth</strong> <span class="math inline">\(D\)</span>: each path consists of <span class="math inline">\(D\)</span> or less actions/edges.</li>
 </ul></li>
 <li><strong>Complexity</strong>:
@@ -432,18 +431,169 @@ Note
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> table[subproblem_solution] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> table[subproblem_solution]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    recurse <span class="im">as</span> usual </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    ...</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    base case </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>table[subproblem_solution] <span class="op">=</span> solution </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> solution </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># recurse as usual </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># base case </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    solution <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> isEnd(state):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        solution <span class="op">=</span> ... </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># recursive step </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> action <span class="kw">in</span> actions:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        ... </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        solution <span class="op">=</span> ...</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    table[subproblem_solution] <span class="op">=</span> solution </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> solution </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Key observation is that the <strong>future costs only depend on current city… not on what we did in the past to get to that city</strong>.
+<ul>
+<li>What we really mean is that future cost only depends on state.</li>
+<li>State goes from “past sequence of actions (e.g.: 1 –&gt; 2 –&gt; 5 –&gt; 6) to just the current thing (e.g.: 6).</li>
+<li>Exponential to polynomial time (based on number of states in polynomial time (<span class="math inline">\(O(n)\)</span>)).</li>
+</ul></li>
+</ul>
+<p>Idea of “state”:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-default" class="theorem definition">
+<span class="theorem-title"><strong>Definition 3 </strong></span>(<strong>State</strong>) A state is a summary of all the past actions sufficient to choose future actions optimally. e.g.,:
+<p align="center">
+<img alt="picture 15" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/c737889b0d69032d1077bceb63dd6c13317a3a898aa03e68c2e9b7339e8c39eb.png" width="200">
+</p>
+</div>
+</div>
+</div>
+<section id="adding-a-constraint" class="level3">
+<h3 class="anchored" data-anchor-id="adding-a-constraint">Adding a constraint</h3>
+<p>Cool… but what happens if we add a constraint dependent on the state.</p>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exm-default" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4 </strong></span>(<strong>Route finding</strong>) Find the minimum cost path from city 1 to city <span class="math inline">\(n\)</span>, only moving forward. It costs <span class="math inline">\(c_{i j}\)</span> to go from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span>.</p>
+<p>Constraint: Can’t visit three odd cities in a row.</p>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>Note that we choose what the “state” is in these DP problems. However, time and space complexity is dependent on the size of the state. So choose wisely. A bit of a balance.
+<ul>
+<li>This is why the definition of what “state” is from above makes sense: <strong>get the minimal amount of information that you need to know that is sufficient enough to choose actions optimally</strong>.</li>
+</ul></li>
+</ul>
+<p>With this constraint in mind, we can now define a new state definition for this problem.</p>
+<p><span class="math display">\[
+\text{state = (previous city, current city)}
+\]</span></p>
+<p>example in this context then:</p>
+<p><span class="math display">\[S_0:(n / a, 1)\]</span> <span class="math display">\[S_1:(1,3)\]</span> <span class="math display">\[S_2:(3,7)\]</span></p>
+<p>State space (complexity) is then <span class="math inline">\(|S|=N \times N=N^2\)</span>. We can do better. Define state as:</p>
+<p><span class="math display">\[
+\text{state = (if previous city was odd, current city)}
+\]</span></p>
+<p>this gives us <span class="math inline">\(|S| = 2n\)</span>.</p>
+<p>The whole example here is to drill in the idea of a “state” and how dynamic it can really be defined (but also how important it is to define a good state).</p>
+<section id="acyclic-assumption" class="level4">
+<h4 class="anchored" data-anchor-id="acyclic-assumption">Acyclic assumption</h4>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-default" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4 </strong></span>(<strong>Acyclic assumption</strong>) The state graph defined by <span class="math inline">\(\operatorname{Actions}(s)\)</span> and <span class="math inline">\(\operatorname{Succ}(s, a)\)</span> is acyclic.</p>
+</div>
+</div>
+</div>
+<p>Here is a quick primer on the relevant graph algorithm background.</p>
+<ul>
+<li><strong>Cycle</strong>: a path that starts from a given vertex and ends at the same vertex is called a cycle (<a href="https://www.baeldung.com/cs/cycles-undirected-graph">ref</a>)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</li>
+</ul>
+<ul>
+<li>Acyclic vs.&nbsp;cyclic:</li>
+</ul>
+<p align="center">
+<img alt="picture 16" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/c4aebfc4919edcb62e8a5ef959c5d8d9498d1a10f1474939b9364baeeac13035.png" width="300">
+</p>
+<ul>
+<li>That is, we need an ordering of the states such that we can’t go “back to a state” to acheive the optimal path.</li>
+<li>So basically, our state graph just has to be acyclic.</li>
+<li>Uniform cost search resolves this.</li>
+</ul>
+</section>
+</section>
+<section id="tldr" class="level3">
+<h3 class="anchored" data-anchor-id="tldr">TL;DR</h3>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>DP: backtracking + memoization</li>
+<li>Memoization: cache all solutions to each subproblem. Next time you encounter subproblem, lookup solution in cache instead of redoing the recursion.</li>
+<li>DP offers speed-up in time complexity: exponential to polynomial.</li>
+<li>State: how you define your state plays a huge role in performance. Get the minimal amount of information that you need to know that is sufficient enough to choose actions optimally in the future.</li>
+<li>However, DP depends on the assumption that the graph being traversed is acyclic. That is, there exists some sequential ordering in the problem (no going backwards!).</li>
+<li>Uniform cost search addresses this issue.</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="v.-uniform-cost-search" class="level2">
+<h2 class="anchored" data-anchor-id="v.-uniform-cost-search">V. Uniform cost search</h2>
+<p>DP with cycles.</p>
+<p>Basically Dijkstra’s algorithm.</p>
+<p>Again, we will use the following shortest-path example.</p>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exm-default" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5 </strong></span>(<strong>Route finding</strong>) Find the minimum cost path from city 1 to city <span class="math inline">\(n\)</span>, only moving forward. It costs <span class="math inline">\(c_{i j}\)</span> to go from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
 
 
 </section>
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>can’t this vary though depending on the depth that we are at?<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://www.baeldung.com/cs/cycles-undirected-graph">this</a> site actually has some good info.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
