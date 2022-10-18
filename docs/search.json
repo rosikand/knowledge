@@ -312,6 +312,6 @@
     "href": "notes/cs221/5.html",
     "title": "Knowledge",
     "section": "",
-    "text": "Footnotes\n\n\ncan’t this vary though depending on the depth that we are at?↩︎\nthis site actually has some good info.↩︎"
+    "text": "Footnotes\n\n\ncan’t this vary though depending on the depth that we are at?↩︎\nthis site actually has some good info.↩︎\nnote that this is an important thing to understand as it gives rise to the motivation for \\(A^*\\). In UCS, we uniformly align the nodes in order. However, as we will see, \\(A^*\\) has a bias knowing the end goal.↩︎"
   }
 ]

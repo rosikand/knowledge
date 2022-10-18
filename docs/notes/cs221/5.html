@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Knowledge – quarto-inputd76e3f26</title>
+<title>Knowledge – quarto-input6356151a</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -566,9 +566,13 @@ Note
 </section>
 <section id="v.-uniform-cost-search" class="level2">
 <h2 class="anchored" data-anchor-id="v.-uniform-cost-search">V. Uniform cost search</h2>
-<p>DP with cycles.</p>
-<p>Basically Dijkstra’s algorithm.</p>
-<p>Again, we will use the following shortest-path example.</p>
+<ul>
+<li>DP is great, but what happens if we have cycles in our state graph?</li>
+<li>UCS is essentially DP but allows for cycles.<br>
+</li>
+<li>Basically Dijkstra’s algorithm.</li>
+<li>Again, we will use the following shortest-path example.</li>
+</ul>
 <div class="callout-note callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -581,8 +585,174 @@ Note
 </div>
 </div>
 </div>
+<ul>
+<li><strong>Motivation</strong>:
+<ul>
+<li>In DP, we had no cycles, so every future cost only depended on what happens in the future… there is some ordering of the nodes which prevents us from looping backwards to potentially find a more optimal path. The insight is that, once we are at some state <span class="math inline">\(s\)</span>, we know that we got there via the most optimal route from the start state <span class="math inline">\(s_{start}\)</span>. Thus, we only need to consider future costs. Take this visual:
+<p align="center">
+<img alt="picture 17" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/af1afcd283d1476204185e6fba7eb2a88a0e11874cfe7051ff4331c3d596ee7b.png" width="300">
+</p>
+We know that at state <span class="math inline">\(s\)</span>, <span class="math inline">\(\operatorname{PastCost}(s)\)</span> is optimal; so we can just focus on computing the minimum futuyre cost, <span class="math inline">\(\operatorname{Cost}(s, a)\)</span>. With cycles, this isn’t always the case.</li>
+<li>However, some graphs may have cycles. This introduces the “<strong>going backwards</strong> possibility to find a potentially more optimal path… and thus complicating the problem.</li>
+<li>Mathematically, also, the difference is that with DP, we computed future costs, but here we can define the compliment: compute <span class="math inline">\(\operatorname{PastCost}(s)\)</span>: the cost of the minimum cost path from the start state to <span class="math inline">\(s\)</span>. Then, we do DP in reverse going from <span class="math inline">\(s\)</span> to the start state to get the minimum. But again, to use DP, we must ensure that the nodes are computed in order (just reverse this time). But the general idea for USC is to use this “reverse” technique.<br>
+</li>
+<li>How to solve this? Let’s see what UCS has to offer!</li>
+</ul></li>
+</ul>
+<p><strong>High-level idea</strong>:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>(<strong>Key idea of UCS:</strong>) UCS enumerates states in order of increasing past cost.</p>
+</div>
+</div>
+<p>Note that we also assume that all actions (edges) are non-negative (<span class="math inline">\(\operatorname{Cost}(s, a) \geq 0\)</span>). Bellman-ford resolves this though.</p>
+<ul>
+<li>Quick <strong>aside</strong>: UCS and Dijkstra’s are practically equivalent algorithmically, but some differences include:
+<ul>
+<li>UCS takes as input a search problem, which implicitly defines a large and even infinite graph. Dijkstra’s takes as input a fully discrete and concrete graph.</li>
+<li>Output difference: Dijkstra’s outputs shortest path between start state and every other node. UCS only does from one desired state to another. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+</ul></li>
+</ul>
+<p>Ok… to describe the algorithm, I recommend just watching the video. However, here is some text from the slides.</p>
+<blockquote class="blockquote">
+<ul>
+<li>The general strategy of UCS is to maintain three sets of nodes: explored, frontier, and unexplored. Throughout the course of the algorithm, we will move states from unexplored to frontier, and from frontier to explored.</li>
+<li>The key invariant is that we have computed the minimum cost paths to all the nodes in the explored set. So when the end state moves into the explored set, then we are done.</li>
+</ul>
+</blockquote>
+<p align="center">
+<img alt="picture 18" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/47ef0fe0fc3f5057f16cbadc4c0d36f371ec95c1ff2a68bbe351d9ce22a2988c.png" width="500">
+</p>
+<p>Also, as another aside before we move on, realize that these algorithms take in <strong>state graphs</strong> (not trees). <a href="https://www.youtube.com/watch?v=dRMvK76xQJI">Here</a> is a good video walking through an example of this algorithm in a different light.</p>
+<p>Notes:</p>
+<ul>
+<li>Once the end state is in explored, we terminate the search.</li>
+<li><strong>Question</strong>: can we ever update the minimum cost path to some node already in explored? Or is it true that once a state is in explored, it is already at the minimum cost?
+<ul>
+<li>Ok… the answer is yes (“The key invariant is that we have computed the minimum cost paths to all the nodes in the explored set. So when the end state moves into the explored set, then we are done.”), but I fail to understand why. (update: see below as this is exactly what’s covered next.)</li>
+</ul></li>
+</ul>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-default" class="theorem definition">
+<span class="theorem-title"><strong>Definition 5 </strong></span><strong>(Uniform cost search algorithm)</strong>:
+<p align="center">
+<img alt="picture 19" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/48b14619aa7228821b6d2ef7cd2311951869efaf0c9c4a2b5a42f97d215c4277.png" width="500">
+</p>
+</div>
+</div>
+</div>
+<ul>
+<li><p>So basically, in Dijkstra’s we do the full graph (end when all nodes are in the graph). In UCS, terminate when the end state is moved to explored.</p></li>
+<li><p>Ok… I had the following question:</p>
+<ul>
+<li>Is it possible to add a node beyond the desired end state to the frontier and pop that one off to the explored list first? The answer is yes. It is a great exercise to run UCS on the following graph.</li>
+</ul></li>
+</ul>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exr-default" class="theorem exercise">
+<span class="theorem-title"><strong>Exercise 1 </strong></span>(<strong>UCS</strong>) Run uniform cost search on the following graph by finding the minimum cost for <span class="math inline">\(A \rightarrow C\)</span>.
+<p align="center">
+<img alt="picture 20" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/5e9c11908ba66a2270a46e6d632d0db4cfe7b9cf1039695cc969a00f86052d94.png" width="300">
+</p>
+<p>Answer: 3 (<span class="math inline">\(A \rightarrow B \rightarrow D \rightarrow C\)</span>).</p>
+</div>
+</div>
+</div>
+</div>
+<section id="correctness" class="level3">
+<h3 class="anchored" data-anchor-id="correctness">Correctness</h3>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="thm-default" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 1 </strong></span>(<strong>Correctness of UCS</strong>): When a state <span class="math inline">\(s\)</span> is popped from the frontier and moved to explored, its priority is <span class="math inline">\(PastCost(s)\)</span>, the minimum cost to <span class="math inline">\(s\)</span>. That is, once the state <span class="math inline">\(s\)</span> is in explored, the cost is indeed the minimum.</p>
+</div>
+</div>
+</div>
+<p>For the proof, watch the video.</p>
+<p>Interesting note: - We know that UCS cannot handle negatively-weighted edges. What happens if we just add some arbitrarly large constant to all edges to make them positive and then solve this. Will this work? - NO! See <a href="https://math.stackexchange.com/questions/1021517/increase-by-one-shortest-path-changes-the-edges-or-not">here</a>. It penalizes longer paths more than shorter paths, so we would end up solving a different problem. Paths with more num edges are penalized more than less edges but more weight. If the original path was many small weight edges, but there also exists a large edge(s), the add constant scenario would penalize the many small weights much more and thus the minimum path can change.</p>
+<section id="dp-vs.-ucs" class="level4">
+<h4 class="anchored" data-anchor-id="dp-vs.-ucs">DP vs.&nbsp;UCS</h4>
+<p align="center">
+<img alt="picture 21" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/e6ed3993743407f586eb4969047057b3ec1628e48dbea012364e8bd756c5a9f3.png" width="450">
+</p>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<ul>
+<li>DP can handle negative costs, UCS cannot.</li>
+<li>Because of the above, DP has to explore all <span class="math inline">\(N\)</span> reachable states from the start state (inefficient). However, UCS can avoid this since their are no negative costs.
+<ul>
+<li>On the contrary, UCS only needs to explore <span class="math inline">\(n\)</span> states where <span class="math inline">\(n\)</span> is the number of states such that each of these states are cheaper to get to than the end state.</li>
+</ul></li>
+<li>UCS can handle cycles. DP cannot.</li>
+<li>UCS has some additional overhead with handling the priority queue, in lookup time.</li>
+</ul>
+</div>
+</div>
+</div>
+<p><strong>Summary thus far</strong>:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<strong>Summary (ref: 221 slides)</strong>:
+<p align="center">
+<img alt="picture 22" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/7ec2a24fd9f4cb8915c934e18f51f01980c464c4600a49e0230553c505593dc2.png" width="500">
+</p>
+<ul>
+<li>We started out with the idea of a search problem, an abstraction that provides a clean interface between modeling and algorithms.</li>
+<li>Tree search algorithms are the simplest: just try exploring all possible states and actions. With backtracking search and DFS with iterative deepening, we can scale up to huge state spaces since the memory usage only depends on the number of actions in the solution path. Of course, these algorithms necessarily take exponential time in the worst case.</li>
+<li>To do better, we need to think more about bookkeeping. The most important concept from this lecture is the idea of a state, which contains all the information about the past to act optimally in the future. We saw several examples of traveling between cities under various constraints, where coming up with the proper minimal state required a deep understanding of search.</li>
+<li>With an appropriately defined state, we can apply either dynamic programming or UCS, which have complementary strengths. The former handles negative action costs and the latter handles cycles. Both require space proportional to the number of states, so we need to make sure that we did a good job with the modeling of the state.</li>
+</ul>
+</div>
+</div>
+</div>
 
 
+</section>
+</section>
 </section>
 </section>
 
@@ -592,6 +762,7 @@ Note
 <ol>
 <li id="fn1"><p>can’t this vary though depending on the depth that we are at?<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p><a href="https://www.baeldung.com/cs/cycles-undirected-graph">this</a> site actually has some good info.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>note that this is an important thing to understand as it gives rise to the motivation for <span class="math inline">\(A^*\)</span>. In UCS, we <em>uniformly</em> align the nodes in order. However, as we will see, <span class="math inline">\(A^*\)</span> has a bias knowing the end goal.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
