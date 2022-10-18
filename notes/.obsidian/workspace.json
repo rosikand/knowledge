@@ -1,0 +1,150 @@
+{
+  "main": {
+    "id": "2b4d8d576e5c1303",
+    "type": "split",
+    "children": [
+      {
+        "id": "f5bcadeefd146ccf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "25ecdce947244652",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "cs221/5.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d6464b014df42f99",
+    "type": "split",
+    "children": [
+      {
+        "id": "ee6c8458f90c4841",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "976fa50924caa957",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "c56e7d28f5d0ffdc",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "f6d3acb64266348e",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ca7fd81aed0aae8d",
+    "type": "split",
+    "children": [
+      {
+        "id": "6578f5588c9a068c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6c157347b311a5e2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "cs221/5.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "76cf9843492158d1",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "cs221/5.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "f462436810ebf7bc",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "c4292e791b566723",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "cs221/5.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "ribbon": {
+    "mostRecentAction": ""
+  },
+  "active": "25ecdce947244652",
+  "lastOpenFiles": [
+    "cs221/4.md",
+    "cs221/3.md",
+    "cs221/2.md",
+    "biology/qpi.md",
+    "cs109/12-inference-part-1.md"
+  ]
+}

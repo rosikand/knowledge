@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Knowledge – quarto-input04a97c11</title>
+<title>Knowledge – quarto-input1134079e</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -321,7 +321,13 @@ Note
 <li>of K-means fixes the centroids . Then we can optimize the K-means objective with respect to alone quite easily. It is easy to show that the best label for is the cluster that minimizes the distance to the centroid (which is fixed). Step 2 turns things around and fixes the assignments . We can again look at the K-means objective function and optimize it with respect to the centroids . The best is to place the centroid at the average of all the points assigned to cluster .</li>
 </ul>
 <ul>
-<li><strong>Note on minima</strong>: <span class="math inline">\(K\)</span>-means is guaranteed to converge to a local minimum, but is not guaranteed to find the global minimum. Run multiple times from different random initializations such that you don’t keep on getting stuck at a local minimum.</li>
+<li><strong>Note on minima</strong>:
+<ul>
+<li>tl;dr <span class="math inline">\(K\)</span>-means is guaranteed to converge to a local minimum (i.e., loss is gaurenteed to decrease at each iteration), but is not guaranteed to find the global minimum. Run multiple times from different random initializations such that you don’t keep on getting stuck at a local minimum.</li>
+<li>K-means is guaranteed to decrease the loss function each iteration and will converge to a local minimum, but it is not guaranteed to find the global minimum, so one must exercise caution when applying K-means.</li>
+<li>Advanced: One solution is to simply run K-means several times from multiple random initializations and then choose the solution that has the lowest loss.</li>
+<li>Advanced: Or we could try to be smarter in how we initialize K-means. K-means++ is an initialization scheme which places centroids on training points so that these centroids tend to be distant from one another.</li>
+</ul></li>
 </ul>
 
 
