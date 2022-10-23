@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "cs221/5.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -142,6 +142,11 @@
   "active": "25ecdce947244652",
   "lastOpenFiles": [
     "cs221/4.md",
+    "intlpol268/3.md",
+    "papers/spelke-segmentation.md",
+    "papers/protein-diffusion.md",
+    "intlpol268/2.md",
+    "cs221/5.md",
     "cs221/3.md",
     "cs221/2.md",
     "biology/qpi.md",
