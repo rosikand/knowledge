@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "cs221/5.md",
-                "mode": "preview",
+                "file": "cs221/7.md",
+                "mode": "source",
                 "source": false
               }
             }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "cs221/5.md",
+                "file": "cs221/7.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "cs221/5.md",
+                "file": "cs221/7.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "cs221/5.md"
+                "file": "cs221/7.md"
               }
             }
           }
@@ -141,12 +141,12 @@
   },
   "active": "25ecdce947244652",
   "lastOpenFiles": [
+    "cs221/5.md",
     "cs221/4.md",
     "intlpol268/3.md",
     "papers/spelke-segmentation.md",
     "papers/protein-diffusion.md",
     "intlpol268/2.md",
-    "cs221/5.md",
     "cs221/3.md",
     "cs221/2.md",
     "biology/qpi.md",

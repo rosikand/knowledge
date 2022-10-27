@@ -119,6 +119,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#high-level-idea" id="toc-high-level-idea" class="nav-link" data-scroll-target="#high-level-idea">High-level idea</a></li>
   <li><a href="#matching-networks" id="toc-matching-networks" class="nav-link" data-scroll-target="#matching-networks">Matching networks</a></li>
   </ul></li>
+  <li><a href="#optimization-based-meta-learning" id="toc-optimization-based-meta-learning" class="nav-link" data-scroll-target="#optimization-based-meta-learning">Optimization-based Meta Learning</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -286,9 +287,51 @@ Note
 </section>
 <section id="matching-networks" class="level3">
 <h3 class="anchored" data-anchor-id="matching-networks">Matching networks</h3>
-
-
+<p>…</p>
 </section>
+</section>
+<section id="optimization-based-meta-learning" class="level2">
+<h2 class="anchored" data-anchor-id="optimization-based-meta-learning">Optimization-based Meta Learning</h2>
+<p>We will cover MAML. There also exists Reptile which avoids second derivatives.</p>
+<ul>
+<li>We can model the inner loop optimization process as a “model” that we, in it of itself, optimize.</li>
+<li>Idea is to run gradient descent quickly for fast adaption to new tasks.</li>
+<li>Inner loop: adaptation to new task</li>
+<li>The general idea is to have two notions of the parameters for a model:
+<ul>
+<li><span class="math inline">\(\theta\)</span> as the “meta” parameters.</li>
+<li><span class="math inline">\(\phi_i\)</span> as the task-specific parameters of the model learned for <span class="math inline">\(T_i\)</span>.</li>
+</ul></li>
+<li>The idea is to optimize <span class="math inline">\(\theta\)</span> overall such that a few gradient steps for each task will result in good <span class="math inline">\(\phi_i\)</span> parameters.</li>
+</ul>
+<p>MAML pseudocode:</p>
+<pre><code>0. randomly init theta
+1. Sample task from dataset 
+    a. extract support and query 
+2. update phi_i through a few gradient descent steps
+3. update meta parameter theta by computing gradient of loss with respect to phi_x on **query set**</code></pre>
+<p>See how we not only update our task-specific parameters via gradient descent, but also the overall meta parameters?</p>
+<ul>
+<li><p>Notice that we have to compute a second derivative in step 3 (since in step 2, we compute the first derivative).</p></li>
+<li><p>Also here is the key: step 2 is just normal supervised learning and gradient descent as if the task were done in isolation. I believe the meta params and task specific params are the same vector… we just update it along the way. But here is the key, <strong>we update the meta parameters <span class="math inline">\(\theta\)</span> by computing the gradient of the loss on th</strong>e ********************query set.******************** We are essentially training the model to be able to adapt to a new task with only a few gradient descent steps. That is, we are training to optimize adaptation with only a few fine-tuning steps needed. This makes sense because the actually meta-loss is seeing how well we generalized to the query set having seen only a few samples. If we go one level higher and actually optimize this procedure, hopefully we can do well on new tasks quickly.</p></li>
+<li><p>Step 2 is the inner loop:</p>
+<p><span class="math display">\[
+  \begin{aligned} \phi^1 &amp;=\phi^0-\alpha \nabla_{\phi^0} \mathcal{L}\left(\phi^0, \mathcal{D}_i^{\mathrm{tr}}\right) \\ \phi^2 &amp;=\phi^1-\alpha \nabla_{\phi^1} \mathcal{L}\left(\phi^1, \mathcal{D}_i^{\mathrm{tr}}\right) \\ &amp; \vdots \\ \phi^L &amp;=\phi^{L-1}-\alpha \nabla_{\phi^{L-1}} \mathcal{L}\left(\phi^{L-1}, \mathcal{D}_i^{\mathrm{tr}}\right) \end{aligned}
+  \]</span></p></li>
+<li><p>Step 3 is the outer loop</p>
+<ul>
+<li>Normal PyTorch training loop!</li>
+</ul></li>
+<li><p>See how we now have two loops (i.e., two optimization processes) for updating both <span class="math inline">\(\phi_i\)</span> and <span class="math inline">\(\theta\)</span> respectively?</p>
+<ul>
+<li>This includes things like separate learning rates, optimizers, etc.
+<ul>
+<li>We can actually *****learn***** the inner LR! (What you do in hw 2).</li>
+</ul></li>
+</ul></li>
+</ul>
+
+
 </section>
 </section>
 

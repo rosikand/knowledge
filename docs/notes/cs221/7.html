@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Knowledge – quarto-input51b45f71</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Knowledge</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../notes.html">Stanford Notes</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../machine-learning.html">Machine Learning</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../concepts.html">Concepts</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#week-4-lecture-1---markov-decision-processes-i" id="toc-week-4-lecture-1---markov-decision-processes-i" class="nav-link active" data-scroll-target="#week-4-lecture-1---markov-decision-processes-i">Week 4, Lecture 1 - Markov Decision Processes I</a>
+  <ul class="collapse">
+  <li><a href="#i.-overview" id="toc-i.-overview" class="nav-link" data-scroll-target="#i.-overview">I. Overview</a></li>
+  <li><a href="#ii.-modeling" id="toc-ii.-modeling" class="nav-link" data-scroll-target="#ii.-modeling">II. Modeling</a>
+  <ul class="collapse">
+  <li><a href="#in-code" id="toc-in-code" class="nav-link" data-scroll-target="#in-code">In code:</a></li>
+  <li><a href="#policy-the-solution" id="toc-policy-the-solution" class="nav-link" data-scroll-target="#policy-the-solution">Policy (the solution)</a></li>
+  </ul></li>
+  <li><a href="#iii.-policy-evaluation" id="toc-iii.-policy-evaluation" class="nav-link" data-scroll-target="#iii.-policy-evaluation">III. Policy Evaluation</a>
+  <ul class="collapse">
+  <li><a href="#discount" id="toc-discount" class="nav-link" data-scroll-target="#discount">Discount</a></li>
+  <li><a href="#back-to-policy-evaluation" id="toc-back-to-policy-evaluation" class="nav-link" data-scroll-target="#back-to-policy-evaluation">Back to policy evaluation</a></li>
+  <li><a href="#policy-evaluation-algorithm-through-iteration" id="toc-policy-evaluation-algorithm-through-iteration" class="nav-link" data-scroll-target="#policy-evaluation-algorithm-through-iteration">Policy evaluation algorithm through iteration</a></li>
+  <li><a href="#summary-thus-far" id="toc-summary-thus-far" class="nav-link" data-scroll-target="#summary-thus-far">Summary thus far:</a></li>
+  </ul></li>
+  <li><a href="#iv.-value-iteration" id="toc-iv.-value-iteration" class="nav-link" data-scroll-target="#iv.-value-iteration">IV. Value Iteration</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+
+
+<section id="week-4-lecture-1---markov-decision-processes-i" class="level1 page-columns page-full">
+<h1>Week 4, Lecture 1 - Markov Decision Processes I</h1>
+<section id="i.-overview" class="level2">
+<h2 class="anchored" data-anchor-id="i.-overview">I. Overview</h2>
+<ul>
+<li>Search: model a problem from the world as a graph and find the minimum cost path to solve the problem.</li>
+<li>Search was <em>deterministic</em>.</li>
+</ul>
+<p align="center">
+<img alt="picture 2" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/8a4a700805b58d6a3d07f8cce78725e857bdcf9292f125a0ef19faa9f7063f52.png" width="300">
+</p>
+<ul>
+<li>That is, if we take <span class="math inline">\(a\)</span> from <span class="math inline">\(s\)</span>, we will always end up in whatever is specified by <span class="math inline">\(\operatorname{Succ}(s, a)\)</span>.</li>
+<li>However, the real world is filled with <em>uncertainty</em>. Take for example, robotic movement. When put in a new environment, there is new uncertainty that we have to tackle.</li>
+</ul>
+<p align="center">
+<img alt="picture 3" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/bd10cc64fecc6fa91debc70dfbf7610eccc2c373750eea61522d6431dee4191f.png" width="300">
+</p>
+<ul>
+<li>How to handle such uncertainty? Search in it of itself is not enough. But it provides the basis for MDP’s which allow for uncertainty in <span class="math inline">\(\operatorname{Succ}(s, a)\)</span>.</li>
+<li>MDPs: Mathematical Model for decision making under uncertainty.</li>
+<li>Roadmap:</li>
+</ul>
+<p><img alt="picture 4" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/2d9c303108479522a970d574bb21ea4decb53a2bc020cb02d33d0292cff29750.png" width="300"></p>
+</section>
+<section id="ii.-modeling" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="ii.-modeling">II. Modeling</h2>
+<ul>
+<li>Chance nodes: state with action brings us to chance nodes which draws probabilities to the next potential state.
+<ul>
+<li>Over state and action</li>
+</ul></li>
+<li>Transition probability: state, action, new state tuple which says, “given a specific state, and an action from that state, what is the probability that we end up in s’?”. Held in a matrix.</li>
+<li>In addition, we also define a reward with the same tuple inputs.</li>
+<li>Goal is to maximize reward (same as minimizing cost just reverse)</li>
+</ul>
+<p align="center">
+<img alt="picture 5" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/e8c17cce37a925be063a6393da46581837f5d2cfabc27e3fc5d2302c9550a1c4.png" width="500">
+</p>
+<p>More on the transition component:</p>
+<p align="center">
+<img alt="picture 6" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/89c00e67f9af013bd999b16ad1880621eec37ef018a5235c2b59ef691b88cae8.png" width="500">
+</p>
+<ul>
+<li>This makes sense to think of it as a <em>distribution</em>. at each state, given an action from that state, we can end up in different states with different <strong>probabilities</strong>.</li>
+<li>Instead of having some <span class="math inline">\(Succ(s,a)\)</span> function that <em>deterministically</em> picks a state given the <span class="math inline">\((s, a)\)</span> pair, we are instead given a distribution of next possible states with associated probabilities. This distribution of course, must sum to 1.</li>
+<li>What changes from a search problem:</li>
+</ul>
+<p align="center">
+<img alt="picture 7" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/c09159be93ad8c9beb0a8e4f1d0e450cd37608236fc408d836ca1cf516af5e93.png" width="300">
+</p>
+<ul>
+<li>Example:</li>
+</ul>
+<p align="center">
+<img alt="picture 8" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/3c60622226f50d27f4b3bf45a1c0e5ad440e92eea801e2c3b37dd0bbbd28e6c1.png" width="300">
+</p>
+<section id="in-code" class="level3">
+<h3 class="anchored" data-anchor-id="in-code">In code:</h3>
+<ul>
+<li>Change successors and costs function to <code>succProbReward</code>.
+<ul>
+<li>return list of (newState, prob, reward) triples given (state, action) as input.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TransportationMDP(<span class="bu">object</span>):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    walkCost <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    tramCost <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    failProb <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, N):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.N <span class="op">=</span> N</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> startState(<span class="va">self</span>):</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> isEnd(<span class="va">self</span>, state):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> state <span class="op">==</span> <span class="va">self</span>.N</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> actions(<span class="va">self</span>, state):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        results <span class="op">=</span> []</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> state <span class="op">+</span> <span class="dv">1</span> <span class="op">&lt;=</span> <span class="va">self</span>.N:</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>            results.append(<span class="st">'walk'</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="dv">2</span> <span class="op">*</span> state <span class="op">&lt;=</span> <span class="va">self</span>.N:</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            results.append(<span class="st">'tram'</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> results</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> succProbReward(<span class="va">self</span>, state, action):</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Return a list of (newState, prob, reward) triples, where:</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># - newState: s' (where I might end up)</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># - prob: T(s, a, s')</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># - reward: Reward(s, a, s')</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        results <span class="op">=</span> []</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> action <span class="op">==</span> <span class="st">'walk'</span>:</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>            results.append((state <span class="op">+</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="va">self</span>.walkCost))</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> action <span class="op">==</span> <span class="st">'tram'</span>:</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            results.append((state, <span class="va">self</span>.failProb, <span class="op">-</span><span class="va">self</span>.tramCost))</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>            results.append((<span class="dv">2</span> <span class="op">*</span> state, <span class="dv">1</span> <span class="op">-</span> <span class="va">self</span>.failProb, <span class="op">-</span><span class="va">self</span>.tramCost))</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> results</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> discount(<span class="va">self</span>):</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">1.0</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> states(<span class="va">self</span>):</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="va">self</span>.N <span class="op">+</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="policy-the-solution" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="policy-the-solution">Policy (the solution)</h3>
+<p>ok cool… what is a solution? In search, we just return the minimum cost path. But here, we must diverge… cuz it isn’t deterministic. Thus, a solution is in the form of a <em>policy</em>.</p>
+<p align="center">
+<img alt="picture 9" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/7f74236800c356e347830a09e9a8047551ff5039bfd08c9f2493dbd1f3673453.png" width="300">
+</p>
+<ul>
+<li>IT IS A FUNCTION!
+<ul>
+<li>Takes input, returns output.</li>
+<li>Takes in each state to an action</li>
+<li>Lets take this deeper:
+<ul>
+<li>It may look like this is a path: from each state, we choose the next one. but the key is that they aren’t connected. the states aren’t connected.</li>
+<li>It just takes in a state, and chooses the best action given that state. It doesn’t draw us to a next state. And this makes sense because we can’t reach the next state deterministically… it happens probabilistically.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p align="center">
+<img alt="picture 10" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/611e3d32d2c34aab3d8e182d8970486d4f72610953e240a5398a14a8c772e464.png">
+</p>
+<p align="center">
+<img alt="picture 11" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/8074aeada88a552791ca52b7628f87c4b3c0232b1e94db72cb599a8002f4dd8e.png" width="300">
+</p>
+<aside>
+<p>💡 <strong>Summary</strong>: MDP’s add probability to search problems. Imagine nodes in a graph where we start at one state and want to get to some end state. We can take actions at each state but we don’t know which state this will make us end up in. A transition distribution then comes in which specifies, given a state and a corresponding action, returns the corresponding potential new states and the probability that we end up at such a state. To solve an MDP, we can’t specify a path cuz it isn’t deterministic. As such, we specify a policy. A policy is a per-state mapping, which, from each state tells us what action to take (s’ independent).</p>
+</aside>
+<p>Ok cool…. we got this gist… now we will talk about how to evaluate policies (are they actually good or not?)</p>
+</section>
+</section>
+<section id="iii.-policy-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="iii.-policy-evaluation">III. Policy Evaluation</h2>
+<ul>
+<li>Since we are dealing with non-deterministic scenarios, a policy gives us an inherently ******random****** path. We can never be for certain what path a policy may give us. So to discern whether a policy is good or not, we must built up a framework of knowledge, rooted in probability.</li>
+<li>The goal of an MDP is to maximize the total rewards. To variabalize this, we define this notion of utility:</li>
+</ul>
+<p align="center">
+<img alt="picture 12" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/d296f71484a1cfc2d3d9b7b6dd6cd2134576556bfe6dbaa4cafa7961b133f05d.png" width="300">
+</p>
+<ul>
+<li>Inherently, a utility is not deterministic. Thus, we deem it as a random variable and specify a distribution over it (i.e., probability of getting ****this**** reward given the policy).</li>
+<li>So our goal is to maximize the utility. But we can’t maximize a random variable. Thus, we define:</li>
+</ul>
+<p align="center">
+<img alt="picture 13" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/399ca8d771269ba9cab48f4ba00dd5dc31611982047923e1a3c994bbd0977ff3.png" width="300">
+</p>
+<ul>
+<li>So really, we wan’t to maximize the ****************expected utility**************** (called the **********value**********).</li>
+<li>So for each policy, we now have a value (expected value for the utility RV) and utility (RV for a policy).</li>
+<li>Example of a utility result:</li>
+</ul>
+<p align="center">
+<img alt="picture 14" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/20cf1d063dd0240796d0ef238807f7ba2a9f1562d70b574a40bdf85474be5c44.png" width="300">
+</p>
+<ul>
+<li>In sum:</li>
+</ul>
+<blockquote class="blockquote">
+<p>Recall that we’d like to maximize the total rewards (utility), but this is a random variable, so we can’t quite do that. Instead, we will instead maximize the&nbsp;<strong>expected utility</strong>, which we will refer to as&nbsp;<strong>value</strong>&nbsp;(of a policy).</p>
+<ul>
+<li>Interestingly, the problem of computing the value of a policy is a complex one. Here, we will discover algorithms for it.</li>
+</ul>
+</blockquote>
+<p>Formal definition:</p>
+<p align="center">
+<img alt="picture 15" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/018278e57130b9660b8ba0f5c570fb57c2baa433b8cba7d7afd257440798db65.png" width="300">
+</p>
+<section id="discount" class="level3">
+<h3 class="anchored" data-anchor-id="discount">Discount</h3>
+<p>What the hell is <span class="math inline">\(\gamma\)</span>?</p>
+<ul>
+<li>To ungreedy-ize this, we introduce discount.</li>
+<li>which captures the fact that a reward today might be worth more than the same reward tomorrow.
+<ul>
+<li>is discount is small, than favor present more than future. cuz it is between 0 and 1.</li>
+</ul></li>
+<li>• Note that the discounting parameter is applied exponentially to future rewards, so the distant future is always going to have a fairly small contribution to the utility (unless&nbsp;).</li>
+<li>• The terminology, though standard, is slightly confusing: a larger value of the discount parameter&nbsp;&nbsp;actually means that the future is discounted less.</li>
+</ul>
+</section>
+<section id="back-to-policy-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="back-to-policy-evaluation">Back to policy evaluation</h3>
+<ul>
+<li>We are given a policy, how do we figure out the *****value***** of the policy?</li>
+</ul>
+<p align="center">
+<img alt="picture 16" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/ab606cdff296b96637b758c84a6214eaeacaa467561cad05b52e9124e358097b.png" width="300">
+</p>
+<ul>
+<li>Function above, given policy and following it from state s, what is the expected utility (value)?</li>
+<li>Let’s bring this up a notch:</li>
+</ul>
+<p align="center">
+<img alt="picture 17" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/dcb2dc05fa1756201f700847da6fc771f65efc7c4b5bfe77ef6e6d5713602009.png" width="300">
+</p>
+<ul>
+<li>So we see that v_pi(s) gives us value from state s itself.</li>
+</ul>
+<p align="center">
+<img alt="picture 18" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/955f38885d5010341ffa8cc1eee014b43842a0c0738f298898f23def189cc17e.png" width="300">
+</p>
+<ul>
+<li>But what about after state s? state s, given a, will land us in some chance node that points us to different places. but what about chance node to next and so on? Q-value defines this. It is sequential whereas v_pi is one to one.</li>
+<li>It might be hard to understand the difference between <span class="math inline">\(V_\pi(S)\)</span> and <span class="math inline">\(Q_\pi(s, a)\)</span>. Key differences:
+<ul>
+<li><span class="math inline">\(Q_\pi(s, a)\)</span> takes in both a state and action and plays out the policy. v_pi just takes in state.
+<ul>
+<li>So as such, q plays out the policy, given that we are taking this next action.
+<ul>
+<li>See how the math will depend on Q?</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>THE BIG RECURRENCE THAT EXPLAINS IT ALL:</li>
+</ul>
+<p align="center">
+<img alt="picture 19" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/781d67f63e833ae6e047b2a6f8a120f9ea85f5a088275acbd61f1ad95f65ee86.png" width="500">
+</p>
+<ul>
+<li>That is it folks… policy evaluation</li>
+<li>There you have it folks: plug and jug into the equation.</li>
+<li>End node is base case with <span class="math inline">\(V_\pi( end )=0\)</span>.</li>
+<li>See dice game example for solving the closed form of v_pi(in).</li>
+</ul>
+</section>
+<section id="policy-evaluation-algorithm-through-iteration" class="level3">
+<h3 class="anchored" data-anchor-id="policy-evaluation-algorithm-through-iteration">Policy evaluation algorithm through iteration</h3>
+<ul>
+<li><p>v_pi is a policy evaluation function: that is, create a mapping (a discrete function) that maps each state to its expected utility (value).</p>
+<ul>
+<li>Can also do this iteratively with a loop:
+<ul>
+<li>• Policy iteration starts with a vector (python list) of all zeros for the initial values&nbsp;. Each iteration, we loop over all the states and apply the two recurrences that we had before.</li>
+</ul></li>
+</ul></li>
+<li><p>Run until convergence which we define as:</p></li>
+<li><p><span class="math inline">\(\max {s \in \text { States }}\left|V\pi^{(t)}(s)-V_\pi^{(t-1)}(s)\right| \leq \epsilon\)</span>.</p></li>
+<li><p>How to know when to stop? Here is a heuristic:</p>
+<ul>
+<li><span class="math display">\[\max _{s \in \text { States }}\left|V_\pi^{(t)}(s)-V_\pi^{(t-1)}(s)\right| \leq \epsilon\]</span></li>
+</ul></li>
+<li><p>Note that we only need to keep <span class="math inline">\(V_\pi^{(t)}\)</span> and <span class="math inline">\(V_\pi^{(t-1)}\)</span> in the array then because that is all we need to know when we converge.</p></li>
+</ul>
+</section>
+<section id="summary-thus-far" class="level3">
+<h3 class="anchored" data-anchor-id="summary-thus-far">Summary thus far:</h3>
+<ul>
+<li><strong>MDP</strong>: graph with states, chance nodes, transition probabilities, rewards</li>
+<li><strong>Policy</strong>: mapping from state to action (solution to MDP)</li>
+<li><strong>Value of policy</strong>: expected utility over random paths</li>
+<li><strong>Policy evaluation</strong>: iterative algorithm to compute value of policy</li>
+</ul>
+<p>next… how to find that optimal policy <span class="math inline">\(\pi\)</span> via <strong>value iteration</strong>.</p>
+</section>
+</section>
+<section id="iv.-value-iteration" class="level2">
+<h2 class="anchored" data-anchor-id="iv.-value-iteration">IV. Value Iteration</h2>
+<ul>
+<li>Given a policy, we know how to know its value <span class="math inline">\(V_\pi\left(s_{\text {start }}\right)\)</span>. But there exists an exponential amount of possible policies (<span class="math inline">\(A^S\)</span>). So how do we find the optimal one?</li>
+<li>Here, we introduce value iteration, an algorithm for finding the optimal policy. While it may seem that this will be very different from policy evaluation, it is quite similar!</li>
+</ul>
+<div id="def-default" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 1 </strong></span><strong>Optimal value</strong>: The optimal value <span class="math inline">\(V_{\text {opt }}(s)\)</span> is the maximum value attained by any policy.</p>
+</div>
+<p>The above definition should be self explanatory: the optimal policy is the one with the highest value.</p>
+<p>But it will help us set up the solution. Instead of having a fixed policy for the recurrence like in PE, we will now define a recurrence on top of <span class="math inline">\(V_{\text {opt }}\)</span> and <span class="math inline">\(Q_{\text {opt }}\)</span>.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Value iteration recurrence:</strong></p>
+<p>Optimal value from state <span class="math inline">\(s\)</span>:</p>
+<p><span class="math display">\[V_{\text {opt }}(s)= \begin{cases}0 &amp; \text { if IsEnd }(s) \\ \max _{a \in \operatorname{Actions}(s)} Q_{\mathrm{opt}}(s, a) &amp; \text { otherwise. }\end{cases},\]</span></p>
+<p>where the optimal value if take action <span class="math inline">\(a\)</span> in state <span class="math inline">\(s\)</span>:</p>
+<p><span class="math display">\[Q_{\mathrm{opt}}(s, a)=\sum_{s^{\prime}} T\left(s, a, s^{\prime}\right)\left[\operatorname{Reward}\left(s, a, s^{\prime}\right)+\gamma V_{\mathrm{opt}}\left(s^{\prime}\right)\right]\]</span>.</p>
+<p>Visually:</p>
+<p align="center">
+<img alt="picture 1" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/db3ebfa3c6c97a640871341ac063273b6225d068f967e2c9fd60f6a70cdde6ab.png" width="300">
+</p>
+</div>
+</div>
+<p>and so then to find the optimal policy, we’d just take <span class="math inline">\(Q_{opt}\)</span> and do</p>
+<p><span class="math display">\[\pi_{\mathrm{opt}}(s)=\arg \max _{a \in \operatorname{Actions}(s)} Q_{\mathrm{opt}}(s, a).\]</span></p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-default" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 2 </strong></span><strong>(Value iteration algorithm)</strong></p>
+<ol type="1">
+<li>Initialize <span class="math inline">\(V_{\text {opt }}^{(0)}(s) \leftarrow 0\)</span> for all states <span class="math inline">\(s\)</span>.</li>
+<li>For iteration <span class="math inline">\(t=1, \ldots, t_{\mathrm{VI}}\)</span> :
+<ol type="1">
+<li>For each state <span class="math inline">\(s\)</span> :</li>
+</ol></li>
+</ol>
+<p><span class="math display">\[
+V_{\text {opt }}^{(t)}(s) \leftarrow \max _{a \in \text { Actions }(s)} \underbrace{\sum_{s^{\prime}} T\left(s, a, s^{\prime}\right)\left[\operatorname{Reward}\left(s, a, s^{\prime}\right)+\gamma V_{\text {opt }}^{(t-1)}\left(s^{\prime}\right)\right]}_{Q_{\text {oot }}^{(t-1)}(s, a)}
+\]</span></p>
+</div>
+</div>
+</div>
+<ul>
+<li>The keen eye will note that this just returns the optimal value and not actually the optimal policy. However, optimal policy comes as a byproduct. Just <strong>take the argmax at each state</strong>.</li>
+<li></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
