@@ -169,5 +169,14 @@
   },
   "notes/python/iterable.md": {
     "iterable.html": "cbe54c5b"
+  },
+  "notes/python/flax.md": {
+    "flax.html": "04cc6ae9"
+  },
+  "notes/python/config.md": {
+    "config.html": "284bb720"
+  },
+  "notes/python/ml_experiment_trackers.md": {
+    "ml_experiment_trackers.html": "0ad48bce"
   }
 }
