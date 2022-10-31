@@ -18,8 +18,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "52d4cca01ddf7b1f",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.0.3"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -136,10 +147,7 @@
     "width": 300,
     "collapsed": true
   },
-  "ribbon": {
-    "mostRecentAction": ""
-  },
-  "active": "25ecdce947244652",
+  "active": "52d4cca01ddf7b1f",
   "lastOpenFiles": [
     "cs221/5.md",
     "cs221/4.md",

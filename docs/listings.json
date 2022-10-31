@@ -7,6 +7,12 @@
     ]
   },
   {
+    "listing": "/pages/python.html",
+    "items": [
+      "/notes/python/iterable.html"
+    ]
+  },
+  {
     "listing": "/pages/cs221.html",
     "items": [
       "/notes/cs221/1.html",

@@ -10,3 +10,4 @@ toc: true
 
 - [Basic Math](pages/basic-math.qmd)
 - [Biology](pages/biology.qmd)
+- [Python](pages/python.qmd)

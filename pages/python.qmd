@@ -1,0 +1,12 @@
+---
+title: "Python"
+listing:
+  type: table
+  table-striped: true
+  contents: "../notes/python/*.md"
+  categories: true
+  fields: [date, title, reading-time]
+---
+
+
+> Python concepts and snippets 

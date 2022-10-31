@@ -160,5 +160,14 @@
   },
   "notes/cs221/7.md": {
     "7.html": "7aff3182"
+  },
+  "notes/python/iterable.qmd": {
+    "iterable.html": "e2c4c847"
+  },
+  "pages/python.qmd": {
+    "python.html": "af5922ea"
+  },
+  "notes/python/iterable.md": {
+    "iterable.html": "cbe54c5b"
   }
 }
