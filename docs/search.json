@@ -49,6 +49,27 @@
     "text": "link\n\nIntroduces fully-unsupervised method for segmenting objects in an image.\nMethod inspired by Spelke objects from cognitive science.\nFrom the NeuroAI lab at Stanford lead by Dr. Yamins."
   },
   {
+    "objectID": "notes/python/flax.html",
+    "href": "notes/python/flax.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "Will be keeping snippets and concepts related to Flax here.\n\n…"
+  },
+  {
+    "objectID": "notes/python/config.html",
+    "href": "notes/python/config.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "It has become common to use config files to specify experiment hyperparams when training your models. This is to increase reproducability, modularity, and efficiency when experimenting.\nSome packages try to support this: - YACS - ml_collections\n\n\n\n\ncheck out this codebase.\nimport ml_collections\n\ndef get_config():\n    config = ml_collections.ConfigDict()\n\n    config.lr = 3e-1\n    config.critic_lr = 3e-4\n    config.temp_lr = 3e-4\n\n    config.hidden_dims = (256, 256)\n\n    return config\nthis package also supports\n\ncommand line flags (see absc.flags)\n\n\n\n\n…\n\n\n\nMy currently preferred method is to just use standard python classes. That way, you don’t have to deal with the whole getattr business with traditional YAML files.\n\nDefine a configs.py file in your working directory.\nIn configs.py, define the BaseConfig class which creates all the valid fields as class attributes and provides default values for them.\nCreate child classes of BaseConfig for each new experiment where you only change the hyperparameter you are optimizing.\n\nExample:\n\"\"\"\nFile: configs.py\n------------------\nHolds the configs classes/objects.\n\"\"\"\n\n\nimport modules\nimport optax\nimport rsbox\nfrom rsbox import ml\nimport experiments\nimport cloudpickle as cp\n\n\nclass BaseConfig:\n    model = modules.CNN()  # unlike raw yaml, you can specify modules programatically \n    trainloader, testloader = modules.get_dataloaders()\n    epochs = 10\n    lr = 0.001\n    momentum = 0.9\n    optimizer = optax.sgd(lr, momentum)\n    criterion = modules.softmax_ce\n    metrics = {\n        'loss': ml.MeanMetric(),\n        'accuracy': modules.AccuracyMetric()\n    }\n    experiment = experiments.SampleExperiment\n    \n    \n\nclass TestNewLR(BaseConfig):\n    \"\"\"Testing larger learning rate\"\"\"\n    lr = 0.1\n    \n\n\nconfig = TestNewLR()\nIt may also then be helpful to define modules.py to specify things like the loss, metric functions, and models, etc.\nthen in main in runner.py:\nimport configs\nimport experiments\nimport argparse\nimport warnings\n\ndef main(args):\n    if args.config is None:\n        config_class = 'BaseConfig'\n    else:\n        config_class = args.config\n    cfg = getattr(configs, config_class)\n    exp = cfg.experiment(cfg)\n    exp.debug()\n\n\n\n\nif __name__ == '__main__':\n    # silence warnings \n    # warnings.filterwarnings(\"ignore\")\n\n    # configure args \n    parser = argparse.ArgumentParser(description=\"specify cli arguments.\", allow_abbrev=True)\n    parser.add_argument(\"-config\", type=str, help='specify config.py class to use.') \n    args = parser.parse_args()\n    main(args)\nthen, run using python3 runner.py -c TestNewLR."
+  },
+  {
+    "objectID": "notes/python/ml_experiment_trackers.html",
+    "href": "notes/python/ml_experiment_trackers.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "It has become common to track experiments via a third-party service that orchestrates experiment tracking automatically. A common one is wandb.ai. Here is a list of services:\n\nAIM (open-source, own server)\nMLFlow\nComet ml\nwandb.ai\nDagsHub\nKeepsake.ml"
+  },
+  {
     "objectID": "notes/python/iterable.html",
     "href": "notes/python/iterable.html",
     "title": "Knowledge",
@@ -341,26 +362,5 @@
     "title": "CS 330 Notes",
     "section": "",
     "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nBerkeley CS 182, Lecture 21 - Meta Learning\n\n\n8 min\n\n\n\n\n\n\nWeek 1, Lecture 1 - Course Introduction\n\n\n2 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Multi-task learning\n\n\n2 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Transfer Learning + Start of Meta-Learning\n\n\n4 min\n\n\n\n\n\n\nWeek 2, Lecture 2 - Black-box meta-learning & in-context learning\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "notes/python/flax.html",
-    "href": "notes/python/flax.html",
-    "title": "Knowledge",
-    "section": "",
-    "text": "Will be keeping snippets and concepts related to Flax here.\n\n…"
-  },
-  {
-    "objectID": "notes/python/config.html",
-    "href": "notes/python/config.html",
-    "title": "Knowledge",
-    "section": "",
-    "text": "It has become common to use config files to specify experiment hyperparams when training your models. This is to increase reproducability, modularity, and efficiency when experimenting.\nSome packages try to support this: - YACS - ml_collections\n\n\n\n\ncheck out this codebase.\nimport ml_collections\n\ndef get_config():\n    config = ml_collections.ConfigDict()\n\n    config.lr = 3e-1\n    config.critic_lr = 3e-4\n    config.temp_lr = 3e-4\n\n    config.hidden_dims = (256, 256)\n\n    return config\nthis package also supports\n\ncommand line flags (see absc.flags)\n\n\n\n\n…\n\n\n\nMy currently preferred method is to just use standard python classes. That way, you don’t have to deal with the whole getattr business with traditional YAML files.\n\nDefine a configs.py file in your working directory.\nIn configs.py, define the BaseConfig class which creates all the valid fields as class attributes and provides default values for them.\nCreate child classes of BaseConfig for each new experiment where you only change the hyperparameter you are optimizing.\n\nExample:\n\"\"\"\nFile: configs.py\n------------------\nHolds the configs classes/objects.\n\"\"\"\n\n\nimport modules\nimport optax\nimport rsbox\nfrom rsbox import ml\nimport experiments\nimport cloudpickle as cp\n\n\nclass BaseConfig:\n    model = modules.CNN()  # unlike raw yaml, you can specify modules programatically \n    trainloader, testloader = modules.get_dataloaders()\n    epochs = 10\n    lr = 0.001\n    momentum = 0.9\n    optimizer = optax.sgd(lr, momentum)\n    criterion = modules.softmax_ce\n    metrics = {\n        'loss': ml.MeanMetric(),\n        'accuracy': modules.AccuracyMetric()\n    }\n    experiment = experiments.SampleExperiment\n    \n    \n\nclass TestNewLR(BaseConfig):\n    \"\"\"Testing larger learning rate\"\"\"\n    lr = 0.1\n    \n\n\nconfig = TestNewLR()\nIt may also then be helpful to define modules.py to specify things like the loss, metric functions, and models, etc.\nthen in main in runner.py:\nimport configs\nimport experiments\nimport argparse\nimport warnings\n\ndef main(args):\n    if args.config is None:\n        config_class = 'BaseConfig'\n    else:\n        config_class = args.config\n    cfg = getattr(configs, config_class)\n    exp = cfg.experiment(cfg)\n    exp.debug()\n\n\n\n\nif __name__ == '__main__':\n    # silence warnings \n    # warnings.filterwarnings(\"ignore\")\n\n    # configure args \n    parser = argparse.ArgumentParser(description=\"specify cli arguments.\", allow_abbrev=True)\n    parser.add_argument(\"-config\", type=str, help='specify config.py class to use.') \n    args = parser.parse_args()\n    main(args)\nthen, run using python3 runner.py -c TestNewLR."
-  },
-  {
-    "objectID": "notes/python/ml_experiment_trackers.html",
-    "href": "notes/python/ml_experiment_trackers.html",
-    "title": "Knowledge",
-    "section": "",
-    "text": "It has become common to track experiments via a third-party service that orchestrates experiment tracking automatically. A common one is wandb.ai. Here is a list of services:\n\nAIM (open-source, own server)\nMLFlow\nComet ml\nwandb.ai\nDagsHub\nKeepsake.ml"
   }
 ]
