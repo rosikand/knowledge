@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Knowledge – quarto-input6add1432</title>
+<title>Knowledge – quarto-inputd87cb8a0</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -114,21 +114,31 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#linear-regression-the-standard-way" id="toc-linear-regression-the-standard-way" class="nav-link" data-scroll-target="#linear-regression-the-standard-way">Linear regression the standard way</a></li>
   <li><a href="#using-groups" id="toc-using-groups" class="nav-link" data-scroll-target="#using-groups">Using groups</a></li>
   </ul></li>
-  <li><a href="#module-non-linear-features-offline" id="toc-module-non-linear-features-offline" class="nav-link" data-scroll-target="#module-non-linear-features-offline">Module: Non-linear features (offline)</a></li>
+  <li><a href="#module-non-linear-features-offline" id="toc-module-non-linear-features-offline" class="nav-link" data-scroll-target="#module-non-linear-features-offline">Module: Non-linear features (offline)</a>
+  <ul class="collapse">
+  <li><a href="#quadratic-predictors" id="toc-quadratic-predictors" class="nav-link" data-scroll-target="#quadratic-predictors">Quadratic predictors</a></li>
+  <li><a href="#piecewise-constant-predictors" id="toc-piecewise-constant-predictors" class="nav-link" data-scroll-target="#piecewise-constant-predictors">Piecewise constant predictors</a></li>
+  <li><a href="#periodic-predictors" id="toc-periodic-predictors" class="nav-link" data-scroll-target="#periodic-predictors">Periodic predictors</a></li>
+  <li><a href="#the-general-idea" id="toc-the-general-idea" class="nav-link" data-scroll-target="#the-general-idea">The general idea</a></li>
+  <li><a href="#classifiers" id="toc-classifiers" class="nav-link" data-scroll-target="#classifiers">Classifiers</a></li>
+  </ul></li>
   <li><a href="#module-feature-templates-offline" id="toc-module-feature-templates-offline" class="nav-link" data-scroll-target="#module-feature-templates-offline">Module: Feature templates (offline)</a></li>
   <li><a href="#module-neural-networks" id="toc-module-neural-networks" class="nav-link" data-scroll-target="#module-neural-networks">Module: Neural networks</a></li>
-  <li><a href="#module-backpropagation" id="toc-module-backpropagation" class="nav-link" data-scroll-target="#module-backpropagation">Module: Backpropagation</a></li>
+  <li><a href="#module-backpropagation" id="toc-module-backpropagation" class="nav-link" data-scroll-target="#module-backpropagation">Module: Backpropagation</a>
+  <ul class="collapse">
+  <li><a href="#functions-as-boxes" id="toc-functions-as-boxes" class="nav-link" data-scroll-target="#functions-as-boxes">Functions as boxes</a></li>
+  </ul></li>
   <li><a href="#module-differentiable-programming-optional" id="toc-module-differentiable-programming-optional" class="nav-link" data-scroll-target="#module-differentiable-programming-optional">Module: Differentiable programming (optional)</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 
 
-<section id="week-2-lecture-1---machine-learning-ii" class="level1">
+<section id="week-2-lecture-1---machine-learning-ii" class="level1 page-columns page-full">
 <h1>Week 2, Lecture 1 - Machine Learning II</h1>
 <p><code>Date: 10/3/22</code></p>
 <section id="module-group-dro" class="level2">
@@ -257,17 +267,245 @@ min \operatorname{TrainLoss}(\mathbf{w})=\frac{1}{\left|\mathcal{D}_{\text {trai
 </section>
 </section>
 </section>
-<section id="module-non-linear-features-offline" class="level2">
+<section id="module-non-linear-features-offline" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="module-non-linear-features-offline">Module: Non-linear features (offline)</h2>
+<blockquote class="blockquote">
+<p>How to get non-linear functions from linear machinery.</p>
+</blockquote>
+<ul>
+<li>Linear regression/classification: fit some straight line to some data: <span class="math inline">\(\mathcal{F}=\left\{f_{\mathbf{w}}(x)=\mathbf{w} \cdot \phi(x): \mathbf{w} \in \mathbb{R}^d\right\}\)</span>.</li>
+<li>Recall <strong>hypothesis class</strong>: what are the possible predictors that the learning algorithm can consider?</li>
+<li>Works well for linear data.</li>
+</ul>
+<p>However… not all data is linear:</p>
+<p align="center">
+<img alt="picture 1" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/165d8f6e3179429b28c5c591e918d1d13756554f093e9306a4c8ca5651bd8e96.png" width="300">
+</p>
+<p><strong>how can we fit a non-linear predictor to generalize for this data?</strong></p>
+<section id="quadratic-predictors" class="level3">
+<h3 class="anchored" data-anchor-id="quadratic-predictors">Quadratic predictors</h3>
+<ul>
+<li><strong>Change the feature extractor to include non-linear components/features</strong>. Example:</li>
+</ul>
+<p><span class="math display">\[\phi(x)=\left[1, x, x^2\right].\]</span></p>
+<p>Example: <span class="math inline">\(\phi(3)=[1,3,9]\)</span>. With some various weight combinations, we’d get something like:</p>
+<p align="center">
+<img alt="picture 2" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/15b6b0118a82127331156e1ab10446f85bfd0fef443f22678dc21e4163808916.png" width="250">
+</p>
+<ul>
+<li>Note that by setting the weight for feature <span class="math inline">\(x^2\)</span> to zero, we recover linear predictors.</li>
+<li>Here, the hypothesis class is the set of all predictors <span class="math inline">\(f_{\mathbf{w}}\)</span> obtained by varying <span class="math inline">\(\mathbf{w}\)</span>.</li>
+</ul>
+</section>
+<section id="piecewise-constant-predictors" class="level3">
+<h3 class="anchored" data-anchor-id="piecewise-constant-predictors">Piecewise constant predictors</h3>
+<ul>
+<li>Quadratic only can fit smooth and linear curves. But we…</li>
+<li>Can carry on this idea to other math forms to better capture the input space.</li>
+<li>Piecewise: expressive non-linear predictors by <strong>partitioning the input space</strong>.</li>
+</ul>
+<p><span class="math display">\[
+\phi(x)=[\mathbf{1}[0&lt;x \leq 1], \mathbf{1}[1&lt;x \leq 2], \mathbf{1}[2&lt;x \leq 3], \mathbf{1}[3&lt;x \leq 4], \mathbf{1}[4&lt;x \leq 5]]
+\]</span></p>
+<p>Example: <span class="math inline">\(\phi(2.3)=[0,0,1,0,0]\)</span>. Visual with:</p>
+<p><span class="math display">\[f(x)=[1,2,4,4,3] \cdot \phi(x)\]</span> <span class="math display">\[f(x)=[4,3,3,2,1.5] \cdot \phi(x)\]</span> <span class="math display">\[\mathcal{F}=\left\{f_{\mathbf{w}}(x)=\mathbf{w} \cdot \phi(x): \mathbf{w} \in \mathbb{R}^5\right\}\]</span></p>
+<p align="center">
+<img alt="picture 4" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/3b9f107d941fdd2f998c174e57f686b5b7d815068b019e30577bb4d88c9661b8.png" width="300">
+</p>
+<ul>
+<li>Each component of the feature vector corresponds to one region and is 1 if <span class="math inline">\(x\)</span> lies in that region and <span class="math inline">\(0\)</span> otherwise.</li>
+<li>Predicted value is just the weight.</li>
+<li>Can make regions smaller. In the limit, we’d be able to capture any predictor we want.</li>
+<li>But if the input is multi-dimensional (<span class="math inline">\(d\)</span>), then we’d have <span class="math inline">\(B^{d}\)</span> features where <span class="math inline">\(B\)</span> is number of bins.</li>
+</ul>
+</section>
+<section id="periodic-predictors" class="level3">
+<h3 class="anchored" data-anchor-id="periodic-predictors">Periodic predictors</h3>
+<ul>
+<li>Add in a trigonometric function in the feature extractor.</li>
+</ul>
+<p><span class="math display">\[\phi(x)=\left[1, x, x^2, \cos (3 x)\right]\]</span></p>
+<p align="center">
+<img alt="picture 5" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/634e89712d73262b43f06c99bc92118b0a33c8e39921fb5e27511173e0753082.png" width="300">
+</p>
+</section>
+<section id="the-general-idea" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="the-general-idea">The general idea</h3>
+<ul>
+<li>Key idea has been to <strong>incorporate a non-linear math function in the feature extractor</strong>.</li>
+<li>Generally, <strong>the choice of features is informed by the prediction task</strong> that we wish to solve</li>
+<li>For example, if <span class="math inline">\(x\)</span> represents time and we believe the true output <span class="math inline">\(y\)</span> varies according to some periodic structure, we can incorporate a periodic feature in the feature extractor.</li>
+<li>Features represent what properties might be useful for prediction. If a feature is not useful, then the learning algorithm can assign a weight close to zero to that feature. Of course, the more features one has, the harder learning becomes.</li>
+</ul>
+<p>Note:</p>
+<ul>
+<li>We still have a linear classifier as the simple dot product <span class="math inline">\(\mathbf{w} \cdot \phi(x)\)</span> is indeed linear in <span class="math inline">\(\mathbf{w}\)</span> and <span class="math inline">\(\phi(x)\)</span>. However, the feature extractor components can mean that we aren’t linear in just <span class="math inline">\(x\)</span>.</li>
+<li>The significance is that we can acheive non-linearity through the FE but the learning optimizer/algorithm thinks we just have a linear predictor (so optimizing the weights is still efficient!)</li>
+</ul>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Aside (<strong>convexity</strong>): if the score (logit) is linear in just <span class="math inline">\(\mathbf{W}\)</span> (i.e., <span class="math inline">\(\mathbf{W}\)</span> is a linear vector (as it usually is as its just scalar numbers) and <span class="math inline">\(\texttt{Loss}\)</span> is convex, then gradient descent is gaurenteed to converge to a global minimum.)</p>
+</div></div><div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-default" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 1 </strong></span><strong>(Non-linearity)</strong>:</p>
+<ul>
+<li><em>Expressivity</em>: score w <span class="math inline">\(\boldsymbol{\phi}(\boldsymbol{x})\)</span> can be a non-linear function of <span class="math inline">\(x\)</span></li>
+<li><em>Efficiency</em>: score <span class="math inline">\(\mathbf{w} \cdot \phi(x)\)</span> always a linear function of <span class="math inline">\(\mathbf{w}\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="classifiers" class="level3">
+<h3 class="anchored" data-anchor-id="classifiers">Classifiers</h3>
+<ul>
+<li>Regression to classification: instead of using the predictor curve (decision boundary) to predict <span class="math inline">\(y\)</span> from new <span class="math inline">\(x\)</span>’s, let’s use the curve to classify <span class="math inline">\(x\)</span> and <code>positive</code> or <code>negative</code> (corresponding to the sides of the decision boundary). Recall <span class="math inline">\(f_{\mathbf{w}}(x)=\operatorname{sign}(\mathbf{w} \cdot \phi(x))\)</span>.</li>
+<li>Non-linearity arises here then in that we can make the decision curve non-linear.</li>
+</ul>
+<p>From this:</p>
+<p align="center">
+<img alt="picture 6" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/4d7e60c2b7ca68a149e224469dc1e4903161f9550c4fa55deaad0eaf3fed7952.png" width="300">
+</p>
+<p>to this:</p>
+<p align="center">
+<img alt="picture 7" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/322376a519ec0156c9a36417c3bee50bfb95639c15f283522f0ec2ccaf721fe6.png" width="300">
+</p>
+<p>how? Introduce non-linear functions in feature extractor:</p>
+<p><span class="math display">\[\phi(x)=\left[x_1, x_2, x_1^2+x_2^2\right],\]</span> <span class="math display">\[f(x)=\operatorname{sign}([2,2,-1] \cdot \phi(x))\]</span> or equivalently: <span class="math display">\[
+f(x)= \begin{cases}1 &amp; \text { if }\left(x_1-1\right)^2+\left(x_2-1\right)^2 \leq 2 \\ -1 &amp; \text { otherwise }\end{cases}
+\]</span></p>
+<p>See <a href="https://stanford-cs221.github.io/autumn2022/modules/machine-learning/images/svm-polynomial-kernel.mp4">this</a> awesome video animation for understanding how we can still have a linearity in <span class="math inline">\(\phi(x)\)</span> but non-linearity in <span class="math inline">\(x\)</span>. Idea is that the raw <span class="math inline">\(x\)</span> isn’t linearly seperable, but we can project the raw <span class="math inline">\(x\)</span> into some different dimension (i.e., adding a feature changes the dimension of the vector) non-linearly (e.g., onto a polynomial in <span class="math inline">\(\mathbf{R}^{n + 1}\)</span>) which we can then have a linear hyperplane as the decision boundary (how SVMs work!).</p>
+<p><strong>Question:</strong> how can we generalize a decision boundary for <span class="math inline">\(n\)</span>-way classification for <span class="math inline">\(n &gt; 2\)</span>? Answer: create <span class="math inline">\(n\)</span> binary classifiers!</p>
+</section>
 </section>
 <section id="module-feature-templates-offline" class="level2">
 <h2 class="anchored" data-anchor-id="module-feature-templates-offline">Module: Feature templates (offline)</h2>
+<blockquote class="blockquote">
+<p>How to design and organize features.</p>
+</blockquote>
+<p>Motivation: hypothesis class is too big because we let <span class="math inline">\(\mathbf{w}\)</span> vary freely.</p>
+<p align="center">
+<img alt="picture 9" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/c1c044d1d46866c6bce69bf922ffd8e39a0cf4df88e3e284351b703361fa1c64.png" width="300">
+</p>
+<p>We can narrow this down to the smaller circle by <strong>using a feature extractor</strong>. Then, choose <span class="math inline">\(f_{\mathrm{w}} \in \mathcal{F}\)</span> based on data. So how do we narrow this down and choose a good feature extractor?</p>
+<p>In <span class="math inline">\(\mathbf{w} \cdot \phi(x)\)</span>, the weight corresponds to the magnitude of importance for the corresponding feature extraction component. The polarity is also assigned.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-default" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 2 </strong></span><strong>(Feature template)</strong>: A feature template is a group of features all computed in a similar way.</p>
+</div>
+</div>
+</div>
+<p>Example: say we have this task:</p>
+<p align="center">
+<img alt="picture 10" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/88074ffaf4936bdc57c1ed4d47ff77c27ab707465abe7fda5812892ae47b6180.png" width="300">
+</p>
+<p>given an input string, determine if this is a valid email address. We can try to hand-construct features such as “contains @”. But this isn’t a general framework. So instead, we can define feature templates where we say something like</p>
+<ul>
+<li>Template: “last three characters equals _ _ _”</li>
+<li>Resultant features:</li>
+</ul>
+<p align="center">
+<img alt="picture 11" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/e655a1e41948c3895c31290a99eff6af2a8780a8192fe0158273aff5d61d9355.png" width="5r00">
+</p>
 </section>
 <section id="module-neural-networks" class="level2">
 <h2 class="anchored" data-anchor-id="module-neural-networks">Module: Neural networks</h2>
+<ul>
+<li>In summary, acheive end-to-end non-linearity without needing to define a feature extractor.<br>
+</li>
+<li>Screw hand-configuring the feature extractor <span class="math inline">\(\phi(x)\)</span>. Throw this away. Then, define activation functions that take in the logits from each dot product. That is how we acheive non-linearity. And guess what?!: this is implicitly learned in gradient descent (why though?)!</li>
+<li>Then, stack a bunch of these on top of each other to get a deep NN!</li>
+</ul>
+<p align="center">
+<img alt="picture 12" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/a05747b399fef5cd060032555e79da0cc43738eb343fa8b6c729f76524eba58c.png" width="300">
+</p>
+<p>Notes:</p>
+<ul>
+<li>Can achieve non-linear classifier with feature extraction manipulation too. But…
+<ul>
+<li>Have to hand-learn features</li>
+<li>as <span class="math inline">\(d\)</span>, dimension of vector increases, we need <span class="math inline">\(O\left(d^2\right)\)</span> features. Computationally hard.</li>
+<li>neural networks yield non-linear predictors in a more compact way.</li>
+</ul></li>
+<li>Activation function avoids zero-gradients.</li>
+</ul>
+<p>Helpful slide:</p>
+<p align="center">
+<img alt="picture 13" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/3857d193e48b724af5564dffc6e454781d6b9cfcadcb397d9afe70742df86575.png" width="90%">
+</p>
 </section>
 <section id="module-backpropagation" class="level2">
 <h2 class="anchored" data-anchor-id="module-backpropagation">Module: Backpropagation</h2>
+<blockquote class="blockquote">
+<p>Computation graphs and backpropagation algorithm for computing gradients to optimize the weights of neural networks.</p>
+</blockquote>
+<ul>
+<li>For each time we want to update our weights in a neural network, we have to do so weight respect to each weight vector in the weight matrix. This wasn’t a problem for linear predictors because the gradient only deals with one parameter weight vector. Neural nets have many params we need to tune and calculate gradients with respect too!</li>
+</ul>
+<p><span class="math display">\[\operatorname{Loss}\left(x, y, \mathbf{V}_1, \mathbf{V}_2, \mathbf{V}_3, \mathbf{w}\right)=\left(\mathbf{w} \cdot \sigma\left(\mathbb{V}_3 \sigma\left(\mathbb{V}_2 \sigma\left(\mathbb{V}_1 \phi(x)\right)\right)\right)-y\right)^2,\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;\mathbf{V}_1 \leftarrow \mathbf{V}_1-\eta \nabla_{\mathbf{V}_1} \operatorname{Loss}\left(x, y, \mathbf{V}_1, \mathbf{V}_2, \mathbf{V}_3, \mathbf{w}\right) \\
+&amp;\mathbf{V}_2 \leftarrow \mathbf{V}_2-\eta \nabla_{\mathbf{V}_2} \operatorname{Loss}\left(x, y, \mathbf{V}_1, \mathbf{V}_2, \mathbf{V}_3, \mathbf{w}\right) \\
+&amp;\mathbf{V}_3 \leftarrow \mathbf{V}_3-\eta \nabla_{\mathbf{V}_3} \operatorname{Loss}\left(x, y, \mathbf{V}_1, \mathbf{V}_2, \mathbf{V}_3, \mathbf{w}\right) \\
+&amp;\mathbf{w} \leftarrow \mathbf{w}-\eta \nabla_{\mathbf{w}} \operatorname{Loss}\left(x, y, \mathbf{V}_1, \mathbf{V}_2, \mathbf{V}_3, \mathbf{w}\right)
+\end{aligned}
+\]</span></p>
+<ul>
+<li>This is tedious and expensive. Instead, we can create a <strong>computation graph</strong> and see the relaton between gradients. This is the main idea behind the <strong>backpropogation algorithm</strong>.
+<ul>
+<li>We harness the idea that the gradients of e.g., <span class="math inline">\(\mathbf{V}_3\)</span> depend on <span class="math inline">\(\mathbf{V}_2\)</span> and <span class="math inline">\(\mathbf{V}_1\)</span> gradients.</li>
+</ul></li>
+</ul>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-default" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3 </strong></span><strong>(Computation graph)</strong>: A directed acyclic graph whose root node represents the final mathematical expression and each node represents intermediate subexpressions.</p>
+</div>
+</div>
+</div>
+<section id="functions-as-boxes" class="level3">
+<h3 class="anchored" data-anchor-id="functions-as-boxes">Functions as boxes</h3>
+<p>The main idea is to think of functions as boxes and calculate the gradient upwards with respect to each leave node. Example:</p>
+<p align="center">
+<img alt="picture 14" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/fb69b697a228508ef7a2665c45b4a09c87b88fc84e6f74566d8552988044d8be.png" width="600">
+</p>
+<p>we can define these for some basic, common functions (<strong>basic building blocks</strong>):</p>
+<p align="center">
+<img alt="picture 15" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/37c1741c3d36b91abeb982799ed93c0287b43fdcf51e39d7a1229b4b38698937.png" width="70%">
+</p>
+<p>we can now compose these building blocks to make more complicated functions. Example:</p>
+<p align="center">
+<img alt="picture 16" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/fdddb0958fe35f6e94be4e26465fff69748123e679c3d0f613da8fac7601602e.png" width="125">
+</p>
+<p>by chain rule (note <span class="math inline">\(b=a^2\)</span>), we have <span class="math inline">\(\frac{\partial c}{\partial a}=\frac{\partial c}{\partial b} \frac{\partial b}{\partial a}=(2 b)(2 a)=\left(2 a^2\right)(2 a)=4 a^3\)</span>. To obtain complete gradient, multiply up the graph. We can also hash into specific points to get the individual gradients with respect to the successor node (which is exactly what we need for autodiff’ing neural nets! because we can get gradients with respect to <span class="math inline">\(\mathbf{V}_3\)</span>, <span class="math inline">\(\mathbf{V}_2\)</span>, <span class="math inline">\(\mathbf{V}_1\)</span> just by hashing into a dict instead of re-calculating (kinda like memoization!)).</p>
+</section>
 </section>
 <section id="module-differentiable-programming-optional" class="level2">
 <h2 class="anchored" data-anchor-id="module-differentiable-programming-optional">Module: Differentiable programming (optional)</h2>
