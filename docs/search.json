@@ -389,6 +389,13 @@
     "href": "notes/python/pdb.html",
     "title": "Knowledge",
     "section": "",
-    "text": "Similar to GDB, Python has a built-in debugger module that allows you to set breakpoints during execution.\n\n\n\nimport pdb\nType pdb.set_trace() at your breakpoint.\nRun as usual.\nUse n (next) (or s (step)) to go to the next line. Use c (continue) to go to the next breakpoint. See here for more details."
+    "text": "Similar to GDB, Python has a built-in debugger module that allows you to set breakpoints during execution.\n\n\n\nimport pdb\nType pdb.set_trace() at your breakpoint.\nRun as usual.\nUse:\n\nn (next) (or s (step)) to go to the next line.\nUse c (continue) to go to the next breakpoint.\nUse p for printing.\nUse l to print neighboring code and current line.\nSee here for more details."
+  },
+  {
+    "objectID": "notes/python/packaging.html",
+    "href": "notes/python/packaging.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "… to be updated.\n\n\n\nPoetry: basically does all the building work for you. See here for an example.\nI also think having setup.py and installing from GH is the move with github CI actions for auto-version updating."
   }
 ]

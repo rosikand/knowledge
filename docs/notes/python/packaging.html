@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Knowledge – pdb</title>
+<title>Knowledge – packaging</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,9 +106,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pdb-pythin-debugger" id="toc-pdb-pythin-debugger" class="nav-link active" data-scroll-target="#pdb-pythin-debugger">PDB: Pythin Debugger</a>
+  <li><a href="#python-packaging" id="toc-python-packaging" class="nav-link active" data-scroll-target="#python-packaging">Python packaging</a>
   <ul class="collapse">
-  <li><a href="#how-to-use" id="toc-how-to-use" class="nav-link" data-scroll-target="#how-to-use">How to use</a></li>
+  <li><a href="#cool" id="toc-cool" class="nav-link" data-scroll-target="#cool">Cool</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -118,24 +118,15 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="pdb-pythin-debugger" class="level1">
-<h1>PDB: Pythin Debugger</h1>
-<p>Similar to GDB, Python has a built-in debugger module that allows you to set breakpoints during execution.</p>
-<section id="how-to-use" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use">How to use</h2>
-<ol type="1">
-<li><code>import pdb</code></li>
-<li>Type <code>pdb.set_trace()</code> at your breakpoint.</li>
-<li>Run as usual.</li>
-<li>Use:
+<section id="python-packaging" class="level1">
+<h1>Python packaging</h1>
+<p>… to be updated.</p>
+<section id="cool" class="level2">
+<h2 class="anchored" data-anchor-id="cool">Cool</h2>
 <ul>
-<li><code>n</code> (next) (<a href="https://docs.python.org/3/library/pdb.html">or</a> <code>s</code> (step)) to go to the next line.</li>
-<li>Use <code>c</code> (continue) to go to the next breakpoint.</li>
-<li>Use <code>p</code> for printing.</li>
-<li>Use <code>l</code> to print neighboring code and current line.</li>
-<li>See <a href="https://docs.python.org/3/library/pdb.html">here</a> for more details.</li>
-</ul></li>
-</ol>
+<li><a href="https://python-poetry.org/">Poetry</a>: basically does all the building work for you. See <a href="https://github.com/ikostrikov/jaxrl">here</a> for an example.</li>
+<li>I also think having <code>setup.py</code> and installing from GH is the move with github CI actions for auto-version updating.</li>
+</ul>
 
 
 </section>
