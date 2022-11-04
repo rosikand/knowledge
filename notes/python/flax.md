@@ -1,5 +1,5 @@
 ---
-categories: [ml, jax]
+categories: [ml, jax, flax]
 ---
 
 # Flax: Jax Neural Network Library 

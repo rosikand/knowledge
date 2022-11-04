@@ -35,3 +35,6 @@ myiter = iter(myclass)
 for x in myclass:
 	print(x)
 ```
+
+
+See [here](https://github.com/dragen1860/MAML-Pytorch/blob/master/MiniImagenet.py) for ml example. 
