@@ -202,5 +202,11 @@
   },
   "notes/python/jax-codebases.md": {
     "jax-codebases.html": "42c6fe94"
+  },
+  "notes/ml-tasks/ood.md": {
+    "ood.html": "c8ef5c95"
+  },
+  "pages/ml-problems.qmd": {
+    "ml-problems.html": "9ff103df"
   }
 }

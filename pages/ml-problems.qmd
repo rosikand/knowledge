@@ -1,0 +1,12 @@
+---
+title: "ML Tasks and Problems"
+listing:
+  type: table
+  table-striped: true
+  contents: "../notes/ml-tasks/*.md"
+  categories: true
+  fields: [date, title, reading-time]
+---
+
+
+Each note describes an open-ended task/problem in ML research that interests me. 

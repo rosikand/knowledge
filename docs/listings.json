@@ -7,6 +7,12 @@
     ]
   },
   {
+    "listing": "/pages/ml-problems.html",
+    "items": [
+      "/notes/ml-tasks/ood.html"
+    ]
+  },
+  {
     "listing": "/pages/python.html",
     "items": [
       "/notes/python/config.html",

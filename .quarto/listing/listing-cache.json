@@ -3,6 +3,9 @@
     "pages/papers.qmd": [
       "../notes/papers/*.md"
     ],
+    "pages/ml-problems.qmd": [
+      "../notes/ml-tasks/*.md"
+    ],
     "pages/python.qmd": [
       "../notes/python/*.md"
     ],

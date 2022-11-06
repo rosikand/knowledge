@@ -18,7 +18,7 @@
     "href": "machine-learning.html",
     "title": "Machine Learning Notes",
     "section": "",
-    "text": "Lists\n\nPapers"
+    "text": "Lists\n\nPapers\nML problems and tasks"
   },
   {
     "objectID": "index.html",
@@ -343,11 +343,25 @@
     "text": "Footnotes\n\n\nWikipedia page.↩︎\nWikipedia page.↩︎\nWikipedia page.↩︎"
   },
   {
+    "objectID": "notes/ml-tasks/ood.html",
+    "href": "notes/ml-tasks/ood.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "(see Waterbirds dataset)\n\n\n\n(see group DRO)"
+  },
+  {
     "objectID": "pages/papers.html",
     "href": "pages/papers.html",
     "title": "Papers",
     "section": "",
     "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\nOct 4, 2022\n\n\nProtein Structure and Sequence Generation with Equivariant Denoising Diffusion Probabilistic Models\n\n\n0 min\n\n\n\n\nOct 11, 2022\n\n\nUnsupervised Segmentation in Real-World Images via Spelke Object Inference\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "pages/ml-problems.html",
+    "href": "pages/ml-problems.html",
+    "title": "ML Tasks and Problems",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\nNov 6, 2022\n\n\nOut-of-Distribution Learning\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "pages/python.html",
