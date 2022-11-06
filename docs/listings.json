@@ -11,9 +11,12 @@
     "items": [
       "/notes/python/config.html",
       "/notes/python/flax.html",
+      "/notes/python/functorch.html",
       "/notes/python/iterable.html",
+      "/notes/python/jax-codebases.html",
       "/notes/python/ml_experiment_trackers.html",
-      "/notes/python/pdb.html"
+      "/notes/python/pdb.html",
+      "/notes/python/packaging.html"
     ]
   },
   {

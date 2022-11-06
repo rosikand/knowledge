@@ -196,5 +196,11 @@
   },
   "notes/python/packaging.md": {
     "packaging.html": "44c25dc7"
+  },
+  "notes/python/functorch.md": {
+    "functorch.html": "aa6a9a38"
+  },
+  "notes/python/jax-codebases.md": {
+    "jax-codebases.html": "42c6fe94"
   }
 }

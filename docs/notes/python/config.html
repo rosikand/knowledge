@@ -176,6 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#ml_collections" id="toc-ml_collections" class="nav-link" data-scroll-target="#ml_collections"><code>ml_collections</code>:</a></li>
   <li><a href="#yacs" id="toc-yacs" class="nav-link" data-scroll-target="#yacs">YACS</a></li>
   <li><a href="#python-oop" id="toc-python-oop" class="nav-link" data-scroll-target="#python-oop">Python OOP</a></li>
+  <li><a href="#types.simplenamespace" id="toc-types.simplenamespace" class="nav-link" data-scroll-target="#types.simplenamespace"><code>types.SimpleNamespace</code></a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -218,7 +219,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="python-oop" class="level3">
 <h3 class="anchored" data-anchor-id="python-oop">Python OOP</h3>
-<p>My currently preferred method is to just use standard python classes. That way, you don’t have to deal with the whole <code>getattr</code> business with traditional YAML files.</p>
+<p>My currently preferred method is to just use standard python classes. That way, you don’t have to deal with the whole <code>getattr</code> business with traditional YAML files (programmatic configs!).</p>
 <ol type="1">
 <li>Define a <code>configs.py</code> file in your working directory.</li>
 <li>In <code>configs.py</code>, define the <code>BaseConfig</code> class which creates all the valid fields as class attributes and provides default values for them.</li>
@@ -283,15 +284,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># silence warnings </span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># warnings.filterwarnings("ignore")</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># configure args </span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    parser <span class="op">=</span> argparse.ArgumentParser(description<span class="op">=</span><span class="st">"specify cli arguments."</span>, allow_abbrev<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    parser.add_argument(<span class="st">"-config"</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, <span class="bu">help</span><span class="op">=</span><span class="st">'specify config.py class to use.'</span>) </span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    args <span class="op">=</span> parser.parse_args()</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    main(args)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># configure args </span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    parser <span class="op">=</span> argparse.ArgumentParser(description<span class="op">=</span><span class="st">"specify cli arguments."</span>, allow_abbrev<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    parser.add_argument(<span class="st">"-config"</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, <span class="bu">help</span><span class="op">=</span><span class="st">'specify config.py class to use.'</span>) </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    args <span class="op">=</span> parser.parse_args()</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    main(args)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>then, run using <code>python3 runner.py -c TestNewLR</code>.</p>
+</section>
+<section id="types.simplenamespace" class="level3">
+<h3 class="anchored" data-anchor-id="types.simplenamespace"><code>types.SimpleNamespace</code></h3>
+<p>You might be wondering, “wouldn’t c++-like structs be of good use here?”. Well, Python has this not-as-well-known feature called <code>SimpleNamespace</code>.</p>
+<blockquote class="blockquote">
+<p>“Python’s SimpleNamespace class provides an easy way for a programmer to create an object to store values as attributes without creating their own (almost empty) class.” - (<a href="https://lwn.net/Articles/818777/">link</a>)</p>
+</blockquote>
+<p>This <a href="https://github.com/soumik12345/functorch-examples/blob/main/01_classfier_training.ipynb">notebook</a> provides an example.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>default_config <span class="op">=</span> SimpleNamespace(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>            batch_size <span class="op">=</span> <span class="dv">64</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>            num_workers <span class="op">=</span> <span class="dv">4</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            learning_rate <span class="op">=</span> <span class="fl">1e-2</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            epochs <span class="op">=</span> <span class="dv">10</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            artifact_address <span class="op">=</span> <span class="st">'geekyrakshit/functorch-examples/cifar-10:v0'</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            device <span class="op">=</span> <span class="st">"cuda:0"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            classes <span class="op">=</span> (</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">'plane'</span>, <span class="st">'car'</span>, <span class="st">'bird'</span>, <span class="st">'cat'</span>, <span class="st">'deer'</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">'dog'</span>, <span class="st">'frog'</span>, <span class="st">'horse'</span>, <span class="st">'ship'</span>, <span class="st">'truck'</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Problem I see: can’t use inheritance so you have to re-define all non-changed hyperparams for each new config.</p>
 
 
 </section>

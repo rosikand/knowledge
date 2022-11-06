@@ -43,7 +43,7 @@ this package also supports
 
 ### Python OOP 
 
-My currently preferred method is to just use standard python classes. That way, you don't have to deal with the whole `getattr` business with traditional YAML files. 
+My currently preferred method is to just use standard python classes. That way, you don't have to deal with the whole `getattr` business with traditional YAML files (programmatic configs!).  
 
 1. Define a `configs.py` file in your working directory. 
 2. In `configs.py`, define the `BaseConfig` class which creates all the valid fields as class attributes and provides default values for them. 
@@ -117,8 +117,6 @@ def main(args):
 
 
 if __name__ == '__main__':
-    # silence warnings 
-    # warnings.filterwarnings("ignore")
 
     # configure args 
     parser = argparse.ArgumentParser(description="specify cli arguments.", allow_abbrev=True)
@@ -130,7 +128,31 @@ if __name__ == '__main__':
 then, run using `python3 runner.py -c TestNewLR`. 
 
 
- 
+### `types.SimpleNamespace`
+
+You might be wondering, "wouldn't c++-like structs be of good use here?". Well, Python has this not-as-well-known feature called `SimpleNamespace`. 
+
+> "Python's SimpleNamespace class provides an easy way for a programmer to create an object to store values as attributes without creating their own (almost empty) class." - ([link](https://lwn.net/Articles/818777/)) 
+
+This [notebook](https://github.com/soumik12345/functorch-examples/blob/main/01_classfier_training.ipynb) provides an example. 
+
+```python
+default_config = SimpleNamespace(
+            batch_size = 64,
+            num_workers = 4,
+            learning_rate = 1e-2,
+            epochs = 10,
+            artifact_address = 'geekyrakshit/functorch-examples/cifar-10:v0',
+            device = "cuda:0" if torch.cuda.is_available() else "cpu",
+            classes = (
+                'plane', 'car', 'bird', 'cat', 'deer',
+                'dog', 'frog', 'horse', 'ship', 'truck')
+)
+```
+
+Problem I see: can't use inheritance so you have to re-define all non-changed hyperparams for each new config. 
+
+
 
 
 
