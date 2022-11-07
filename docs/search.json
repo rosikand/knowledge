@@ -368,7 +368,7 @@
     "href": "pages/python.html",
     "title": "Python",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nConfig files for machine learning experimentation\n\n\n3 min\n\n\n\n\n\n\nFlax: Jax Neural Network Library\n\n\n0 min\n\n\n\n\n\n\nFunctorch\n\n\n0 min\n\n\n\n\n\n\nIterables\n\n\n0 min\n\n\n\n\n\n\nJax codebases\n\n\n0 min\n\n\n\n\n\n\nMachine learning experiment trackers\n\n\n0 min\n\n\n\n\n\n\nPDB: Pythin Debugger\n\n\n0 min\n\n\n\n\n\n\nPython packaging\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nConfig files for machine learning experimentation\n\n\n3 min\n\n\n\n\n\n\nFlax: Jax Neural Network Library\n\n\n0 min\n\n\n\n\n\n\nFunctorch\n\n\n0 min\n\n\n\n\n\n\nIterables\n\n\n0 min\n\n\n\n\n\n\nJax codebases\n\n\n0 min\n\n\n\n\n\n\nMachine learning experiment trackers\n\n\n0 min\n\n\n\n\n\n\nPDB: Pythin Debugger\n\n\n0 min\n\n\n\n\n\n\nPython packaging\n\n\n0 min\n\n\n\n\n\n\nShuffle arrays in unison\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "pages/cs221.html",
@@ -411,5 +411,12 @@
     "title": "CS 330 Notes",
     "section": "",
     "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nBerkeley CS 182, Lecture 21 - Meta Learning\n\n\n8 min\n\n\n\n\n\n\nWeek 1, Lecture 1 - Course Introduction\n\n\n2 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Multi-task learning\n\n\n2 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Transfer Learning + Start of Meta-Learning\n\n\n4 min\n\n\n\n\n\n\nWeek 2, Lecture 2 - Black-box meta-learning & in-context learning\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "notes/python/shuffle-unison.html",
+    "href": "notes/python/shuffle-unison.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "Use np.random.permutation!\nimport numpy as np \n\nX = np.array(data)\ny = np.array(target)\n\nperm = np.random.permutation(len(X))\nX = X[perm]\ny = y[perm]"
   }
 ]

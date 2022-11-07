@@ -208,5 +208,8 @@
   },
   "pages/ml-problems.qmd": {
     "ml-problems.html": "9ff103df"
+  },
+  "notes/python/shuffle-unison.md": {
+    "shuffle-unison.html": "3b2c7d03"
   }
 }
