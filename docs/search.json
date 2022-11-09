@@ -91,6 +91,13 @@
     "text": "It has become common to track experiments via a third-party service that orchestrates experiment tracking automatically. A common one is wandb.ai. Here is a list of services:\n\nAIM (open-source, own server)\nMLFlow\nComet ml\nwandb.ai\nDagsHub\nKeepsake.ml"
   },
   {
+    "objectID": "notes/python/data-io.html",
+    "href": "notes/python/data-io.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "https://github.com/activeloopai/deeplake#-comparisons-to-familiar-tools"
+  },
+  {
     "objectID": "notes/python/iterable.html",
     "href": "notes/python/iterable.html",
     "title": "Knowledge",
@@ -103,6 +110,13 @@
     "title": "Knowledge",
     "section": "",
     "text": "Similar to GDB, Python has a built-in debugger module that allows you to set breakpoints during execution.\n\n\n\nimport pdb\nType pdb.set_trace() at your breakpoint.\nRun as usual.\nUse:\n\nn (next) (or s (step)) to go to the next line.\nUse c (continue) to go to the next breakpoint.\nUse p for printing.\nUse l to print neighboring code and current line.\nSee here for more details."
+  },
+  {
+    "objectID": "notes/python/shuffle-unison.html",
+    "href": "notes/python/shuffle-unison.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "Use np.random.permutation!\nimport numpy as np \n\nX = np.array(data)\ny = np.array(target)\n\nperm = np.random.permutation(len(X))\nX = X[perm]\ny = y[perm]"
   },
   {
     "objectID": "notes/cs109/12-inference-part-1.html",
@@ -280,6 +294,13 @@
     "text": "Date: 9/26/22\nQuestions: - Textbook? Readings? Last year recordings?\n\n\n\nNot too technical\nCybersecurity from offensive pov.\nAim to get working understanding of common attacks (mostly from policy side)\nLectures + sections\n\nMonday: tech lecture (Alex), weekly assignment available\nAlso one discussion section on one of Tuesday, Wednesday, Thursday, Friday\n\nLab (work together)\n\nWednesday: law lecture (Riana)\n\nVirtual machines reset weekly so no late work I guess\nGrading:\n\n10%: discussion attendance\n… (see slides)\n\n\n\n\n\n\nSnowden: exposed the capabilities of the US.\nKey to global competition for power in this day and age.\nWhat can hackers do?\n\nProper taxonomy is tier-ed (not based on who they work for since those lines are fluid), but based on skill level and capabilities.\n{Paste chart}.\n\nLayers of abstraction hide things away\n\ni.e., a hacker hacking upstream for a government would have less chance of getting caught if their position is far away from the actor.\n\nZero-day exploit\n\n\n\nNow a less fine-grained taxonomy… - Superpowers: large orgs, countries, etc. - Examples: five i’s: US, UK, AUS, NZ, CAN - Rapid risers: north korea (lazarus group), vietnam, south korea… - Rapid improving, learn quickly from superpowers - Peleton: lots of people doing this work but mostly private contractors, (e.g., India). - Ambitious …: poor, not many resources\n\n\n\nWhat control does the government have over bad actors? - Full control: In USA: non-authorized hacking is prosecuted. - Less control: e.g., Korea - No control: no laws, e.g., Nigeria\n\n\n\n\nSide-channel attacks:\n\nNot used much but lots of Phd students study this"
   },
   {
+    "objectID": "notes/intlpol268/week7 - cryptography.html",
+    "href": "notes/intlpol268/week7 - cryptography.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "Authentication vs. authorization"
+  },
+  {
     "objectID": "notes/intlpol268/3.html",
     "href": "notes/intlpol268/3.html",
     "title": "Knowledge",
@@ -313,6 +334,13 @@
     "title": "Knowledge",
     "section": "",
     "text": "(to-do…)"
+  },
+  {
+    "objectID": "notes/cs330/13.html",
+    "href": "notes/cs330/13.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "We will cover the domain adaptation problem and algorithms for solving it.\n\n\n\n\nNote: the wikipedia page provides a good problem introduction.\n\n\nWe aim at learning from a source data distribution a well performing model on a different (but related) target data distribution.\n\n\n\n\n\n\n\nNote\n\n\n\n\nDefinition 1 Domain shift (aka distributional shift): a change in the data distribution between an algorithm’s training dataset, and a dataset it encounters when deployed. These domain shifts are common in practical applications.\n\n\n\n\nLike transfer learning, but we operate in the transductive setting rather than inductive. Meaning, we have access to the (unlabeled) target domain data during training.\n\nMeaning, during training of the og model on the source data, we have unlabeled data samples of the target distribution.\nQuestion: what happens if we don’t have access to the target domain data? Frame this as a meta-learning problem? Note: Wed’s lecture might cover this.\n\nCan think of the idea as tasks but with different distributions of \\(p(x)\\).\nRobustness.\nExamples:\n\nTumor detection: trained on data from source hospital, but need to generalize to target hospital data. A distribution shift.\n\nCan frame this as two separate tasks.\n\nLand-use classification: source is landsat images of North America… want to deploy to South America landsat images.\n\n\n\n\n\n\n\n\nSee empirical risk minimization:\n\n“The core idea is that we cannot know exactly how well an algorithm will work in practice (the true”risk”) because we don’t know the true distribution of data that the algorithm will work on, but we can instead measure its performance on a known set of training data (the “empirical” risk).”\n\nDomain adaptation via importance sampling (see slides for the math).\n\n\n\n\n\n\n\nNote\n\n\n\n\nDefinition 2 (Importance sampling algorithm):\n\nTrain binary classifier \\(c\\) (source \\(\\mid x\\) ) to discriminate between source and target data.\nReweight or resample data \\(\\mathscr{D}_S\\) according to \\(\\frac{1-c \\text { (source } \\mid x \\text { ) }}{c \\text { (source } \\mid x)}\\).\nOptimize loss \\(L\\left(f_\\theta(x), y\\right)\\) on reweighted or resampled data.\n\n\n\n\nNote: might be a good idea to model the distance between two similar data points in this (similar).\n\n\n\n\n\n\nKey assumption: the source and target distributions need to overlap.\n\n\n\nWe need\n\n\n\n\n\n\n\n\n\n\nMNIST digit-like images but not with blank background.\nIdea: align features (through learning separate encoders and minimizing distance between similar features).\n\n\n\n\nSee CycleGAN.\n\n\n\n\n\n\nWhat is a distribution \\(p(x)\\) for the training data? Just the data plotted or the probability of seeing each e.g., class?\nWhat happens if we don’t have access to the target domain data? Frame this as a meta-learning problem?\n\nOr is this just a different problem in general?"
   },
   {
     "objectID": "notes/cs330/3.html",
@@ -368,7 +396,7 @@
     "href": "pages/python.html",
     "title": "Python",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nConfig files for machine learning experimentation\n\n\n3 min\n\n\n\n\n\n\nFlax: Jax Neural Network Library\n\n\n0 min\n\n\n\n\n\n\nFunctorch\n\n\n0 min\n\n\n\n\n\n\nIterables\n\n\n0 min\n\n\n\n\n\n\nJax codebases\n\n\n0 min\n\n\n\n\n\n\nMachine learning experiment trackers\n\n\n0 min\n\n\n\n\n\n\nPDB: Pythin Debugger\n\n\n0 min\n\n\n\n\n\n\nPython packaging\n\n\n0 min\n\n\n\n\n\n\nShuffle arrays in unison\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nConfig files for machine learning experimentation\n\n\n3 min\n\n\n\n\n\n\nData I/O for machine learning\n\n\n0 min\n\n\n\n\n\n\nFlax: Jax Neural Network Library\n\n\n0 min\n\n\n\n\n\n\nFunctorch\n\n\n0 min\n\n\n\n\n\n\nIterables\n\n\n0 min\n\n\n\n\n\n\nJax codebases\n\n\n0 min\n\n\n\n\n\n\nMachine learning experiment trackers\n\n\n0 min\n\n\n\n\n\n\nPDB: Pythin Debugger\n\n\n0 min\n\n\n\n\n\n\nPython packaging\n\n\n0 min\n\n\n\n\n\n\nShuffle arrays in unison\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "pages/cs221.html",
@@ -389,7 +417,7 @@
     "href": "pages/intlpol268.html",
     "title": "INTLPOL 268 Notes",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nWeek 1, Lecture 1 - Introduction\n\n\n1 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Law Introduction\n\n\n1 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Internet\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\n- Authentication vs. authorization\n\n\n0 min\n\n\n\n\n\n\nWeek 1, Lecture 1 - Introduction\n\n\n1 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Law Introduction\n\n\n1 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Internet\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "pages/biology.html",
@@ -410,13 +438,6 @@
     "href": "pages/cs330.html",
     "title": "CS 330 Notes",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nBerkeley CS 182, Lecture 21 - Meta Learning\n\n\n8 min\n\n\n\n\n\n\nWeek 1, Lecture 1 - Course Introduction\n\n\n2 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Multi-task learning\n\n\n2 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Transfer Learning + Start of Meta-Learning\n\n\n4 min\n\n\n\n\n\n\nWeek 2, Lecture 2 - Black-box meta-learning & in-context learning\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "notes/python/shuffle-unison.html",
-    "href": "notes/python/shuffle-unison.html",
-    "title": "Knowledge",
-    "section": "",
-    "text": "Use np.random.permutation!\nimport numpy as np \n\nX = np.array(data)\ny = np.array(target)\n\nperm = np.random.permutation(len(X))\nX = X[perm]\ny = y[perm]"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nBerkeley CS 182, Lecture 21 - Meta Learning\n\n\n8 min\n\n\n\n\n\n\nWeek 1, Lecture 1 - Course Introduction\n\n\n2 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Multi-task learning\n\n\n2 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Transfer Learning + Start of Meta-Learning\n\n\n4 min\n\n\n\n\n\n\nWeek 2, Lecture 2 - Black-box meta-learning & in-context learning\n\n\n0 min\n\n\n\n\n\n\nWeek 7, Lecture 1 - Domain Adaptation\n\n\n2 min\n\n\n\n\n\n\nNo matching items"
   }
 ]

@@ -8,29 +8,18 @@
         "type": "tabs",
         "children": [
           {
-            "id": "25ecdce947244652",
+            "id": "421ed930842ec043",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "cs221/7.md",
-                "mode": "source",
+                "file": "intlpol268/week7 - cryptography.md",
+                "mode": "preview",
                 "source": false
               }
             }
-          },
-          {
-            "id": "52d4cca01ddf7b1f",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.0.3"
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -96,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "cs221/7.md",
+                "file": "intlpol268/week7 - cryptography.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "cs221/7.md",
+                "file": "intlpol268/week7 - cryptography.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "cs221/7.md"
+                "file": "intlpol268/week7 - cryptography.md"
               }
             }
           }
@@ -147,17 +136,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "52d4cca01ddf7b1f",
+  "active": "421ed930842ec043",
   "lastOpenFiles": [
-    "cs221/5.md",
-    "cs221/4.md",
+    "cs221/7.md",
+    "intlpol268/week7 - cryptography.md",
+    "cs330/cs182-lec21.md",
+    "cs330/2.md",
     "intlpol268/3.md",
-    "papers/spelke-segmentation.md",
-    "papers/protein-diffusion.md",
     "intlpol268/2.md",
-    "cs221/3.md",
-    "cs221/2.md",
-    "biology/qpi.md",
-    "cs109/12-inference-part-1.md"
+    "cs221/rn-ch5-games.md",
+    "cs221/1.md",
+    "cs221/5.md",
+    "cs221/4.md"
   ]
 }

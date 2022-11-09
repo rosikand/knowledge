@@ -5,7 +5,7 @@ project:
 website:
   title: "Knowledge"
   navbar:
-    # background: "#102c3c" 
+    background: "#102c3c" 
     # background: "#8C1515"
     left:
       - href: index.qmd

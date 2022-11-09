@@ -16,6 +16,7 @@
     "listing": "/pages/python.html",
     "items": [
       "/notes/python/config.html",
+      "/notes/python/data-io.html",
       "/notes/python/flax.html",
       "/notes/python/functorch.html",
       "/notes/python/iterable.html",
@@ -48,6 +49,7 @@
   {
     "listing": "/pages/intlpol268.html",
     "items": [
+      "/notes/intlpol268/week7 - cryptography.html",
       "/notes/intlpol268/1.html",
       "/notes/intlpol268/2.html",
       "/notes/intlpol268/3.html"
@@ -88,7 +90,8 @@
       "/notes/cs330/1.html",
       "/notes/cs330/2.html",
       "/notes/cs330/3.html",
-      "/notes/cs330/4.html"
+      "/notes/cs330/4.html",
+      "/notes/cs330/13.html"
     ]
   }
 ]
