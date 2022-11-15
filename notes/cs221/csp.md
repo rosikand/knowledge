@@ -123,3 +123,56 @@ Definitions (from slides):
     <img alt="picture 7" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/5ba81fefb4e1162851a742e3b0624eae0d859b2b7a2839a6a116166c2de7bdda.png" width="60%" />  
 </p>
 
+
+## III. Examples
+
+- LSAT logic puzzle 
+- Event scheduling 
+- Program verification 
+
+ 
+::: {#def-default}
+**(indicator function)**: (useful for defining constraints/factors). 
+
+Can think of it as a python function that returns a boolean if the specified condition is true. 
+:::
+ 
+
+> Basic idea is to formulate your problem in terms of variables (desired quantities to be assigned) and factors (your constraints for these variable values). A CSP will assign values to these variables that are supposed to satisfy the constraints. Moreover, define factors as indicator functions that check whether the specified condition (i.e., the constraint) is true. 
+
+
+## IV. Dynamic Ordering 
+
+- We covered modeling, now let's get to inference (how to solve CSP's!)
+- To understand how to solve CSP, must understand idea behind weights. 
+
+Each assignment $x=\left(x_1, \ldots, x_n\right)$ has a weight:
+$$
+\operatorname{Weight}(x)=\prod_{j=1}^m f_j(x)
+$$
+
+(notice how it depends on the factors!) So essentially, what we are saying is that we set a weight for each factor/constraint and the outcome/result is what is being weighted. Then, we can mathematically define the objective: 
+
+$$
+\arg \max _x \text { Weight }(x)
+$$
+
+that is, find the max $x$ for the assignments. 
+
+❓I guess the idea is that the solutions will have a bigger weight than non-solutions? What to do in tie? Where to draw line of solution and non-solution? 
+
+### Backtracking search 
+
+- Blueprint for DO (dynamic ordering)
+- Cut-off when condition isn't satisfied
+- Explore all paths
+- Take highest weighted path at end as solution if satisfies conditions 
+
+We can probe this idea further to motivate DO. 
+
+- Idea: **partial assignment weights**
+  - Recall that the weight of an assignment (solution!) is the product of all the factors.
+  - We define the weight of a partial assignment to be the product of all the factors that we can evaluate, namely those whose scope includes only assigned variables.
+  - For example, if only $WA$ and $NT$ are assigned, the weight is just value of the single factor between them.
+  - When we assign a new variable a value, the weight of the new extended assignment is the old weight times all the factors that depend on the new variable and only previously assigned variables.
+

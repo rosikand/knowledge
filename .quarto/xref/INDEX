@@ -223,5 +223,8 @@
   },
   "notes/cs221/csp.md": {
     "csp.html": "3d37d12c"
+  },
+  "notes/ml-concepts/transfer-learning.md": {
+    "transfer-learning.html": "3f577a61"
   }
 }

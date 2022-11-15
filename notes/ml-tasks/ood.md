@@ -13,3 +13,10 @@ date: 11/6/22
 ## II. Robustness across groups 
 
 (see group DRO)
+
+
+## III. Domain adaptation 
+
+
+## IV. Domain generalization 
+
