@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Knowledge – quarto-input8e50a441</title>
+<title>Knowledge – sutton-rl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,7 +59,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -107,17 +106,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-1-lecture-1---course-introduction" id="toc-week-1-lecture-1---course-introduction" class="nav-link active" data-scroll-target="#week-1-lecture-1---course-introduction">Week 1, Lecture 1 - Course Introduction</a>
-  <ul class="collapse">
-  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
-  <li><a href="#logistics" id="toc-logistics" class="nav-link" data-scroll-target="#logistics">1. Logistics</a>
-  <ul class="collapse">
-  <li><a href="#homeworks" id="toc-homeworks" class="nav-link" data-scroll-target="#homeworks">Homeworks</a></li>
-  <li><a href="#project" id="toc-project" class="nav-link" data-scroll-target="#project">Project</a></li>
-  </ul></li>
-  <li><a href="#why-study-multi-task-learning-and-meta-learning" id="toc-why-study-multi-task-learning-and-meta-learning" class="nav-link" data-scroll-target="#why-study-multi-task-learning-and-meta-learning">2. Why study multi-task learning and meta-learning?</a></li>
-  <li><a href="#multi-task-intro" id="toc-multi-task-intro" class="nav-link" data-scroll-target="#multi-task-intro">Multi-task intro</a></li>
-  </ul></li>
+  <li><a href="#reinforcement-learning-notes" id="toc-reinforcement-learning-notes" class="nav-link active" data-scroll-target="#reinforcement-learning-notes">Reinforcement Learning Notes</a></li>
   </ul>
 </nav>
     </div>
@@ -126,159 +115,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="week-1-lecture-1---course-introduction" class="level1">
-<h1>Week 1, Lecture 1 - Course Introduction</h1>
-<!--  
-::: {#exm-default}
-
-## Beta 
-
-Here $43$. 
-:::
-
- 
-:::{.callout-note appearance="simple"}
-Hello
-:::
-
- 
-::: {#def-default}
-# s
-wow.
-:::
+<section id="reinforcement-learning-notes" class="level1">
+<h1>Reinforcement Learning Notes</h1>
+<blockquote class="blockquote">
+<p>This document comprises my notes on reinforcement learning following Sutton and Barto.</p>
+</blockquote>
 
 
- 
-:::{.callout-note collapse='true'}
-Even cooler bro. 
-:::
- 
- 
- 
-  -->
-<p>Note: MEL = meta-learning.</p>
-<section id="topics" class="level2">
-<h2 class="anchored" data-anchor-id="topics">Topics</h2>
-<ul>
-<li>Modern DL methods for learning across tasks</li>
-<li>Implementing these methods (MT, TL) in PyTorch</li>
-<li>Glimpse of building new algorithms</li>
-</ul>
-<p>low-level descriptions:</p>
-<ul>
-<li>MT, TL</li>
-<li>Meta learning algos</li>
-<li>Advanced meta learning topics</li>
-<li>Unsupervised pre-training
-<ul>
-<li>FS learning</li>
-</ul></li>
-<li>Domain adaption</li>
-<li>Lifelong learning</li>
-<li>Open problems</li>
-</ul>
-<p>Focus on DL, with case studies in things like NLP. - No RL! (see CS 224R)</p>
-</section>
-<section id="logistics" class="level2">
-<h2 class="anchored" data-anchor-id="logistics">1. Logistics</h2>
-<ul>
-<li>Lectures are live-streamed and recorded</li>
-<li>two guest lectures</li>
-<li>Prereqs:
-<ul>
-<li>Sufficient background in ML (229)</li>
-</ul></li>
-</ul>
-<section id="homeworks" class="level3">
-<h3 class="anchored" data-anchor-id="homeworks">Homeworks</h3>
-<p>50% of grade.</p>
-<ul>
-<li>0: multi-task basics</li>
-<li>1: multi-task data processing and BB-ML</li>
-<li>2: gradient-based ML</li>
-<li>3: fine-tuning pre-trained language models</li>
-<li>4 (optional): Bayesian ML and meta overfitting
-<ul>
-<li>Replace 15% of hw/project</li>
-<li>Not coding, all math</li>
-</ul></li>
-<li>6 late days</li>
-</ul>
-</section>
-<section id="project" class="level3">
-<h3 class="anchored" data-anchor-id="project">Project</h3>
-<ul>
-<li>Poster session, 50% of grade.</li>
-<li>Idea: …</li>
-</ul>
-<p>Now technical content…</p>
-</section>
-</section>
-<section id="why-study-multi-task-learning-and-meta-learning" class="level2">
-<h2 class="anchored" data-anchor-id="why-study-multi-task-learning-and-meta-learning">2. Why study multi-task learning and meta-learning?</h2>
-<ul>
-<li>How can we enable agents to learn a breadth of skills in the real world?
-<ul>
-<li>Because each time we have to train a supervised signal
-<ul>
-<li>So the goal is to learn representations across tasks</li>
-</ul></li>
-</ul></li>
-<li>Aside (common paradigm to learn representations): initialize well (not randomly) –&gt; fine-tune on new task.
-<ul>
-<li>This is harder for RL than NLP because NLP has the entire wikipedia to use but robotic common sense representations are not as straightforward (maybe we need a common robot embedding?)</li>
-</ul></li>
-</ul>
-<p><strong>Evolution</strong>:</p>
-<ul>
-<li>Early in CV: hand-design features, train SVM on-top</li>
-<li>Modern CV: end-to-end training, no hand-engineering
-<ul>
-<li>Allows us to handle unstructured inputs without understanding it</li>
-</ul></li>
-<li>Now why meta-learning? Three reasons…
-<ul>
-<li><strong>Don’t have large dataset</strong> at the outset to pre-train on or use in end-to-end SL manner (med imaging, robotics, etc.)
-<ul>
-<li>Even more so: <strong>long-tail data</strong> samples (e.g., self-driving won’t catch all edge cases)
-<ul>
-<li>MEL techniques can help with this (kinda… not the main focus tho)</li>
-</ul></li>
-</ul></li>
-<li><strong>Quickly learn something new</strong> (few-shot learning)</li>
-</ul></li>
-<li>Lots of open problems</li>
-</ul>
-</section>
-<section id="multi-task-intro" class="level2">
-<h2 class="anchored" data-anchor-id="multi-task-intro">Multi-task intro</h2>
-<ul>
-<li>What is a task?
-<ul>
-<li>Dataset + loss objective –&gt; model</li>
-<li>Objects as “tasks”</li>
-<li>Critical assumption: different tasks need to share some base structure (goal is to exploit shared structure)
-<ul>
-<li>But lots of tasks share structure (even as upstream as sharing the laws of physics!)</li>
-<li>Question: can we learn a shared embedding space for e.g., text + images in one?</li>
-</ul></li>
-</ul></li>
-<li>Does MT learning reduce to single-task SL learning?
-<ul>
-<li>Somewhat (tho not for every problem)</li>
-<li>Idea: sum loss and data:</li>
-</ul></li>
-</ul>
-<p><span class="math display">\[
-\mathcal{D}=\bigcup \mathcal{D}_i \quad \mathcal{L}=\sum \mathcal{L}_i
-\]</span></p>
-<p>Next up: a technical dive into the <strong>multi-task</strong> learning framework.</p>
-<p align="center">
-<img alt="picture 1" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/c49969eb11cb825d222502ce7dba1133f0ab193896de5d7a97599632a20c990c.png" width="300">
-</p>
-
-
-</section>
 </section>
 
 </main> <!-- /main -->

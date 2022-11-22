@@ -109,6 +109,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#python-packaging" id="toc-python-packaging" class="nav-link active" data-scroll-target="#python-packaging">Python packaging</a>
   <ul class="collapse">
   <li><a href="#cool" id="toc-cool" class="nav-link" data-scroll-target="#cool">Cool</a></li>
+  <li><a href="#poetry-tutorial" id="toc-poetry-tutorial" class="nav-link" data-scroll-target="#poetry-tutorial">Poetry tutorial</a>
+  <ul class="collapse">
+  <li><a href="#create" id="toc-create" class="nav-link" data-scroll-target="#create">Create</a></li>
+  <li><a href="#update" id="toc-update" class="nav-link" data-scroll-target="#update">Update</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -127,8 +132,47 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="https://python-poetry.org/">Poetry</a>: basically does all the building work for you. See <a href="https://github.com/ikostrikov/jaxrl">here</a> for an example.</li>
 <li>I also think having <code>setup.py</code> and installing from GH is the move with github CI actions for auto-version updating. See <a href="https://github.com/dibyaghosh/autogit">here</a> for minimal example.</li>
 </ul>
+</section>
+<section id="poetry-tutorial" class="level2">
+<h2 class="anchored" data-anchor-id="poetry-tutorial">Poetry tutorial</h2>
+<section id="create" class="level3">
+<h3 class="anchored" data-anchor-id="create">Create</h3>
+<ol type="1">
+<li><code>poetry new package-name</code>:</li>
+</ol>
+<pre><code>package-name/
+├── package-name/
+│   └── __init__.py
+├── tests/
+│   ├── __init__.py
+│   └── test_package-name.py
+├── pyproject.toml
+└── README.md</code></pre>
+<ol start="2" type="1">
+<li>Edit <code>pyproject.toml</code> as needed</li>
+<li>Run <code>pipreqs ../</code> in <code>package-name/package-name</code></li>
+<li>Make poetry lock file and auto-specify dependecies via <code>poetry add $( cat requirements.txt )</code></li>
+<li>Build the dist: <code>poetry build</code></li>
+<li>(First time) configure PyPI credentials <code>poetry config pypi-token.pypi my-token</code> where <code>my-token</code> is your api token.</li>
+<li>Publish to PyPI: <code>poetry publish</code></li>
+<li>(Optional) add <code>dist/</code> to a <code>.gitignore</code>.</li>
+</ol>
+</section>
+<section id="update" class="level3">
+<h3 class="anchored" data-anchor-id="update">Update</h3>
+<ol type="1">
+<li>(Optional) dependency resolvation:
+<ol type="1">
+<li>Run <code>pipreqs ../</code> in <code>package-name/package-name</code></li>
+<li>Make poetry lock file and auto-specify dependecies via <code>poetry add $( cat requirements.txt )</code></li>
+</ol></li>
+<li>Edit version number in <code>pyproject.toml</code></li>
+<li>Build the dist: <code>poetry build</code></li>
+<li>Publish to PyPI: <code>poetry publish</code></li>
+</ol>
 
 
+</section>
 </section>
 </section>
 

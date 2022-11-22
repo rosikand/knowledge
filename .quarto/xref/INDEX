@@ -226,5 +226,8 @@
   },
   "notes/ml-concepts/transfer-learning.md": {
     "transfer-learning.html": "3f577a61"
+  },
+  "notes/ml-concepts/sutton-rl.md": {
+    "sutton-rl.html": "4d1c1487"
   }
 }
