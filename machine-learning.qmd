@@ -10,3 +10,4 @@ toc: true
 
 - [Papers](pages/papers.qmd)
 - [ML problems and tasks](pages/ml-problems.qmd)
+- [ML concepts](pages/ml-concepts.qmd)

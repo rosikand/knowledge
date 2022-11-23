@@ -42,6 +42,14 @@
     ]
   },
   {
+    "listing": "/pages/ml-concepts.html",
+    "items": [
+      "/notes/ml-concepts/gradient-accumulation.html",
+      "/notes/ml-concepts/transfer-learning.html",
+      "/notes/ml-concepts/sutton-rl.html"
+    ]
+  },
+  {
     "listing": "/pages/basic-math.html",
     "items": [
       "/notes/basic-math/second-derivative-test.html"

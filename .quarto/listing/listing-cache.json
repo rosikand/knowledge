@@ -12,6 +12,9 @@
     "pages/cs221.qmd": [
       "../notes/cs221/*.md"
     ],
+    "pages/ml-concepts.qmd": [
+      "../notes/ml-concepts/*.md"
+    ],
     "pages/basic-math.qmd": [
       "../notes/basic-math/*.md"
     ],

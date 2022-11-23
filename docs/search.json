@@ -18,7 +18,7 @@
     "href": "machine-learning.html",
     "title": "Machine Learning Notes",
     "section": "",
-    "text": "Lists\n\nPapers\nML problems and tasks"
+    "text": "Lists\n\nPapers\nML problems and tasks\nML concepts"
   },
   {
     "objectID": "index.html",
@@ -33,6 +33,13 @@
     "title": "Knowledge",
     "section": "",
     "text": "Footnotes\n\n\nhttps://mathstat.slu.edu/~may/ExcelCalculus/sec-4-5-SecondDerivativeConcavity.html↩︎"
+  },
+  {
+    "objectID": "notes/ml-concepts/gradient-accumulation.html",
+    "href": "notes/ml-concepts/gradient-accumulation.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "Only update params every \\(n\\) steps.\nEssentially replicates (is (almost) statistically the same) the notion of batching in stochastic gradient descent.\n\nThus, allows one to train a model on a smaller machine but simulate a bigger batch size to avoid out-of-memory errors.\n\n\n\n\nSee here for more and how to do this in PyTorch (or see CS 330 HW3)."
   },
   {
     "objectID": "notes/ml-concepts/sutton-rl.html",
@@ -432,6 +439,13 @@
     "title": "CS 221 Notes",
     "section": "",
     "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nRussell and Norvig: Games (ch. 5)\n\n\n6 min\n\n\n\n\n\n\nConstraint satisfaction problems\n\n\n4 min\n\n\n\n\n\n\nMidterm Review Document\n\n\n0 min\n\n\n\n\n\n\nWeek 1, Lecture 1 - Introduction\n\n\n5 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Machine Learning I\n\n\n10 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Machine Learning II\n\n\n12 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Machine Learning III\n\n\n6 min\n\n\n\n\n\n\nWeek 3, Lecture 1 - Search I\n\n\n18 min\n\n\n\n\n\n\nWeek 4, Lecture 1 - Markov Decision Processes I\n\n\n10 min\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "pages/ml-concepts.html",
+    "href": "pages/ml-concepts.html",
+    "title": "ML Concepts",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\nNov 22, 2022\n\n\nGradient accumulation\n\n\n0 min\n\n\n\n\nNov 6, 2022\n\n\nNumber of layers to fine-tune\n\n\n0 min\n\n\n\n\n\n\nReinforcement Learning Notes\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "pages/basic-math.html",

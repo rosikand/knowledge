@@ -232,5 +232,11 @@
   },
   "notes/threads/textbooks.md": {
     "textbooks.html": "ce891888"
+  },
+  "notes/ml-concepts/gradient-accumulation.md": {
+    "gradient-accumulation.html": "ea97224e"
+  },
+  "pages/ml-concepts.qmd": {
+    "ml-concepts.html": "5b022048"
   }
 }

@@ -1,0 +1,12 @@
+---
+title: "ML Concepts"
+listing:
+  type: table
+  table-striped: true
+  contents: "../notes/ml-concepts/*.md"
+  categories: true
+  fields: [date, title, reading-time]
+---
+
+
+Collection of notes on machine learning concepts. 
