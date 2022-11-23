@@ -229,5 +229,8 @@
   },
   "notes/ml-concepts/sutton-rl.md": {
     "sutton-rl.html": "4d1c1487"
+  },
+  "notes/threads/textbooks.md": {
+    "textbooks.html": "ce891888"
   }
 }
