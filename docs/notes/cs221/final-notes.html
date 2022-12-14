@@ -110,7 +110,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#final-review-document" id="toc-final-review-document" class="nav-link active" data-scroll-target="#final-review-document">Final Review Document</a>
   <ul class="collapse">
   <li><a href="#i.-constraint-satisfication-problems" id="toc-i.-constraint-satisfication-problems" class="nav-link" data-scroll-target="#i.-constraint-satisfication-problems">I. Constraint Satisfication Problems</a></li>
-  <li><a href="#ii.-markov-networks" id="toc-ii.-markov-networks" class="nav-link" data-scroll-target="#ii.-markov-networks">II. Markov Networks</a></li>
+  <li><a href="#ii.-markov-networks" id="toc-ii.-markov-networks" class="nav-link" data-scroll-target="#ii.-markov-networks">II. Markov Networks</a>
+  <ul class="collapse">
+  <li><a href="#gibbs-sampling" id="toc-gibbs-sampling" class="nav-link" data-scroll-target="#gibbs-sampling">Gibbs Sampling</a></li>
+  </ul></li>
   <li><a href="#iii.-bayesian-networks" id="toc-iii.-bayesian-networks" class="nav-link" data-scroll-target="#iii.-bayesian-networks">III. Bayesian Networks</a>
   <ul class="collapse">
   <li><a href="#important-points" id="toc-important-points" class="nav-link" data-scroll-target="#important-points">Important points</a></li>
@@ -129,12 +132,80 @@ ul.task-list li input[type="checkbox"] {
 <h1>Final Review Document</h1>
 <section id="i.-constraint-satisfication-problems" class="level2">
 <h2 class="anchored" data-anchor-id="i.-constraint-satisfication-problems">I. Constraint Satisfication Problems</h2>
+<ul>
+<li>If we take that the factors of the factor graph are constraints that result in 0 if not satisfied, then satisfiable assignments will have a weight &gt; 0 because if at least one constraint is not satisfied, then the whole multiplication goes to 0. So the objective of maximizing the weight holds here.</li>
+</ul>
 </section>
 <section id="ii.-markov-networks" class="level2">
 <h2 class="anchored" data-anchor-id="ii.-markov-networks">II. Markov Networks</h2>
 <ul>
-<li>Use</li>
+<li><strong>Factor graphs</strong>: basically bipartie undirected graphs where there exists nodes representing RV’s and nodes representing factors which are functions acting on the RV’s they are connected to. Factors are simply functions which spit out some scalar value given assignments to the RV’s they take in. Here is an example:</li>
 </ul>
+<p align="center">
+<img alt="picture 2" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/90608e4ad3483f413ba61a67f8d4a9bbda61144c6bfde53e1729e5b0440d6e12.png" width="500">
+</p>
+<p>Some useful terms for factors:</p>
+<p align="center">
+<img alt="picture 3" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/62ea20613bc37dd5b53d921633646909e895be970457db2df2279208700f4be4.png" width="300">
+</p>
+<p>each assignment of values to the RV’s has a weight associated to it which involves multiplying the factors together:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div id="def-default" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 1 (Assignment weights) </strong></span>Each assignment <span class="math inline">\(x=\left(x_1, \ldots, x_n\right)\)</span> has a weight: <span class="math display">\[
+\operatorname{Weight}(x)=\prod_{j=1}^m f_j(x)
+\]</span></p>
+</div>
+</div>
+</div>
+<section id="transitioning-to-markov-networks" class="level4">
+<h4 class="anchored" data-anchor-id="transitioning-to-markov-networks">Transitioning to markov networks</h4>
+<ul>
+<li>Markov networks are just factor graph’s but with probability defined to each assignment of the variables rather than weight. Before, we’d have a table that looks like this which specifies a weight for each assignment:</li>
+</ul>
+<p align="center">
+<img alt="picture 4" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/c1160710786b8c3db6c7308f43162a47337088b618bd994d37d0cbd462d00777.png" width="300">
+</p>
+<ul>
+<li>Now, we can normalize it by dividing each weight by the sum of all weights:</li>
+</ul>
+<p><span class="math display">\[\mathbb{P}(X=x)=\frac{\text { Weight }(x)}{Z}\]</span></p>
+<p>where <span class="math inline">\(Z=\sum_{x^{\prime}}\)</span> Weight <span class="math inline">\(\left(x^{\prime}\right)\)</span>. We now have:</p>
+<p align="center">
+<img alt="picture 5" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/ea0ff0d2541f63a7ae511a1425e77d18c83c32b8d9ac8a79200aa82cb013c291.png" width="300">
+</p>
+<p>this allows us to represent uncertainty. We can perform inference via taking marginals for example.</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \mathbb{P}\left(X_2=1\right)=0.15+0.15+0.15+0.15=0.62 \\
+&amp; \mathbb{P}\left(X_2=2\right)=0.08+0.31=0.38
+\end{aligned}
+\]</span></p>
+<p>Note: different than max weight assignment!</p>
+</section>
+<section id="gibbs-sampling" class="level3">
+<h3 class="anchored" data-anchor-id="gibbs-sampling">Gibbs Sampling</h3>
+<ul>
+<li>We are interested in computing marginal, conditional, and regular probabilities from the distribution that the markov network represents. Here, we discuss an inference algorithm to <em>approximate</em> the marginal calculations (e.g., what is the probability of some random variable <span class="math inline">\(X_2\)</span>?).</li>
+<li><strong>Marginal probabilities are computed by summing the probabilities over all assignments satisfying the given condition</strong>. Gibbs sampling gives us a computationally efficient approximate.
+<ul>
+<li>Note: only given conditional probabilities rather than marginal in the graphs so we must approximate it.</li>
+<li>Cond probs are represented by the factors which are often derived when converting bayesian to markov:</li>
+</ul>
+<p align="center">
+<img alt="picture 6" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/9ab65e611e5dbb1e6f5f8afba4d75178ec382aa5a7af1785d90e1d51ced78f44.png" width="300">
+</p></li>
+</ul>
+<p><em>Describe algorithm steps here</em>.</p>
+</section>
 </section>
 <section id="iii.-bayesian-networks" class="level2">
 <h2 class="anchored" data-anchor-id="iii.-bayesian-networks">III. Bayesian Networks</h2>

@@ -3,10 +3,85 @@
 ## I. Constraint Satisfication Problems 
 
 
+- If we take that the factors of the factor graph are constraints that result in 0 if not satisfied, then satisfiable assignments will have a weight > 0 because if at least one constraint is not satisfied, then the whole multiplication goes to 0. So the objective of maximizing the weight holds here. 
+
 
 ## II. Markov Networks 
 
-- Use
+- **Factor graphs**: basically bipartie undirected graphs where there exists nodes representing RV's and nodes representing factors which are functions acting on the RV's they are connected to. Factors are simply functions which spit out some scalar value given assignments to the RV's they take in. Here is an example: 
+
+<p align='center'>
+    <img alt="picture 2" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/90608e4ad3483f413ba61a67f8d4a9bbda61144c6bfde53e1729e5b0440d6e12.png" width="500" />  
+</p>
+
+Some useful terms for factors: 
+
+<p align='center'>
+    <img alt="picture 3" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/62ea20613bc37dd5b53d921633646909e895be970457db2df2279208700f4be4.png" width="300" />  
+</p>
+
+
+each assignment of values to the RV's has a weight associated to it which involves multiplying the factors together: 
+
+ 
+:::{.callout-note}
+::: {#def-default}
+
+### Assignment weights 
+Each assignment $x=\left(x_1, \ldots, x_n\right)$ has a weight:
+$$
+\operatorname{Weight}(x)=\prod_{j=1}^m f_j(x)
+$$
+:::
+:::
+ 
+#### Transitioning to markov networks 
+
+- Markov networks are just factor graph's but with probability defined to each assignment of the variables rather than weight. Before, we'd have a table that looks like this which specifies a weight for each assignment: 
+
+<p align='center'>
+    <img alt="picture 4" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/c1160710786b8c3db6c7308f43162a47337088b618bd994d37d0cbd462d00777.png" width="300" />  
+</p>
+
+- Now, we can normalize it by dividing each weight by the sum of all weights: 
+
+$$\mathbb{P}(X=x)=\frac{\text { Weight }(x)}{Z}$$ 
+
+where $Z=\sum_{x^{\prime}}$ Weight $\left(x^{\prime}\right)$. We now have: 
+
+<p align='center'>
+    <img alt="picture 5" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/ea0ff0d2541f63a7ae511a1425e77d18c83c32b8d9ac8a79200aa82cb013c291.png" width="300" />  
+</p>
+
+
+this allows us to represent uncertainty. We can perform inference via taking marginals for example. 
+
+$$
+\begin{aligned}
+& \mathbb{P}\left(X_2=1\right)=0.15+0.15+0.15+0.15=0.62 \\
+& \mathbb{P}\left(X_2=2\right)=0.08+0.31=0.38
+\end{aligned}
+$$
+
+Note: different than max weight assignment!
+
+### Gibbs Sampling 
+
+- We are interested in computing marginal, conditional, and regular probabilities from the distribution that the markov network represents. Here, we discuss an inference algorithm to *approximate* the marginal calculations (e.g., what is the probability of some random variable $X_2$?). 
+- **Marginal probabilities are computed by summing the probabilities over all assignments satisfying the given condition**. Gibbs sampling gives us a computationally efficient approximate. 
+  - Note: only given conditional probabilities rather than marginal in the graphs so we must approximate it. 
+  - Cond probs are represented by the factors which are often derived when converting bayesian to markov: 
+  
+  <p align='center'>
+    <img alt="picture 6" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/9ab65e611e5dbb1e6f5f8afba4d75178ec382aa5a7af1785d90e1d51ced78f44.png" width="300" />  
+  </p>
+
+
+
+*Describe algorithm steps here*. 
+
+
+
 
 ## III. Bayesian Networks 
 
