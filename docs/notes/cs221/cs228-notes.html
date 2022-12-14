@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Knowledge – cs228-notes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Knowledge</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../notes.html">Stanford Notes</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../machine-learning.html">Machine Learning</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../concepts.html">Concepts</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="cs-228-notes" class="level1">
+<h1>CS 228 Notes</h1>
+<blockquote class="blockquote">
+<p>This document contains my notes for the CS 228 concepts relevant for CS 221. Mainly following https://ermongroup.github.io/cs228-notes/representation/directed/.</p>
+</blockquote>
+<section id="i.-bayesian-networks" class="level2">
+<h2 class="anchored" data-anchor-id="i.-bayesian-networks">I. Bayesian Networks</h2>
+<ul>
+<li>BN’s show casuality, MRF’s cannot.</li>
+<li>Models the world via DAG and efficiently parameterizes a probability distribution.</li>
+<li>We can compactly represent the joint using a Bayes net via the following derivation:</li>
+</ul>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>By chain rule, we can represent any joint like so:</p>
+<p><span class="math display">\[
+p\left(x_1, x_2, \ldots, x_n\right)=p\left(x_1\right) p\left(x_2 \mid x_1\right) \cdots p\left(x_n \mid x_{n-1}, \ldots, x_2, x_1\right).
+\]</span></p>
+<p>If we <strong>make the conditional independence assumption</strong> that each factor/variable depends only on a few ancestor variables, then we have:</p>
+<p><span class="math display">\[
+p\left(x_i \mid x_{i-1}, \ldots, x_1\right)=p\left(x_i \mid x_{A_i}\right).
+\]</span></p>
+</div>
+</div>
+</div>
+<p>this might allow us to, for example, reduce <span class="math inline">\(p\left(x_5 \mid x_4, x_3, x_2, x_1\right)\)</span> to <span class="math inline">\(p\left(x_5 \mid x_4, x_3\right)\)</span> operating on the conditional independence assumption that <span class="math inline">\((x_5 \mid x_4, x_3) \perp (x_2, x_1)\)</span>.</p>
+<ul>
+<li>We can think of <span class="math inline">\(p\left(x_i \mid x_{A_i}\right)\)</span> as a <strong>factor</strong> or <em>distribution</em> and denote it using a probability table where rows correspond to the different assignments <span class="math inline">\(x_{A_i}\)</span> can take on and the columns can correspond to the value of <span class="math inline">\(x_i\)</span> which denote the actual probabilities for <span class="math inline">\(p\left(x_i \mid x_{A_i}\right)\)</span> given the rows.
+<ul>
+<li>That is, we can think of each node as a <em>factor/distribution</em>, conditioned on its ancestors.</li>
+</ul></li>
+</ul>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Complexity
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Bayesian networks reduce the space complexity (size of joint table) from</p>
+<p><span class="math display">\[O\left(n d^{k+1}\right)\]</span></p>
+<p>to</p>
+<p><span class="math display">\[O\left(d^n\right)\]</span></p>
+<p>where each of the <span class="math inline">\(n\)</span> variables can have up to <span class="math inline">\(k\)</span> ancestors and take on one of <span class="math inline">\(d\)</span> values.</p>
+</div>
+</div>
+<p>Say we have 5 random variables. The traditional joint table would be huge. But with conditional independence assumptions, we can, for example, have this:</p>
+<p align="center">
+<img alt="picture 1" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/da7f8a806a5823fe43f124e4d0e121f5f95e3805523592765e6aa65fc05d350e.png" width="300">
+</p>
+<p>Bayes nets give us a much smaller way to represent this!</p>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Formal definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A bayesian network is a method to compactify a joint probability distribution relying on the (causal) conditional independence assumption, <span class="math inline">\(P\left(x_i \mid x_1, \ldots x_{i-1}\right)=P\left(x_i \mid \operatorname{parents}\left(X_i\right)\right)\)</span> that is able to display causal relationships. Formally, a bayesian network is a directed graph <span class="math inline">\(G= (V, E)\)</span> together with</p>
+<ul>
+<li>A random variable <span class="math inline">\(x_i\)</span> for each node <span class="math inline">\(i \in V\)</span>.</li>
+<li>One conditional probability distribution (CPD) <span class="math inline">\(p\left(x_i \mid x_{A_i}\right)\)</span> per node, which specifies the probability of <span class="math inline">\(x_i\)</span> conditioned on its parents’ values.</li>
+</ul>
+</div>
+</div>
+<ul>
+<li>Each node can be thought of as a probability distribution whose value depends on the assignments given to its parent nodes.</li>
+<li>Importantly, the graph must be acyclic otherwise the causality and conditional assumptions are invalid. More importantly then, the distributions may not sum to 1 and therefore be invalid probability distributions.</li>
+</ul>
+<section id="conditional-independence" class="level3">
+<h3 class="anchored" data-anchor-id="conditional-independence">Conditional independence</h3>
+<p>Before we move on, we need to drill down the concept of <strong>conditional independence</strong>. We will introduce it with an example. CI allows us to make assumptions described below which allows us to draw bayes nets which in turn allows us to reduce the joint size.</p>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exm-default" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Conditional independence example with university admission) </strong></span>Let <span class="math inline">\(M\)</span> denote whether a student gets into MIT, <span class="math inline">\(S\)</span> whether a student gets into Stanford, and <span class="math inline">\(G\)</span> be the student’s GPA. Off the bat, we of course understand that <span class="math inline">\(S\)</span> and <span class="math inline">\(M\)</span> depend on <span class="math inline">\(G\)</span>. But one can also reason that, not knowing <span class="math inline">\(G\)</span>, if the student gets into <span class="math inline">\(M\)</span>, then they are a promising student and probably have some increased chance of getting into <span class="math inline">\(S\)</span> as well even though the two admission processes are separate (see how the <span class="math inline">\(M\)</span> and <span class="math inline">\(S\)</span> are not quite independent even though there is no direct causation just correlation?). Now, suppose we observe <span class="math inline">\(G\)</span> which is the sole determinant for admitting students. Learning that <span class="math inline">\(S\)</span> is true (1) should not change the result of <span class="math inline">\(M\)</span> because <span class="math inline">\(G\)</span> provides all the necessary information. That is, given that we know <span class="math inline">\(G\)</span>, <span class="math inline">\(M\)</span> is not dependent on (independent) of <span class="math inline">\(S\)</span>. We say that <span class="math inline">\(M\)</span> is conditionally independent of <span class="math inline">\(S\)</span> given <span class="math inline">\(G\)</span>. We write:</p>
+<p><span class="math display">\[
+P(M | S, G) = P(M | G)
+\]</span></p>
+<p>that is, observing <span class="math inline">\(S\)</span>, given that we have observed <span class="math inline">\(G\)</span>, does not change <span class="math inline">\(P(M)\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<p>what this example shows is that <span class="math inline">\(M\)</span> and <span class="math inline">\(S\)</span> are not initially independent until <span class="math inline">\(G\)</span> is observed in which case it then becomes independent. <strong>The main premise is that things can be independent/dependent in isolation but change when we observe a new variable</strong>. In other words, two events can be independent, but NOT conditionally independent upon observation of some new conditioned on variable. See <a href="https://en.wikipedia.org/wiki/Conditional_independence">Wikipedia</a> for examples.</p>
+</section>
+<section id="the-dependencies-of-a-bayes-net" class="level3">
+<h3 class="anchored" data-anchor-id="the-dependencies-of-a-bayes-net">The dependencies of a Bayes net</h3>
+<ul>
+<li>To summarize, Bayesian networks represent probability distributions that can be formed via products of smaller, local conditional probability distributions (one for each variable). By expressing a probability in this form, we are introducing into our model assumptions that certain variables are independent.</li>
+<li>This raises the <strong>question</strong>: which independence assumptions are we exactly making?</li>
+</ul>
+<p>There are 3 common structures that exist within Bayes nets (larger ones are just these three common structures stacked):</p>
+<ul>
+<li><strong>Common parent</strong> (<span class="math inline">\(X \leftarrow Z \rightarrow Y\)</span>)</li>
+<li><strong>Cascade</strong> (<span class="math inline">\(X \rightarrow Z \rightarrow Y\)</span>)</li>
+<li><strong>V-structure</strong> (<span class="math inline">\(X \rightarrow Z \leftarrow Y\)</span>)</li>
+</ul>
+<p>Visually:</p>
+<p align="center">
+<img alt="picture 2" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/e0274dc78400e1951709fdc2f896cbfd87a6417eb09b1db2744dd9a3fd05b74d.png" width="400">
+</p>
+<p>Breaking this down: remember that in a bayes net, <strong>each variable is conditionally independent of all nodes in the graph except its parents, given its parents (and the parents are observed)</strong>. That is, the variable depends directly on its parents. The parents give all the information the variable needs.</p>
+<ul>
+<li><strong>Common parent</strong> (<span class="math inline">\(X \leftarrow Z \rightarrow Y\)</span>):
+<ul>
+<li>If <span class="math inline">\(Z\)</span> is unobserved, then <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> cannot be deemed independent (they <em>can</em> be dependent)–<span class="math inline">\(X \not \perp Y\)</span>.</li>
+<li>If <span class="math inline">\(Z\)</span> is observed, then <span class="math inline">\(X \perp Y \mid Z\)</span> (<span class="math inline">\(X\)</span> is independent of <span class="math inline">\(Y\)</span> given <span class="math inline">\(Z\)</span>).</li>
+<li><span class="math inline">\(Z\)</span> contains <em>all</em> the information that determines the outcomes for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. Once observed, nothing else can affect the outcome. Hence, we have a conditional independence assumption here.</li>
+</ul></li>
+<li><strong>Cascade</strong> (<span class="math inline">\(X \rightarrow Z \rightarrow Y\)</span>)
+<ul>
+<li><span class="math inline">\(X \perp Y \mid Z\)</span> (not sure why this is the case)</li>
+<li>Intuition: <span class="math inline">\(Z\)</span> holds all the information needed for <span class="math inline">\(Y\)</span>. Thus, when <span class="math inline">\(Z\)</span> is observed, <span class="math inline">\(Y\)</span> does not depend on <span class="math inline">\(X\)</span> at all.</li>
+</ul></li>
+<li><strong>V-structure</strong> (<span class="math inline">\(X \rightarrow Z \leftarrow Y\)</span>)
+<ul>
+<li>explaining away</li>
+<li><span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent when <span class="math inline">\(Z\)</span> is unobserved.</li>
+<li><span class="math inline">\(X \not \perp Y \mid Z\)</span> if <span class="math inline">\(Z\)</span> is observed.</li>
+<li>Opposote of common parent (common child essentially)… but this flips the conditional independence to false.</li>
+</ul></li>
+</ul>
+<p>V-structure is an important concept. Take an example.</p>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="exm-default" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Explaining away) </strong></span>Let <span class="math inline">\(Z\)</span> be a boolean RV indicating if the lawn is wet. Let <span class="math inline">\(X\)</span> be if it rains. Let <span class="math inline">\(Y\)</span> be that sprinkler is on. We have the v-structure: <span class="math inline">\(X\)</span> or <span class="math inline">\(Y\)</span> can cause <span class="math inline">\(Z\)</span>. Initially, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent: knowing if the sprinkler <span class="math inline">\(Y\)</span> is on, doesn’t alone tell us if it is raining <span class="math inline">\(X\)</span>. However, upon the presence of the lawn being wet, <span class="math inline">\(Z\)</span>, we know that it must have been either raining or the sprinkler is on. Thus, if we know the lawn is wet <span class="math inline">\(Z\)</span>, and we determine that the sprinkler <span class="math inline">\(Y\)</span> is not on, we can deduce the fact that it is raining <span class="math inline">\(X\)</span>. That is, raining <span class="math inline">\(X\)</span> is conditionally dependent on the sprinkler <span class="math inline">\(Y\)</span> given the lawn being wet <span class="math inline">\(Z\)</span>: <span class="math inline">\(P(X \not \perp Y | Z)\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<p>So in summary, there exists three common substructures within bayes nets which allow us to make the following condidtional (in)dependence assumptions:</p>
+<ul>
+<li><strong>Common parent</strong> (<span class="math inline">\(X \leftarrow Z \rightarrow Y\)</span>): <span class="math display">\[X \perp Y \mid Z\]</span></li>
+<li><strong>Cascade</strong> (<span class="math inline">\(X \rightarrow Z \rightarrow Y\)</span>): <span class="math display">\[X \perp Y \mid Z\]</span></li>
+<li><strong>V-structure</strong> (<span class="math inline">\(X \rightarrow Z \leftarrow Y\)</span>): <span class="math display">\[X \not \perp Y \mid Z\]</span></li>
+</ul>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+D-separation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This is a nice little technique to determine the conditional independence between two variables upon the presence of a third (a criterion for deciding, from a given a causal graph, whether a set X of variables is independent of another set Y, given a third set Z). ChatGPT gave this explanation:</p>
+<p>D-separation works by examining the paths between the two nodes and identifying “blocking” nodes that prevent information from flowing between the two nodes. If there are no such blocking nodes, then the two nodes are dependent; if there are blocking nodes, then the two nodes are independent.</p>
+<p>For example, suppose we have a graph with three nodes X, Y, and Z, where there is an edge from X to Y and an edge from Y to Z. In this case, if we want to determine the conditional independence of X and Z given Y, we can use d-separation to examine the paths between X and Z and determine whether there are any blocking nodes.</p>
+<p>If we find a path from X to Z that passes through Y, then we can say that X and Z are dependent given Y, because information can flow from X to Y to Z along this path. On the other hand, if we find a path from X to Z that does not pass through Y, then we can say that X and Z are independent given Y, because the presence of Y does not affect the flow of information between X and Z.</p>
+<p>Overall, d-separation is a useful tool for determining the independence or dependence of variables in probabilistic graphical models.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ii.-markov-random-fields" class="level2">
+<h2 class="anchored" data-anchor-id="ii.-markov-random-fields">II. Markov Random Fields</h2>
+<blockquote class="blockquote">
+<p>Some ChatGPT wisdom: However, not every distribution can be represented using a DAG. In particular, a distribution can only be represented using a Bayesian network if it satisfies the Markov property, which states that a variable is independent of its non-descendants given its parents in the DAG.</p>
+</blockquote>
+<p>In some cases, the I-map (mapping of independencies from the actual distribution to the bayes net) cannot be perfect. That is, there can be cases where our bayes net cannot encompass all of the independence assumptions that exist in the underlying distribution. Thus, bayes nets cannot model such a distribution perfectly. Fortunately, we can use <em>undirected graphical models</em>, aka Markov Random Fields, to represent probability distributions where independence assumptions cannot be modeled by directed models.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

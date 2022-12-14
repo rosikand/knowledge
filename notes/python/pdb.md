@@ -2,7 +2,7 @@
 categories: [advanced, debugging]
 ---
 
-# PDB: Pythin Debugger 
+# PDB: Python Debugger 
 
 Similar to GDB, Python has a built-in debugger module that allows you to set breakpoints during execution. 
 

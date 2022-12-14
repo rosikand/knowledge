@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Knowledge – jax-codebases</title>
+<title>Knowledge – final-notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,6 +59,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -106,7 +107,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#jax-codebases" id="toc-jax-codebases" class="nav-link active" data-scroll-target="#jax-codebases">Jax codebases</a></li>
+  <li><a href="#final-review-document" id="toc-final-review-document" class="nav-link active" data-scroll-target="#final-review-document">Final Review Document</a>
+  <ul class="collapse">
+  <li><a href="#i.-constraint-satisfication-problems" id="toc-i.-constraint-satisfication-problems" class="nav-link" data-scroll-target="#i.-constraint-satisfication-problems">I. Constraint Satisfication Problems</a></li>
+  <li><a href="#ii.-markov-networks" id="toc-ii.-markov-networks" class="nav-link" data-scroll-target="#ii.-markov-networks">II. Markov Networks</a></li>
+  <li><a href="#iii.-bayesian-networks" id="toc-iii.-bayesian-networks" class="nav-link" data-scroll-target="#iii.-bayesian-networks">III. Bayesian Networks</a>
+  <ul class="collapse">
+  <li><a href="#important-points" id="toc-important-points" class="nav-link" data-scroll-target="#important-points">Important points</a></li>
+  </ul></li>
+  <li><a href="#iv.-logic" id="toc-iv.-logic" class="nav-link" data-scroll-target="#iv.-logic">IV. Logic</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -115,19 +125,97 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="jax-codebases" class="level1">
-<h1>Jax codebases</h1>
-<p>Enumerating some codebases that use jax (and/or flax) in an elegant way.</p>
+<section id="final-review-document" class="level1">
+<h1>Final Review Document</h1>
+<section id="i.-constraint-satisfication-problems" class="level2">
+<h2 class="anchored" data-anchor-id="i.-constraint-satisfication-problems">I. Constraint Satisfication Problems</h2>
+</section>
+<section id="ii.-markov-networks" class="level2">
+<h2 class="anchored" data-anchor-id="ii.-markov-networks">II. Markov Networks</h2>
 <ul>
-<li><a href="https://github.com/ikostrikov"><span class="citation" data-cites="ikostrikov">@ikostrikov</span></a>’s codebases.</li>
-<li><a href="https://github.com/dibyaghosh/jaxrl_m"><code>jaxrl_m</code></a></li>
-<li><code>jaxrl</code></li>
-<li><a href="https://github.com/dibyaghosh/jaxrl_m/blob/main/jaxrl_m/dataset.py">Dataset iterator</a></li>
-<li><a href="https://github.com/DarshanDeshpande/jax-models">Jax models</a></li>
-<li><a href="https://github.com/tristandeleu/jax-meta-learning">Jax Meta</a></li>
+<li>Use</li>
 </ul>
+</section>
+<section id="iii.-bayesian-networks" class="level2">
+<h2 class="anchored" data-anchor-id="iii.-bayesian-networks">III. Bayesian Networks</h2>
+<ul>
+<li>Form of modeling the world. A BN is simply a directed acyclic graph of random variables where directed edges between nodes represents conditional dependence and causation.</li>
+<li>Joints are too big in the real world. Can’t:
+<ul>
+<li>Efficiently store all the combinations. We’d have <span class="math inline">\(2^k\)</span> parameters where <span class="math inline">\(k\)</span> is the number of RV’s.</li>
+<li>Perform useful inference due to the global nature of the joint.</li>
+</ul></li>
+<li>Bayes nets allow us to compactly represent the joint via local conditional probability distributions for each RV. And it resolves the second problem by reasoning locally but conditioning globally. This relies on two concepts:
+<ul>
+<li>conditional independence</li>
+<li>chain rule</li>
+</ul></li>
+</ul>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Bayes net &lt;–&gt; Joint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The full joint would be to multiply the RV’s out:</p>
+<p><span class="math display">\[
+P\left(x_1, x_2, \ldots x_n\right)=\prod_{i=1}^n P\left(x_i \mid x_1 \ldots x_{i-1}\right)
+\]</span></p>
+<p>this is true for <em>any</em> distribution (this is just the chain rule). However, in bayes nets, we assume conditional independence meaning each node is conditionally independent from every node buts its parents. So we reduce the above to:</p>
+<p><span class="math display">\[
+P\left(x_i \mid x_1, \ldots x_{i-1}\right)=P\left(x_i \mid \operatorname{parents}\left(X_i\right)\right)
+\]</span></p>
+<p>which still gives us a valid joint:</p>
+<p><span class="math display">\[
+P\left(x_1, x_2, \ldots x_n\right)=\prod_{i=1}^n P\left(x_i \mid\right. \text{parents}\left.\left(X_i\right)\right)
+\]</span></p>
+<p>See how much space we save by making the conditional independence assumption?</p>
+</div>
+</div>
+<section id="conditional-independence" class="level4">
+<h4 class="anchored" data-anchor-id="conditional-independence">Conditional Independence</h4>
+<ul>
+<li>Main characteristic that allows us to formulate joints via Bayes’ nets. Essentially, conditional independence allows us to condition only on the local parents for each node rather than the ancestor variables.</li>
+</ul>
+<p>Example:</p>
+<p align="center">
+<img alt="picture 1" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/4f6aa56ddd11ad81b38ed4c9fda2a56b59619fa8117396ddddfc272fadb2aeb1.png" width="300">
+</p>
+<p><span class="math inline">\(x_3\)</span> is independent of <span class="math inline">\(x_2\)</span> given <span class="math inline">\(x_1\)</span>.</p>
+</section>
+<section id="important-points" class="level3">
+<h3 class="anchored" data-anchor-id="important-points">Important points</h3>
+<ul>
+<li>You can <strong>recover</strong> the full joint from a Bayes net via chain rule:</li>
+</ul>
+<p><span class="math display">\[
+P\left(x_1, x_2, \ldots x_n\right)=\prod_{i=1}^n P\left(x_i \mid\right. \text{parents} \left.\left(X_i\right)\right)
+\]</span></p>
+<ul>
+<li><strong>Inference</strong> in a Bayesian network involves computing the probability of a variable, or a set of variables, given some evidence. This involves combining the probabilities of the variables using the chain rule of probability and the conditional probabilities represented in the network.</li>
+</ul>
+<section id="questions" class="level4">
+<h4 class="anchored" data-anchor-id="questions">Questions</h4>
+<ul>
+<li>Why do we assume conditional independence in Bayesian networks? That is, why do we assume that the value of each node depends only on its direct parents rather than the rest of the network and/or its ancestors?
+<ul>
+<li>I think this is just the assumption we make when modeling the world using Bayes nets.</li>
+<li>We assume the “markov property”.</li>
+</ul></li>
+<li></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="iv.-logic" class="level2">
+<h2 class="anchored" data-anchor-id="iv.-logic">IV. Logic</h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

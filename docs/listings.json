@@ -31,7 +31,10 @@
     "listing": "/pages/cs221.html",
     "items": [
       "/notes/cs221/rn-ch5-games.html",
+      "/notes/cs221/cs228-notes.html",
       "/notes/cs221/csp.html",
+      "/notes/cs221/final-notes.html",
+      "/notes/cs221/markov-yt.html",
       "/notes/cs221/midterm-review.html",
       "/notes/cs221/1.html",
       "/notes/cs221/2.html",
@@ -58,10 +61,10 @@
   {
     "listing": "/pages/intlpol268.html",
     "items": [
-      "/notes/intlpol268/week7 - cryptography.html",
       "/notes/intlpol268/1.html",
       "/notes/intlpol268/2.html",
-      "/notes/intlpol268/3.html"
+      "/notes/intlpol268/3.html",
+      "/notes/intlpol268/week7 - cryptography.html"
     ]
   },
   {

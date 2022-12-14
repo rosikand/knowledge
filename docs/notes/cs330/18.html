@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Knowledge – jax-codebases</title>
+<title>Knowledge – quarto-input0d6e7de6</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,7 +106,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#jax-codebases" id="toc-jax-codebases" class="nav-link active" data-scroll-target="#jax-codebases">Jax codebases</a></li>
+  <li><a href="#week-9-lecture-2---percys-talk" id="toc-week-9-lecture-2---percys-talk" class="nav-link active" data-scroll-target="#week-9-lecture-2---percys-talk">Week 9, Lecture 2 - Percy’s Talk</a>
+  <ul class="collapse">
+  <li><a href="#what-is-learning-in-in-context-learning" id="toc-what-is-learning-in-in-context-learning" class="nav-link" data-scroll-target="#what-is-learning-in-in-context-learning">What is “learning” in in-context learning?</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -115,19 +118,26 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="jax-codebases" class="level1">
-<h1>Jax codebases</h1>
-<p>Enumerating some codebases that use jax (and/or flax) in an elegant way.</p>
+<section id="week-9-lecture-2---percys-talk" class="level1">
+<h1>Week 9, Lecture 2 - Percy’s Talk</h1>
+<blockquote class="blockquote">
+<p>On in-context learning.</p>
+</blockquote>
+<p>Outline:</p>
+<ol type="1">
+<li>What transformers can learn in-context (functions!)</li>
+<li>What exactly is in-context learning (via Bayesian inference)?</li>
+</ol>
+<section id="what-is-learning-in-in-context-learning" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-learning-in-in-context-learning">What is “learning” in in-context learning?</h3>
 <ul>
-<li><a href="https://github.com/ikostrikov"><span class="citation" data-cites="ikostrikov">@ikostrikov</span></a>’s codebases.</li>
-<li><a href="https://github.com/dibyaghosh/jaxrl_m"><code>jaxrl_m</code></a></li>
-<li><code>jaxrl</code></li>
-<li><a href="https://github.com/dibyaghosh/jaxrl_m/blob/main/jaxrl_m/dataset.py">Dataset iterator</a></li>
-<li><a href="https://github.com/DarshanDeshpande/jax-models">Jax models</a></li>
-<li><a href="https://github.com/tristandeleu/jax-meta-learning">Jax Meta</a></li>
+<li><strong>Standard learning</strong>: gradient steps</li>
+<li><strong>in-context</strong>: probabilistic inference (computing a posterior) conditioned on in-context samples</li>
 </ul>
+<p>to-do: learn more about icl and vision-icl.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

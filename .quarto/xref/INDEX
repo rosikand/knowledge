@@ -238,5 +238,23 @@
   },
   "pages/ml-concepts.qmd": {
     "ml-concepts.html": "5b022048"
+  },
+  "notes/python/gcp.md": {
+    "gcp.html": "a389e4a4"
+  },
+  "notes/python/things-to-learn.md": {
+    "things-to-learn.html": "f4f51988"
+  },
+  "notes/cs330/18.md": {
+    "18.html": "e3887b37"
+  },
+  "notes/cs221/final-notes.md": {
+    "final-notes.html": "37b248a6"
+  },
+  "notes/cs221/markov-yt.md": {
+    "markov-yt.html": "f94218fe"
+  },
+  "notes/cs221/cs228-notes.md": {
+    "cs228-notes.html": "d3335209"
   }
 }
