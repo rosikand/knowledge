@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Knowledge – quarto-input025603db</title>
+<title>Knowledge – datasets</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,7 +59,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -107,16 +106,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-7-lecture-1---domain-adaptation" id="toc-week-7-lecture-1---domain-adaptation" class="nav-link active" data-scroll-target="#week-7-lecture-1---domain-adaptation">Week 7, Lecture 1 - Domain Adaptation</a>
+  <li><a href="#datasets" id="toc-datasets" class="nav-link active" data-scroll-target="#datasets">Datasets</a>
   <ul class="collapse">
-  <li><a href="#intro-and-problem-statement" id="toc-intro-and-problem-statement" class="nav-link" data-scroll-target="#intro-and-problem-statement">Intro and problem statement</a></li>
-  <li><a href="#algorithms" id="toc-algorithms" class="nav-link" data-scroll-target="#algorithms">Algorithms</a>
-  <ul class="collapse">
-  <li><a href="#data-reweighting" id="toc-data-reweighting" class="nav-link" data-scroll-target="#data-reweighting">Data reweighting</a></li>
-  <li><a href="#feature-alignment" id="toc-feature-alignment" class="nav-link" data-scroll-target="#feature-alignment">Feature alignment</a></li>
-  <li><a href="#domain-translation" id="toc-domain-translation" class="nav-link" data-scroll-target="#domain-translation">Domain translation</a></li>
-  </ul></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
+  <li><a href="#computer-vision" id="toc-computer-vision" class="nav-link" data-scroll-target="#computer-vision">Computer vision</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -126,123 +118,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="week-7-lecture-1---domain-adaptation" class="level1">
-<h1>Week 7, Lecture 1 - Domain Adaptation</h1>
-<blockquote class="blockquote">
-<p>We will cover the domain adaptation problem and algorithms for solving it.</p>
-</blockquote>
-<section id="intro-and-problem-statement" class="level2">
-<h2 class="anchored" data-anchor-id="intro-and-problem-statement">Intro and problem statement</h2>
-<blockquote class="blockquote">
-<p>Note: the wikipedia page provides a good problem introduction.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>We aim at learning from a source data distribution a well performing model on a different (but related) target data distribution.</p>
-</blockquote>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div id="def-default" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 1 </strong></span><strong>Domain shift (aka distributional shift)</strong>: a change in the data distribution between an algorithm’s training dataset, and a dataset it encounters when deployed. These domain shifts are common in practical applications.</p>
-</div>
-</div>
-</div>
+<section id="datasets" class="level1">
+<h1>Datasets</h1>
+<section id="computer-vision" class="level2">
+<h2 class="anchored" data-anchor-id="computer-vision">Computer vision</h2>
 <ul>
-<li>Like transfer learning, but we operate in the <strong>transductive</strong> setting rather than inductive. Meaning, we have access to the (unlabeled) target domain data during training.
-<ul>
-<li>Meaning, during training of the og model on the source data, we have unlabeled data samples of the target distribution.</li>
-<li>Question: what happens if we don’t have access to the target domain data? Frame this as a meta-learning problem? Note: Wed’s lecture might cover this.</li>
-</ul></li>
-<li>Can think of the idea as tasks but with different distributions of <span class="math inline">\(p(x)\)</span>.</li>
-<li>Robustness.</li>
-<li><strong>Examples</strong>:
-<ul>
-<li>Tumor detection: trained on data from source hospital, but need to generalize to target hospital data. A distribution shift.
-<ul>
-<li>Can frame this as two separate tasks.</li>
-</ul></li>
-<li>Land-use classification: source is landsat images of North America… want to deploy to South America landsat images.</li>
-</ul></li>
-</ul>
-</section>
-<section id="algorithms" class="level2">
-<h2 class="anchored" data-anchor-id="algorithms">Algorithms</h2>
-<section id="data-reweighting" class="level3">
-<h3 class="anchored" data-anchor-id="data-reweighting">Data reweighting</h3>
-<ul>
-<li>See <a href="https://en.wikipedia.org/wiki/Empirical_risk_minimization">empirical risk minimization</a>:
-<ul>
-<li>“The core idea is that we cannot know exactly how well an algorithm will work in practice (the true”risk”) because we don’t know the true distribution of data that the algorithm will work on, but we can instead measure its performance on a known set of training data (the “empirical” risk).”</li>
-</ul></li>
-<li>Domain adaptation via importance sampling (see slides for the math).</li>
-</ul>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div id="def-default" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 2 </strong></span><strong>(Importance sampling algorithm)</strong>:</p>
-<ol type="1">
-<li>Train binary classifier <span class="math inline">\(c\)</span> (source <span class="math inline">\(\mid x\)</span> ) to discriminate between source and target data.</li>
-<li>Reweight or resample data <span class="math inline">\(\mathscr{D}_S\)</span> according to <span class="math inline">\(\frac{1-c \text { (source } \mid x \text { ) }}{c \text { (source } \mid x)}\)</span>.</li>
-<li>Optimize loss <span class="math inline">\(L\left(f_\theta(x), y\right)\)</span> on reweighted or resampled data.</li>
-</ol>
-</div>
-</div>
-</div>
-<p>Note: might be a good idea to model the distance between two similar data points in this (<a href="https://openaccess.thecvf.com/content_ICCV_2017/papers/Motiian_Unified_Deep_Supervised_ICCV_2017_paper.pdf">similar</a>).</p>
-<div class="callout-note callout callout-style-simple">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Key assumption: the source and target distributions need to overlap.</p>
-</div>
-</div>
-</div>
-<p>We need</p>
-<p align="center">
-<img alt="picture 1" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/931005dc423e29ecb390a19157479e4764d6e3e54109e656735004ddee406f24.png" width="300">
-</p>
-</section>
-<section id="feature-alignment" class="level3">
-<h3 class="anchored" data-anchor-id="feature-alignment">Feature alignment</h3>
-<p align="center">
-<img alt="picture 2" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images/images/4df4ae92875afb45ef8bdf04fe60ab89b567f88a65b8b5123cc378653ea7dd02.png" width="300">
-</p>
-<ul>
-<li>MNIST digit-like images but not with blank background.</li>
-<li>Idea: align features (through learning separate encoders and minimizing distance between similar features).</li>
-</ul>
-</section>
-<section id="domain-translation" class="level3">
-<h3 class="anchored" data-anchor-id="domain-translation">Domain translation</h3>
-<p>See CycleGAN.</p>
-<hr>
-</section>
-</section>
-<section id="questions" class="level2">
-<h2 class="anchored" data-anchor-id="questions">Questions</h2>
-<ul>
-<li>What is a distribution <span class="math inline">\(p(x)\)</span> for the training data? Just the data plotted or the probability of seeing each e.g., class?</li>
-<li>What happens if we don’t have access to the target domain data? Frame this as a meta-learning problem?
-<ul>
-<li>Or is this just a different problem in general?</li>
-</ul></li>
+<li>PACS for domain shift, cubs, and afs-100 for FS, etc.</li>
 </ul>
 
 

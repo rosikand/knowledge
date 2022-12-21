@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "intlpol268/week7 - cryptography.md",
-                "mode": "preview",
+                "file": "biology/qpi.md",
+                "mode": "source",
                 "source": false
               }
             }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "intlpol268/week7 - cryptography.md",
+                "file": "biology/qpi.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "intlpol268/week7 - cryptography.md",
+                "file": "biology/qpi.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "intlpol268/week7 - cryptography.md"
+                "file": "biology/qpi.md"
               }
             }
           }
@@ -136,17 +136,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "421ed930842ec043",
+  "active": "976fa50924caa957",
   "lastOpenFiles": [
-    "cs221/7.md",
-    "intlpol268/week7 - cryptography.md",
-    "cs330/cs182-lec21.md",
-    "cs330/2.md",
-    "intlpol268/3.md",
-    "intlpol268/2.md",
-    "cs221/rn-ch5-games.md",
-    "cs221/1.md",
     "cs221/5.md",
-    "cs221/4.md"
+    "cs221/final-notes.md",
+    "cs221/csp.md",
+    "cs221/cs228-notes.md",
+    "cs221/rn-ch5-games.md",
+    "python/config.md",
+    "ml-concepts/gradient-accumulation.md",
+    "ml-concepts/transfer-learning.md",
+    "ml-concepts/datasets.md",
+    "cs109/21-maximum-likelihood-estimation.md"
   ]
 }

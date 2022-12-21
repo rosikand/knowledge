@@ -256,5 +256,14 @@
   },
   "notes/cs221/cs228-notes.md": {
     "cs228-notes.html": "d3335209"
+  },
+  "notes/ml-concepts/datasets.md": {
+    "datasets.html": "c0389964"
+  },
+  "notes/misc-code/webassembly.md": {
+    "webassembly.html": "a69a4a9c"
+  },
+  "pages/misc-code.qmd": {
+    "misc-code.html": "78c951be"
   }
 }

@@ -1,0 +1,12 @@
+---
+title: "Python"
+listing:
+  type: table
+  table-striped: true
+  contents: "../notes/misc-code/*.md"
+  categories: true
+  fields: [date, title, reading-time]
+---
+
+
+> Misc. concepts and snippets 

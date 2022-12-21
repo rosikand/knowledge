@@ -120,6 +120,10 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#iv.-logic" id="toc-iv.-logic" class="nav-link" data-scroll-target="#iv.-logic">IV. Logic</a></li>
   </ul></li>
+  <li><a href="#lecture-notes" id="toc-lecture-notes" class="nav-link" data-scroll-target="#lecture-notes">Lecture notes</a>
+  <ul class="collapse">
+  <li><a href="#probablistic-programming" id="toc-probablistic-programming" class="nav-link" data-scroll-target="#probablistic-programming">Probablistic programming</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -269,6 +273,128 @@ P\left(x_1, x_2, \ldots x_n\right)=\prod_{i=1}^n P\left(x_i \mid\right. \text{pa
 <ul>
 <li><strong>Inference</strong> in a Bayesian network involves computing the probability of a variable, or a set of variables, given some evidence. This involves combining the probabilities of the variables using the chain rule of probability and the conditional probabilities represented in the network.</li>
 </ul>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Markov networks
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Factors in a Markov network may include variables beyond the cliques scope.</li>
+<li>Markov assumption is that the rest of the graph not in the clique is conditionally independent given an observation. As such, the variable only depends on the other variables in its clique.
+<ul>
+<li><a href="https://www.youtube.com/watch?v=nBrFC0STApo">clique</a> means subgraph where each vertice is adjacent. That is, <strong>every markov inference is conditioned on its neighbors only</strong>.
+<ul>
+<li>In other words:
+<ul>
+<li>Any two non-adjacent variables are conditionally independent given all other variables… aka Any variable is conditionally independent of the other variables given its neighbors.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>The probability is <span class="math inline">\(p\left(x_1, \ldots, x_n\right)=\frac{1}{Z} \prod_{c \in C} \phi_c\left(x_c\right)\)</span> which means it sums <span class="math inline">\(\sum_{x_1, \ldots, x_n}\)</span> over all values in the given inference. For example, you have to set of assignments to the variables <span class="math inline">\(x_1, \ldots, x_n\)</span> and so you calculate the probability that this prediction is correct based on the given formula. But you sum the factors for normalization purposes.
+<ul>
+<li>Here, the probabilities are the factors.</li>
+</ul></li>
+<li>Can learn the factors (params) via MLE.</li>
+<li><strong>Bayesian to Markov</strong>:
+<ul>
+<li>Draw edges between all parents for each given node (go one by one).</li>
+<li>Remove directionality</li>
+</ul></li>
+<li>Factor graphs:
+<ul>
+<li>bipartite graph. One type of vertex is factor and another RV. Edges connect the factors to the variables such that the edges connect the variables that the factor depends on. Example:</li>
+</ul></li>
+</ul>
+<p align="center">
+<img alt="picture 1" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/c3266bd57d365ce4cba1bc7600071804fc9f9db37164b16d70742daf4a4c009e.png">
+</p>
+<ul>
+<li><p><strong>Inference</strong>:</p>
+<ul>
+<li>Two types:
+<ul>
+<li>Marginalization: what is the probability of a given variable in our model after we sum everything else out (e.g., probability of spam vs.&nbsp;non-spam)?: <span class="math inline">\(p(y=1)=\sum_{x_1} \sum_{x_2} \cdots \sum_{x_n} p\left(y=1, x_1, x_2, \ldots, x_n\right)\)</span>.</li>
+<li>Maximum a posteriori (MAP) inference: what is the most likely assignment to the variables in the model (possibly conditioned on evidence)?: <span class="math inline">\(\max _{x_1, \ldots, x_n} p\left(y=1, x_1, \ldots, x_n\right)\)</span>.</li>
+<li>Sometimes computationally intractable.</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Sampling-based inference</strong>:</p>
+<ul>
+<li>Exact inference is often too slow for large distributions. So we need to approximate using sampling methods.</li>
+<li>variational: inference by solving some optimization problem.</li>
+<li>Sampling: produce answers by repeatedly generating random numbers from a distribution of interest.</li>
+<li>Sample meaning: for example, divide the space into areas with sizes representing the corresponding probabilities. Throw a dart randomly at it:</li>
+</ul>
+<p align="center">
+</p><p><img alt="picture 2" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/8a14d5110a91c51d53caeedb5b77c76ace056d6af551efccfabc3245c2b9265a.png" width="300"></p>
+<p></p>
+<ul>
+<li>Sampling from a Bayes net:
+<ul>
+<li>Sample each variable, conditioned on its parents, which will be observed if you go…, in topological order. Linear time. Topological order means start with node of no parents (i.e., conditioned on nothing), then sample on its children which will be sampled on itself the parent, then work your way down. See <a href="https://ermongroup.github.io/cs228-notes/inference/sampling/">forward sampling</a> section here.</li>
+</ul></li>
+<li>Gibbs sampling: say we want to compute assignments to the variables <span class="math inline">\(x_1, \ldots, x_n\)</span>. We are given a markov network with factors representing transition probabilities. E.g.:
+<p align="center">
+<img alt="picture 4" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/102ef4a5dc7fa82fe1c6a57bcea27b2dd423247f3e1c2e42ab9366eccf9d3fc6.png" width="300">
+</p>
+<ul>
+<li>Set the variables to some random initial state for <span class="math inline">\(t=0\)</span>: <span class="math inline">\(x^0=\left(x_1^0, \ldots, x_n^0\right)\)</span>.</li>
+<li>For <span class="math inline">\(t\)</span> time steps, we want to update these assignments. Repeat the following <span class="math inline">\(t\)</span> times:
+<ul>
+<li>Let <span class="math inline">\(x \leftarrow x^{t-1}\)</span> where <span class="math inline">\(x\)</span> represents <span class="math inline">\(x^t\)</span>, the assignment of variables that we are currently updating.</li>
+<li>Loop through all variables:
+<ul>
+<li>Sample <span class="math inline">\(x_i^{\prime} \sim p\left(x_i \mid x_{-i}\right)\)</span> where <span class="math inline">\(x_{-i}\)</span> means all variables except <span class="math inline">\(x_i\)</span>.
+<ul>
+<li>IMPORTANT: due to the markov assumption, <span class="math inline">\(x_{-i}\)</span> reduces to <span class="math inline">\(x_i\)</span>’s neighbors (its clique)! So we only really condition on its neighbors rather than everything else.</li>
+</ul></li>
+<li>Update the global vector <span class="math inline">\(x \leftarrow\left(x_1, \ldots, x_i^{\prime}, \ldots, x_n\right)\)</span>.</li>
+</ul></li>
+<li>Set <span class="math inline">\(x^t \leftarrow x\)</span>.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Some notes:</p>
+<ul>
+<li>Sampling is only conditioned on neighbor nodes.</li>
+<li>Note that when we update <span class="math inline">\(x_i\)</span>, we immediately use its new value for sampling other variables <span class="math inline">\(x_j\)</span>.</li>
+<li>Often times, you are not given a conditional probability distribution exactly (cuz otherwise no need for sampling just use the joint) for each variable. Instead, you’ll be given factors. So to get probabilities, loop over all possible combinations of <span class="math inline">\(x_i\)</span> and assign each a weight given the factors (put assignment into factor). Then sample from that probability distribution:</li>
+</ul>
+<p align="center">
+<img alt="picture 5" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/73874e05e50de53a63f2e5a32351455739d9f330e077079462477307bc1d68f3.png" width="300">
+</p>
+<ul>
+<li>Only use factors in clique?</li>
+</ul>
+<p>This picture sums it up perfectly:</p>
+<p align="center">
+</p><p><img alt="picture 3" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/93967af70e30d6bee434467027b26bb7280d21d2ff7fc555d589c3a461354fc6.png" width="70%"></p>
+<p></p>
+<p>Note… the algo presented in class in slightly different and just counts the number of times the variable <span class="math inline">\(x_i\)</span> was set to some value and then normalizes:</p>
+<p align="center">
+</p><p><img alt="picture 6" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/f7fa2e9013efdfdffa35f1ae8bc38f9ce82dfc07ee401354cc9058cde8636e7b.png" width="300"></p>
+<p></p>
+<p>Note: it seems that for marginal we only compute the weights and probabilities for the clique and factors that touch the RV <span class="math inline">\(x_i\)</span>:</p>
+<p align="center">
+<img alt="picture 7" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/914925766e044136b93ec350c046445b00ae4896be81f1f3470c0f440783bf04.png" width="300">
+</p>
+<ul>
+<li>Another note: you may think that when we loop through all possible values for <span class="math inline">\(x_i\)</span> to perform the inputs into the factors, we’d have to loop through all the other inputs variables in the factors’ scopes. This is not true because we are operating under the assumption that the neighboring variables <em>have</em> been observed already and thus have a concrete value (e.g., image denoising). Example:</li>
+</ul>
+<p align="center">
+<img alt="picture 8" src="https://cdn.jsdelivr.net/gh/minimatest/vscode-images@main/images/05e4083d88bae48d68eb67131fac722e1830407962db08f8ddc0f19641d28533.png" width="300">
+</p>
+<ul>
+<li><strong>Parameter learning</strong>: where the graph structure is known and we want to estimate the factors (i.e., the probabilities) from data sets.</li>
+</ul>
+</div>
+</div>
 <section id="questions" class="level4">
 <h4 class="anchored" data-anchor-id="questions">Questions</h4>
 <ul>
@@ -284,6 +410,13 @@ P\left(x_1, x_2, \ldots x_n\right)=\prod_{i=1}^n P\left(x_i \mid\right. \text{pa
 </section>
 <section id="iv.-logic" class="level2">
 <h2 class="anchored" data-anchor-id="iv.-logic">IV. Logic</h2>
+<hr>
+</section>
+</section>
+<section id="lecture-notes" class="level1">
+<h1>Lecture notes</h1>
+<section id="probablistic-programming" class="level2">
+<h2 class="anchored" data-anchor-id="probablistic-programming">Probablistic programming</h2>
 
 
 </section>

@@ -7,6 +7,12 @@
     ]
   },
   {
+    "listing": "/pages/misc-code.html",
+    "items": [
+      "/notes/misc-code/webassembly.html"
+    ]
+  },
+  {
     "listing": "/pages/ml-problems.html",
     "items": [
       "/notes/ml-tasks/ood.html"
@@ -19,12 +25,14 @@
       "/notes/python/data-io.html",
       "/notes/python/flax.html",
       "/notes/python/functorch.html",
+      "/notes/python/gcp.html",
       "/notes/python/iterable.html",
       "/notes/python/jax-codebases.html",
       "/notes/python/ml_experiment_trackers.html",
       "/notes/python/pdb.html",
       "/notes/python/packaging.html",
-      "/notes/python/shuffle-unison.html"
+      "/notes/python/shuffle-unison.html",
+      "/notes/python/things-to-learn.html"
     ]
   },
   {
@@ -47,6 +55,7 @@
   {
     "listing": "/pages/ml-concepts.html",
     "items": [
+      "/notes/ml-concepts/datasets.html",
       "/notes/ml-concepts/gradient-accumulation.html",
       "/notes/ml-concepts/transfer-learning.html",
       "/notes/ml-concepts/sutton-rl.html"
@@ -63,8 +72,7 @@
     "items": [
       "/notes/intlpol268/1.html",
       "/notes/intlpol268/2.html",
-      "/notes/intlpol268/3.html",
-      "/notes/intlpol268/week7 - cryptography.html"
+      "/notes/intlpol268/3.html"
     ]
   },
   {
@@ -103,7 +111,8 @@
       "/notes/cs330/2.html",
       "/notes/cs330/3.html",
       "/notes/cs330/4.html",
-      "/notes/cs330/13.html"
+      "/notes/cs330/13.html",
+      "/notes/cs330/18.html"
     ]
   }
 ]
