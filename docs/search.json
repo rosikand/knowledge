@@ -56,6 +56,13 @@
     "text": "Number of layers to fine-tune"
   },
   {
+    "objectID": "notes/ml-concepts/llm-deploy.html",
+    "href": "notes/ml-concepts/llm-deploy.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "Will be an ongoing thread of cool ideas I come across.\n\nUsing fly.io to distribute inference in a geographically optimized fashion.\nHaving multiple backends for chatbots/LLM’s (i.e. openai –> cohere pipeline) if one fails/server is down/request doesn’t work.\nSupabase and vector embeddings"
+  },
+  {
     "objectID": "notes/ml-concepts/datasets.html",
     "href": "notes/ml-concepts/datasets.html",
     "title": "Knowledge",
@@ -385,6 +392,13 @@
     "text": "Footnotes\n\n\nQuestion: when we say “learning” algorithm, what are we referring to? The whole framework? Backprop?↩︎\nis this always the case though?↩︎\nQuestion: I am still confused on the difference between score and margin. Is margin measures correctness, what is the difference between margin and loss then?↩︎\nsee how plotting the loss against the margin allows us to discover the following pitfalls? (motivation for introducing margin).↩︎"
   },
   {
+    "objectID": "notes/research-threads/diffusion-models.html",
+    "href": "notes/research-threads/diffusion-models.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "Diffusion models (DM’s for short) have taken the world by storm in the year of 2022–from Dalle 2 to Stable Diffusion. It started with unconditional image generation (generate an image after training on an IID image distribution) via DDPM’s as a step up from the unstable GAN’s. Dalle 2 connected large language modeling (via CLIP) and diffusion models (as compared to VQGAN in Dalle 1). Stable diffusion made this open source and more “stable” by using latent diffusion models where latent representations (from a pre-trained autoencoder) of images were connected to text.\nImportantly, the above paragraph talks about the DDPM probablistic model framework to diffusion models, which in turn, have deep connections to variational autoencoders. There exists other generative paradigms such as:\n\nscore-based generative modeling\nstochastic differential equations\n\nSong’s work (thesis) provides a good overview of the above. See Song’s blog post for an overview. In addition of course, are the old paradigms of generative learning:\n\nGAN’s\nVAE’s\n\n\n\n\nThe main source of hype around diffusion models came when users could generate impressive, realistic images given any description they could imagine."
+  },
+  {
     "objectID": "notes/intlpol268/1.html",
     "href": "notes/intlpol268/1.html",
     "title": "Knowledge",
@@ -515,7 +529,7 @@
     "href": "pages/ml-concepts.html",
     "title": "ML Concepts",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nDatasets\n\n\n0 min\n\n\n\n\nNov 22, 2022\n\n\nGradient accumulation\n\n\n0 min\n\n\n\n\nNov 6, 2022\n\n\nNumber of layers to fine-tune\n\n\n0 min\n\n\n\n\n\n\nReinforcement Learning Notes\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nDatasets\n\n\n0 min\n\n\n\n\nNov 22, 2022\n\n\nGradient accumulation\n\n\n0 min\n\n\n\n\nNov 6, 2022\n\n\nNumber of layers to fine-tune\n\n\n0 min\n\n\n\n\n\n\nReinforcement Learning Notes\n\n\n0 min\n\n\n\n\nFeb 24, 2023\n\n\nTechnical details behind deploying LLM’s\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "pages/basic-math.html",
@@ -530,6 +544,13 @@
     "title": "INTLPOL 268 Notes",
     "section": "",
     "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nWeek 1, Lecture 1 - Introduction\n\n\n1 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Law Introduction\n\n\n1 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Internet\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "pages/research-threads.html",
+    "href": "pages/research-threads.html",
+    "title": "ML Research Threads",
+    "section": "",
+    "text": "Topics\n\n\nlarge language models\nlearning under distribution shifts (domain generalization)\nfew-shot learning (meta learning)\nself-supervised learning/representation learning/contrastive learning/pre-training\nmachine learning systems\ndiffusion models\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\nJan 3, 2023\n\n\nDiffusion models\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "pages/biology.html",
@@ -551,19 +572,5 @@
     "title": "CS 330 Notes",
     "section": "",
     "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nBerkeley CS 182, Lecture 21 - Meta Learning\n\n\n8 min\n\n\n\n\n\n\nWeek 1, Lecture 1 - Course Introduction\n\n\n2 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Multi-task learning\n\n\n2 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Transfer Learning + Start of Meta-Learning\n\n\n4 min\n\n\n\n\n\n\nWeek 2, Lecture 2 - Black-box meta-learning & in-context learning\n\n\n0 min\n\n\n\n\n\n\nWeek 7, Lecture 1 - Domain Adaptation\n\n\n2 min\n\n\n\n\n\n\nWeek 9, Lecture 2 - Percy’s Talk\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "pages/research-threads.html",
-    "href": "pages/research-threads.html",
-    "title": "ML Research Threads",
-    "section": "",
-    "text": "Topics\n\n\nlarge language models\nlearning under distribution shifts (domain generalization)\nfew-shot learning (meta learning)\nself-supervised learning/representation learning/contrastive learning/pre-training\nmachine learning systems\ndiffusion models\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\nJan 3, 2023\n\n\nDiffusion models\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "notes/research-threads/diffusion-models.html",
-    "href": "notes/research-threads/diffusion-models.html",
-    "title": "Knowledge",
-    "section": "",
-    "text": "Diffusion models (DM’s for short) have taken the world by storm in the year of 2022–from Dalle 2 to Stable Diffusion. It started with unconditional image generation (generate an image after training on an IID image distribution) via DDPM’s as a step up from the unstable GAN’s. Dalle 2 connected large language modeling (via CLIP) and diffusion models (as compared to VQGAN in Dalle 1). Stable diffusion made this open source and more “stable” by using latent diffusion models where latent representations (from a pre-trained autoencoder) of images were connected to text.\nImportantly, the above paragraph talks about the DDPM probablistic model framework to diffusion models, which in turn, have deep connections to variational autoencoders. There exists other generative paradigms such as:\n\nscore-based generative modeling\nstochastic differential equations\n\nSong’s work (thesis) provides a good overview of the above. See Song’s blog post for an overview. In addition of course, are the old paradigms of generative learning:\n\nGAN’s\nVAE’s\n\n\n\n\nThe main source of hype around diffusion models came when users could generate impressive, realistic images given any description they could imagine."
   }
 ]

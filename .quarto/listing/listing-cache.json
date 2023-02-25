@@ -24,6 +24,9 @@
     "pages/intlpol268.qmd": [
       "../notes/intlpol268/*.md"
     ],
+    "pages/research-threads.qmd": [
+      "../notes/research-threads/*.md"
+    ],
     "pages/biology.qmd": [
       "../notes/biology/*.md"
     ],
@@ -32,10 +35,6 @@
     ],
     "pages/cs330.qmd": [
       "../notes/cs330/*.md"
-    ],
-    "pages/research-threads.qmd": [
-      "../notes/ml-tasks/*.md",
-      "../notes/research-threads/*.md"
     ]
   }
 }

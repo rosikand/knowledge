@@ -58,7 +58,8 @@
       "/notes/ml-concepts/datasets.html",
       "/notes/ml-concepts/gradient-accumulation.html",
       "/notes/ml-concepts/transfer-learning.html",
-      "/notes/ml-concepts/sutton-rl.html"
+      "/notes/ml-concepts/sutton-rl.html",
+      "/notes/ml-concepts/llm-deploy.html"
     ]
   },
   {
@@ -73,6 +74,12 @@
       "/notes/intlpol268/1.html",
       "/notes/intlpol268/2.html",
       "/notes/intlpol268/3.html"
+    ]
+  },
+  {
+    "listing": "/pages/research-threads.html",
+    "items": [
+      "/notes/research-threads/diffusion-models.html"
     ]
   },
   {
@@ -113,12 +120,6 @@
       "/notes/cs330/4.html",
       "/notes/cs330/13.html",
       "/notes/cs330/18.html"
-    ]
-  },
-  {
-    "listing": "/pages/research-threads.html",
-    "items": [
-      "/notes/research-threads/diffusion-models.html"
     ]
   }
 ]
