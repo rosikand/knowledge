@@ -1,0 +1,22 @@
+---
+title: "ML Research Threads"
+listing:
+  type: table
+  table-striped: true
+  contents: "../notes/research-threads/*.md"
+  categories: true
+  fields: [date, title, reading-time]
+---
+
+
+[Evergreen](https://notes.andymatuschak.org/Evergreen_notes), ongoing notes on new research in machine learning. Separated by topic. 
+
+ <details>
+<summary>Topics</summary>
+- [ ] large language models
+- [ ] learning under distribution shifts (domain generalization)
+- [ ] few-shot learning (meta learning)
+- [ ] self-supervised learning/representation learning/contrastive learning/pre-training
+- [ ] machine learning systems 
+- [x] diffusion models 
+</details>

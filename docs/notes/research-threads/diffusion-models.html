@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2023-01-03">
 
-<title>Knowledge - Machine Learning Notes</title>
+<title>Knowledge – diffusion-models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +24,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -60,7 +61,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -70,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Knowledge</span>
     </a>
   </div>
@@ -80,16 +81,16 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html">Home</a>
+    <a class="nav-link" href="../../index.html">Home</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./notes.html">Stanford Notes</a>
+    <a class="nav-link" href="../../notes.html">Stanford Notes</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./machine-learning.html" aria-current="page">Machine Learning</a>
+    <a class="nav-link" href="../../machine-learning.html">Machine Learning</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./concepts.html">Concepts</a>
+    <a class="nav-link" href="../../concepts.html">Concepts</a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -106,42 +107,41 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lists" id="toc-lists" class="nav-link active" data-scroll-target="#lists">Lists</a></li>
+  <li><a href="#diffusion-models" id="toc-diffusion-models" class="nav-link active" data-scroll-target="#diffusion-models">Diffusion models</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#connecting-text-to-image" id="toc-connecting-text-to-image" class="nav-link" data-scroll-target="#connecting-text-to-image">Connecting text to image</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Machine Learning Notes</h1>
-</div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-    
-  </div>
-  
-
-</header>
-
-<blockquote class="blockquote">
-<p>Lists of notes for all things machine learning!</p>
-</blockquote>
-<section id="lists" class="level3">
-<h3 class="anchored" data-anchor-id="lists">Lists</h3>
+<section id="diffusion-models" class="level1">
+<h1>Diffusion models</h1>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p><a href="https://arxiv.org/abs/1503.03585">Diffusion</a> models (DM’s for short) have taken the world by storm in the year of 2022–from Dalle 2 to Stable Diffusion. It started with unconditional image generation (generate an image after training on an IID image distribution) via <a href="https://arxiv.org/abs/2006.11239">DDPM</a>’s as a step up from the unstable GAN’s. <a href="https://openai.com/dall-e-2/">Dalle 2</a> connected large language modeling (via <a href="https://openai.com/blog/clip/">CLIP</a>) and diffusion models (as compared to <a href="https://arxiv.org/pdf/2012.09841.pdf">VQGAN</a> in Dalle 1). <a href="https://github.com/CompVis/stable-diffusion">Stable diffusion</a> made this open source and more “stable” by using <a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf">latent diffusion models</a> where latent representations (from a pre-trained autoencoder) of images were connected to text.</p>
+<p>Importantly, the above paragraph talks about the DDPM probablistic model framework to diffusion models, which in turn, have deep connections to variational autoencoders. There exists other generative paradigms such as:</p>
 <ul>
-<li><a href="./pages/papers.html">Papers</a></li>
-<li><a href="./pages/ml-problems.html">ML problems and tasks</a></li>
-<li><a href="./pages/ml-concepts.html">ML concepts</a></li>
-<li><a href="./pages/research-threads.html">Research Threads</a></li>
+<li>score-based generative modeling</li>
+<li>stochastic differential equations</li>
 </ul>
+<p>Song’s work (<a href="https://stacks.stanford.edu/file/druid:zy983tp3399/submit-augmented.pdf">thesis</a>) provides a good overview of the above. See Song’s <a href="https://yang-song.net/blog/2021/score/">blog post</a> for an overview. In addition of course, are the old paradigms of generative learning:</p>
+<ul>
+<li>GAN’s</li>
+<li>VAE’s</li>
+</ul>
+</section>
+<section id="connecting-text-to-image" class="level2">
+<h2 class="anchored" data-anchor-id="connecting-text-to-image">Connecting text to image</h2>
+<p>The main source of hype around diffusion models came when users could generate impressive, realistic images given any description they could imagine.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

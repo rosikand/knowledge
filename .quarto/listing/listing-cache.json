@@ -32,6 +32,10 @@
     ],
     "pages/cs330.qmd": [
       "../notes/cs330/*.md"
+    ],
+    "pages/research-threads.qmd": [
+      "../notes/ml-tasks/*.md",
+      "../notes/research-threads/*.md"
     ]
   }
 }

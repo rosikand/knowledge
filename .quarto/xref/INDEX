@@ -265,5 +265,11 @@
   },
   "pages/misc-code.qmd": {
     "misc-code.html": "78c951be"
+  },
+  "pages/research-threads.qmd": {
+    "research-threads.html": "99439b16"
+  },
+  "notes/research-threads/diffusion-models.md": {
+    "diffusion-models.html": "ebac9257"
   }
 }

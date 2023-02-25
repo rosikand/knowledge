@@ -114,5 +114,11 @@
       "/notes/cs330/13.html",
       "/notes/cs330/18.html"
     ]
+  },
+  {
+    "listing": "/pages/research-threads.html",
+    "items": [
+      "/notes/research-threads/diffusion-models.html"
+    ]
   }
 ]

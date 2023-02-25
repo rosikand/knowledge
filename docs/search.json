@@ -18,7 +18,7 @@
     "href": "machine-learning.html",
     "title": "Machine Learning Notes",
     "section": "",
-    "text": "Lists\n\nPapers\nML problems and tasks\nML concepts"
+    "text": "Lists\n\nPapers\nML problems and tasks\nML concepts\nResearch Threads"
   },
   {
     "objectID": "index.html",
@@ -551,5 +551,19 @@
     "title": "CS 330 Notes",
     "section": "",
     "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nBerkeley CS 182, Lecture 21 - Meta Learning\n\n\n8 min\n\n\n\n\n\n\nWeek 1, Lecture 1 - Course Introduction\n\n\n2 min\n\n\n\n\n\n\nWeek 1, Lecture 2 - Multi-task learning\n\n\n2 min\n\n\n\n\n\n\nWeek 2, Lecture 1 - Transfer Learning + Start of Meta-Learning\n\n\n4 min\n\n\n\n\n\n\nWeek 2, Lecture 2 - Black-box meta-learning & in-context learning\n\n\n0 min\n\n\n\n\n\n\nWeek 7, Lecture 1 - Domain Adaptation\n\n\n2 min\n\n\n\n\n\n\nWeek 9, Lecture 2 - Percy’s Talk\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "pages/research-threads.html",
+    "href": "pages/research-threads.html",
+    "title": "ML Research Threads",
+    "section": "",
+    "text": "Topics\n\n\nlarge language models\nlearning under distribution shifts (domain generalization)\nfew-shot learning (meta learning)\nself-supervised learning/representation learning/contrastive learning/pre-training\nmachine learning systems\ndiffusion models\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\nJan 3, 2023\n\n\nDiffusion models\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "notes/research-threads/diffusion-models.html",
+    "href": "notes/research-threads/diffusion-models.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "Diffusion models (DM’s for short) have taken the world by storm in the year of 2022–from Dalle 2 to Stable Diffusion. It started with unconditional image generation (generate an image after training on an IID image distribution) via DDPM’s as a step up from the unstable GAN’s. Dalle 2 connected large language modeling (via CLIP) and diffusion models (as compared to VQGAN in Dalle 1). Stable diffusion made this open source and more “stable” by using latent diffusion models where latent representations (from a pre-trained autoencoder) of images were connected to text.\nImportantly, the above paragraph talks about the DDPM probablistic model framework to diffusion models, which in turn, have deep connections to variational autoencoders. There exists other generative paradigms such as:\n\nscore-based generative modeling\nstochastic differential equations\n\nSong’s work (thesis) provides a good overview of the above. See Song’s blog post for an overview. In addition of course, are the old paradigms of generative learning:\n\nGAN’s\nVAE’s\n\n\n\n\nThe main source of hype around diffusion models came when users could generate impressive, realistic images given any description they could imagine."
   }
 ]

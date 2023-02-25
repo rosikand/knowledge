@@ -25,8 +25,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "cs221/markov-yt.md",
-                "mode": "preview",
+                "file": "cs221/5.md",
+                "mode": "source",
                 "source": false
               }
             }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "cs221/markov-yt.md",
+                "file": "cs221/5.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "cs221/markov-yt.md",
+                "file": "cs221/5.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "cs221/markov-yt.md"
+                "file": "cs221/5.md"
               }
             }
           }
@@ -161,15 +161,15 @@
   },
   "active": "cde4f31f4d843a55",
   "lastOpenFiles": [
-    "cs221/csp.md",
-    "cs221/5.md",
-    "cs221/final-notes.md",
-    "cs221/cs228-notes.md",
-    "cs221/rn-ch5-games.md",
-    "python/config.md",
+    "cs221/2.md",
+    "cs221/1.md",
     "ml-concepts/gradient-accumulation.md",
-    "ml-concepts/transfer-learning.md",
     "ml-concepts/datasets.md",
-    "cs109/21-maximum-likelihood-estimation.md"
+    "ml-concepts/transfer-learning.md",
+    "ml-concepts/sutton-rl.md",
+    "cs221/4.md",
+    "cs221/7.md",
+    "cs221/5.md",
+    "cs221/cs228-notes.md"
   ]
 }
