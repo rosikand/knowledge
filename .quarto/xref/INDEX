@@ -274,5 +274,8 @@
   },
   "notes/ml-concepts/llm-deploy.md": {
     "llm-deploy.html": "493ed185"
+  },
+  "notes/misc-code/uiux-designs.md": {
+    "uiux-designs.html": "3f560281"
   }
 }

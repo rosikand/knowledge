@@ -301,6 +301,13 @@
     "text": "WebAssembly (abbreviated Wasm) is a binary instruction format for a stack-based virtual machine. Wasm is designed as a portable compilation target for programming languages, enabling deployment on the web for client and server applications. (ref)\n\nIt allows you to compile any language to the web (just like as if you were to compile the program on your native computer). It allows you to write web applications in languages other than javascript.\n\n\n\nSimple rust app: https://github.com/dalcde/grid/"
   },
   {
+    "objectID": "notes/misc-code/uiux-designs.html",
+    "href": "notes/misc-code/uiux-designs.html",
+    "title": "Knowledge",
+    "section": "",
+    "text": "Will be adding screenshots and links to cool software designs I find over time :)\n\n\n\nDate: 6/19/23, link"
+  },
+  {
     "objectID": "notes/cs221/cs228-notes.html",
     "href": "notes/cs221/cs228-notes.html",
     "title": "Knowledge",
@@ -501,7 +508,7 @@
     "href": "pages/misc-code.html",
     "title": "Python",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\nDec 21, 2021\n\n\nWeb Assembly\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nReading Time\n\n\n\n\n\n\n\n\nUI/UX\n\n\n0 min\n\n\n\n\nDec 21, 2021\n\n\nWeb Assembly\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "pages/ml-problems.html",
